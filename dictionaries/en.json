@@ -1,0 +1,326 @@
+{
+  "metadata": {
+    "title": "Ahmed Samra Tennis",
+    "description": "Professional training programs, continuous progress tracking, and performance reviews to help you reach your best level."
+  },
+  "nav": {
+    "brand": "Ahmed Samra Tennis",
+    "links": {
+      "about": "About",
+      "services": "Services",
+      "achievements": "Achievements",
+      "playerPortal": "Player Portal",
+      "contact": "Contact"
+    }
+  },
+  "hero": {
+    "heading": "Elevate Your Tennis Game",
+    "subheading": "With Ahmed Samra",
+    "description": "Professional training programs, continuous progress tracking, and performance reviews to help you reach your best level.",
+    "cta": {
+      "book": "Book Training",
+      "portal": "Player Portal"
+    }
+  },
+  "about": {
+    "eyebrow": "About Ahmed",
+    "heading": "A coach shaped by competition, engineering discipline, and a belief in long-term player development.",
+    "story": [
+      "Ahmed Samra brings the mindset of a competitive tennis player and the precision of an engineer to every training session. His work is built around clear fundamentals, deliberate repetition, and honest performance feedback.",
+      "As the founder of Ahmed Samra Tennis, Ahmed mentors players beyond technique. He helps them understand how to train, compete, recover, and carry themselves with confidence on and off the court."
+    ],
+    "roles": [
+      {
+        "title": "Professional Tennis Coach",
+        "description": "Designs structured programs that turn daily practice into measurable progress."
+      },
+      {
+        "title": "Competitive Tennis Player",
+        "description": "Coaches from lived match experience, with a practical eye for pressure, timing, and decision-making."
+      },
+      {
+        "title": "Engineer",
+        "description": "Applies analytical thinking to movement, performance patterns, and player development."
+      },
+      {
+        "title": "Mentor",
+        "description": "Guides players with discipline, patience, and a standard that builds lasting confidence."
+      },
+      {
+        "title": "Founder",
+        "description": "Built Ahmed Samra Tennis as a focused training environment for serious, modern player growth."
+      }
+    ]
+  },
+  "achievements": {
+    "eyebrow": "Achievements",
+    "heading": "Credibility measured by player growth, not trophies alone.",
+    "introduction": "Ahmed Samra's work is built on sustained court experience, a competitive playing background, and a training method centered on long-term development. The result is a calm, precise training experience that gives every player a clear path toward confident improvement.",
+    "cards": [
+      {
+        "value": "Years on court",
+        "title": "Sustained tennis experience",
+        "description": "Experience shaped by training, playing, and studying the details of movement, timing, and decision-making."
+      },
+      {
+        "value": "Training method",
+        "title": "Structured player development",
+        "description": "Programs connect every session to a clear goal, from technical foundations to realistic match situations."
+      },
+      {
+        "value": "Competitive background",
+        "title": "Match-tested perspective",
+        "description": "A practical understanding of rhythm, pressure, mental stability, and better choices under stress."
+      },
+      {
+        "value": "Junior development",
+        "title": "Building young players correctly",
+        "description": "Focus on movement fundamentals, discipline, confidence, and learning capacity before rushing results."
+      },
+      {
+        "value": "Long-term improvement",
+        "title": "Sustainable progress philosophy",
+        "description": "Ahmed believes strong players are built through measurement, patience, intelligent repetition, and honest review."
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "Services",
+    "heading": "Training programs for players who want clear, confident progress.",
+    "introduction": "Each service is built around a precise goal: improving level, building foundations, preparing for competition, and reading performance with clarity. A refined training experience shaped by discipline, detail, and calm follow-up.",
+    "cards": [
+      {
+        "icon": "individual",
+        "title": "Individual Training",
+        "description": "Focused technical and tactical development tailored to the player's needs, level, and most important areas for improvement."
+      },
+      {
+        "icon": "juniors",
+        "title": "Junior Training",
+        "description": "Building the player correctly from the foundation, with attention to movement, control, discipline, and love for the game."
+      },
+      {
+        "icon": "tournaments",
+        "title": "Tournament Preparation",
+        "description": "Preparing players for competition through a clear training plan that supports season management and match pressure."
+      },
+      {
+        "icon": "video",
+        "title": "Video Analysis",
+        "description": "Reviewing performance to identify strengths and weaknesses, revealing the small details that matter on court."
+      },
+      {
+        "icon": "followup",
+        "title": "Continuous Follow-Up",
+        "description": "Creating a training plan and tracking player development regularly to support steady progress through clear feedback."
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "heading": "Gallery",
+    "subtitle": "Moments from training, competition and player development.",
+    "lightboxLabel": "Gallery viewer",
+    "closeLabel": "Close image",
+    "previousLabel": "Previous image",
+    "nextLabel": "Next image",
+    "images": [
+      {
+        "src": "https://images.pexels.com/photos/22931874/pexels-photo-22931874.jpeg?auto=compress&cs=tinysrgb&w=1800",
+        "alt": "Tennis player hitting a ball from the baseline on an outdoor court"
+      },
+      {
+        "src": "https://images.pexels.com/photos/23379620/pexels-photo-23379620.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Tennis player preparing to serve on an open court"
+      },
+      {
+        "src": "https://images.pexels.com/photos/23379591/pexels-photo-23379591.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Player training close to the net with a racket and ball"
+      },
+      {
+        "src": "https://images.pexels.com/photos/23379616/pexels-photo-23379616.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Tennis player extending the racket for a high shot during practice"
+      },
+      {
+        "src": "https://images.pexels.com/photos/23379601/pexels-photo-23379601.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Close-up of a tennis racket and ball during training"
+      },
+      {
+        "src": "https://images.pexels.com/photos/22931875/pexels-photo-22931875.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Tennis player returning a ball from mid court"
+      },
+      {
+        "src": "https://images.pexels.com/photos/22931869/pexels-photo-22931869.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Tennis player in ready position on court"
+      },
+      {
+        "src": "https://images.pexels.com/photos/23379592/pexels-photo-23379592.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Two players standing by the net after a training session"
+      },
+      {
+        "src": "https://images.pexels.com/photos/22931871/pexels-photo-22931871.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Player preparing to receive a ball on a tennis court"
+      },
+      {
+        "src": "https://images.pexels.com/photos/7822254/pexels-photo-7822254.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Tennis player on a clay court executing a forehand"
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "heading": "Trust built through the quality of training, not words alone.",
+    "introduction": "Professional placeholder feedback shaped around what players and parents value most: structured coaching, growing confidence, clear technical improvement, and discipline that supports long-term development.",
+    "cards": [
+      {
+        "avatar": "P",
+        "author": "Parent",
+        "role": "Junior development",
+        "quote": "The strongest part of the experience is the clarity of the plan. The player understands what to train, why it matters, and how each step builds confidence and discipline."
+      },
+      {
+        "avatar": "J",
+        "author": "Junior Player",
+        "role": "Technical foundation",
+        "quote": "Training helped me understand my mistakes in a simple way. I feel more confident with my shots and more focused during practice and matches."
+      },
+      {
+        "avatar": "C",
+        "author": "Competitive Player",
+        "role": "Competition preparation",
+        "quote": "The attention to technical and tactical details made a real difference. Every session has a clear goal, and every review helps me make better decisions on court."
+      },
+      {
+        "avatar": "P",
+        "author": "Parent",
+        "role": "Long-term follow-up",
+        "quote": "Progress shows not only in technique, but also in discipline, confidence, and the way the player approaches training and competition."
+      }
+    ]
+  },
+  "playerPortal": {
+    "eyebrow": "Player Portal",
+    "heading": "A digital space to organize each player’s development journey.",
+    "introduction": "The Player Portal is designed to bring everything a player and parent need into one clear place: progress tracking, training schedule, match results, performance videos, coach notes, and a development plan that is easy to revisit.",
+    "features": [
+      {
+        "icon": "progress",
+        "title": "Progress Tracking",
+        "description": "A structured view of technical, physical, and mental development across the training journey."
+      },
+      {
+        "icon": "schedule",
+        "title": "Training Schedule",
+        "description": "Clear organization for session times and preparation notes before each training day."
+      },
+      {
+        "icon": "matches",
+        "title": "Match Results",
+        "description": "A place to record match results and key observations that explain competitive performance."
+      },
+      {
+        "icon": "video",
+        "title": "Performance Video Uploads",
+        "description": "A space for training and match clips so performance details can be reviewed and analyzed."
+      },
+      {
+        "icon": "notes",
+        "title": "Coach Notes",
+        "description": "Focused notes that help the player understand what to keep, adjust, and improve."
+      },
+      {
+        "icon": "plan",
+        "title": "Development Plan",
+        "description": "A clear training plan that connects daily goals with long-term improvement on court."
+      }
+    ],
+    "mockup": {
+      "label": "Dashboard",
+      "title": "Player progress overview",
+      "chartTitle": "Performance development",
+      "chartDescription": "A structured view that helps players connect training work with ongoing review.",
+      "sessionLabel": "Next session",
+      "sessionText": "Technical and tactical training with a weekly goal review.",
+      "reviewLabel": "Coach review",
+      "stats": [
+        {
+          "value": "Next",
+          "label": "Training schedule"
+        },
+        {
+          "value": "Video",
+          "label": "Performance review"
+        },
+        {
+          "value": "Plan",
+          "label": "Development path"
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Coming Soon",
+      "description": "The Player Portal will launch in a later phase to make follow-up and training organization easier.",
+      "button": "Join the Waitlist"
+    }
+  },
+  "cta": {
+    "eyebrow": "Start Training",
+    "heading": "Book your training now",
+    "description": "Choose the contact method that works best for you, and the next step will be arranged clearly and calmly to begin a professional training experience on court.",
+    "whatsappButton": "Book via WhatsApp",
+    "phoneButton": "Call Now"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "heading": "Start with a clear step toward a better level.",
+    "introduction": "For bookings or questions about training programs, use the direct contact details or leave a message and you will be guided toward the most suitable training path.",
+    "methods": {
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "email": "Email"
+    },
+    "form": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "message": "Message",
+      "messagePlaceholder": "Share your training goal or question",
+      "submit": "Send Message"
+    }
+  },
+  "footer": {
+    "description": "Professional tennis coaching focused on technical foundations, discipline, confidence, and long-term player development.",
+    "navigationLabel": "Footer navigation",
+    "navigationTitle": "Navigation",
+    "contactTitle": "Contact",
+    "phoneLabel": "Phone",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "Email",
+    "socialTitle": "Social",
+    "rights": "All rights reserved."
+  },
+  "sections": {
+    "about": "About",
+    "services": "Services",
+    "achievements": "Achievements",
+    "playerPortal": "Player Portal",
+    "contact": "Contact"
+  },
+  "player": {
+    "title": "Player Reports",
+    "subtitle": "Enter your Player ID to view your reports.",
+    "playerId": "Player ID",
+    "viewReports": "View Reports",
+    "welcome": "Welcome",
+    "player": "Player",
+    "reports": "Reports",
+    "report": "Report",
+    "coach": "Coach",
+    "date": "Date",
+    "viewReport": "View Report",
+    "back": "Back",
+    "loading": "Loading reports...",
+    "invalidPlayer": "Invalid Player ID.",
+    "noReports": "No reports yet."
+  }
+}
