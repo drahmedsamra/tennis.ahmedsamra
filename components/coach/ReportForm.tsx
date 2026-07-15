@@ -18,7 +18,7 @@ export default function ReportForm({
   players,
 }: ReportFormProps) {
   return (
-    <form className="space-y-8">
+    <form action={action} className="space-y-8">
       <section className="rounded-2xl bg-white p-8 shadow">
         <h2 className="mb-6 text-2xl font-bold">
           📝 Report Information
@@ -57,12 +57,12 @@ export default function ReportForm({
             </label>
 
             <input
-              name="report_date"
-              type="date"
-              required
-              defaultValue={report?.report_date}
-              className="w-full rounded-xl border p-3"
-            />
+  name="report_date"
+  type="text"
+  defaultValue={report?.report_date ?? ""}
+  placeholder="2026-07-15"
+  className="w-full rounded-xl border p-3"
+/>
           </div>
 
           <div>
@@ -187,7 +187,6 @@ export default function ReportForm({
       <div className="flex justify-end">
         <button
           type="submit"
-          formAction={action}
           className="rounded-xl bg-green-600 px-8 py-4 font-semibold text-white hover:bg-green-700"
         >
           Save Report
