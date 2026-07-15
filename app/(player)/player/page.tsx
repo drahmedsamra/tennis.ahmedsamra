@@ -16,59 +16,81 @@ export default function PlayerSearchPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-green-50 to-white flex items-center justify-center px-6">
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-white to-emerald-100 px-4 py-10">
 
-      <div className="w-full max-w-lg rounded-3xl bg-white border border-green-100 shadow-2xl p-10">
+      <div className="w-full max-w-md rounded-3xl border border-green-100 bg-white p-8 shadow-2xl">
+
+        {/* Logo */}
 
         <div className="text-center">
 
-          <div className="text-6xl">
+          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-5xl">
             🎾
           </div>
 
-          <h1 className="mt-4 text-4xl font-bold text-gray-900">
-            تقارير اللاعبين
+          <h1 className="mt-6 text-3xl font-extrabold text-gray-900">
+            Ahmed Samra Tennis
           </h1>
 
-          <p className="mt-2 text-gray-500">
-            Player Reports
+          <p className="mt-2 text-lg font-medium text-green-700">
+            Player Reports Portal
           </p>
 
-          <p className="mt-6 text-gray-600 leading-7">
-            أدخل كود اللاعب لعرض جميع التقارير الفنية
+          <p className="mt-5 text-sm leading-7 text-gray-600">
+            أدخل كود اللاعب للوصول إلى
             <br />
-            والفيديوهات الخاصة به.
+            التقارير الفنية ونقاط الضعف والقوة والنصائح والفيديوهات
+            ومتابعة مستوى التطور.
           </p>
 
         </div>
 
-        <form action={searchPlayer} className="mt-10 space-y-5">
+        {/* Form */}
+
+        <form
+          action={searchPlayer}
+          className="mt-8 space-y-5"
+        >
 
           <input
             name="id"
             type="text"
             autoComplete="off"
             dir="ltr"
-            placeholder="مثال: om1"
-            className="w-full rounded-2xl border border-gray-300 bg-white px-5 py-4 text-center text-xl font-semibold uppercase outline-none transition focus:border-green-600 focus:ring-4 focus:ring-green-100"
+            placeholder="OM6"
+            className="w-full rounded-2xl border border-gray-300 bg-white px-5 py-4 text-center text-2xl font-bold uppercase tracking-widest outline-none transition focus:border-green-600 focus:ring-4 focus:ring-green-100"
           />
 
           <button
-            className="w-full rounded-2xl bg-green-600 py-4 text-xl font-bold text-white transition hover:bg-green-700"
+            type="submit"
+            className="w-full rounded-2xl bg-green-600 py-4 text-lg font-bold text-white transition hover:bg-green-700 active:scale-[0.98]"
           >
-            عرض التقارير
+            عرض الملف
           </button>
 
         </form>
 
-        <div className="mt-8 rounded-2xl bg-green-50 p-4 text-center text-sm text-gray-600">
+        {/* Examples */}
 
-          <span className="font-semibold">
-            مثال:
-          </span>
+        <div className="mt-8 rounded-2xl bg-green-50 p-4 text-center">
 
-          {" "}
-          OM1 &nbsp; | &nbsp; OM25 &nbsp; | &nbsp; SHU12
+          <p className="text-sm font-semibold text-green-700">
+            برجاء انشاء كود للاعب مع كابتن أحمد سمرة
+          </p>
+
+          <p className="mt-2 text-lg font-bold tracking-wider text-gray-700">
+            OM3 • OM25 • SHU12
+          </p>
+
+        </div>
+
+        {/* Footer */}
+
+        <div className="mt-8 border-t pt-5 text-center">
+
+          <p className="text-xs text-gray-400">
+            Powered by Ahmed Samra Tennis Platform
+          </p>
 
         </div>
 
