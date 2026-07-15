@@ -1,3 +1,4 @@
+import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export default function PlayerSearchPage() {
@@ -11,6 +12,18 @@ export default function PlayerSearchPage() {
       .toLowerCase();
 
     if (!id) return;
+
+    const supabase = await createClient();
+
+    const { data: player } = await supabase
+      .from("players")
+      .select("player_code")
+      .eq("player_code", id)
+      .maybeSingle();
+
+    if (!player) {
+      redirect("/player?error=notfound");
+    }
 
     redirect(`/player/${id}`);
   }
@@ -36,12 +49,13 @@ export default function PlayerSearchPage() {
             Player Reports Portal
           </p>
 
-          <p className="mt-5 text-sm leading-7 text-gray-600">
-            أدخل كود اللاعب للوصول إلى
-            <br />
-            التقارير الفنية ونقاط الضعف والقوة والنصائح والفيديوهات
-            ومتابعة مستوى التطور.
-          </p>
+          <p className="mt-5 text-sm leading-8 text-gray-600">
+  مرحبًا بك في بوابة متابعة اللاعبين.
+  <br />
+  أدخل كود اللاعب للاطلاع على ملفه الفني الكامل،
+  وآخر التقارير، وتحليل الأداء، وخطة التطوير،
+  والفيديوهات المرتبطة بمسيرته التدريبية.
+</p>
 
         </div>
 
@@ -70,12 +84,36 @@ export default function PlayerSearchPage() {
 
         </form>
 
+        {/* Platform Goals */}
+
+        <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-6">
+
+          <h2 className="mb-4 text-center text-lg font-bold text-green-700">
+            🎯 هدف المنصة
+          </h2>
+
+          <ul className="space-y-3 text-right text-sm leading-7 text-gray-700">
+
+            <li>✅ متابعة مستوى اللاعب بشكل دوري.</li>
+
+            <li>✅ تحليل الأداء الفني والتكتيكي.</li>
+
+            <li>✅ تحديد نقاط القوة ونقاط التطوير.</li>
+
+            <li>✅ تقديم توصيات تدريبية مخصصة.</li>
+
+            <li>✅ متابعة تطور اللاعب على مدار الموسم.</li>
+
+          </ul>
+
+        </div>
+
         {/* Examples */}
 
-        <div className="mt-8 rounded-2xl bg-green-50 p-4 text-center">
+        <div className="mt-6 rounded-2xl bg-slate-50 p-4 text-center">
 
-          <p className="text-sm font-semibold text-green-700">
-            برجاء انشاء كود للاعب مع كابتن أحمد سمرة
+          <p className="text-sm font-semibold text-slate-600">
+            أمثلة على أكواد اللاعبين
           </p>
 
           <p className="mt-2 text-lg font-bold tracking-wider text-gray-700">
