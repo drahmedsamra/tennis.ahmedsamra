@@ -19,16 +19,22 @@ export default function CoachLayout({
       lang={locale}
       dir={localeDirections[locale]}
       data-locale={locale}
-      className={`${getLocaleFontClass(locale)} h-full scroll-smooth antialiased`}
+      className={`${getLocaleFontClass(
+        locale
+      )} h-full scroll-smooth antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full bg-slate-100">
 
-        <div className="flex min-h-screen">
+        <div className="min-h-screen lg:flex">
 
-          <Sidebar />
+          {/* Desktop Sidebar */}
+          <aside className="hidden lg:block">
+            <Sidebar />
+          </aside>
 
-          <main className="flex-1 p-10">
+          {/* Main Content */}
+          <main className="flex-1 p-4 sm:p-6 lg:p-10">
             {children}
           </main>
 
