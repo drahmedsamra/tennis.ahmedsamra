@@ -37,6 +37,27 @@ export async function getPlayer(playerCode: string) {
   };
 }
 
+export async function getReport(reportId: string) {
+  console.log("========== getReport ==========");
+  console.log("Report ID:", reportId);
+
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("player_reports")
+    .select("*")
+    .eq("id", reportId)
+    .single();
+
+  console.log("Data:", data);
+  console.log("Error:", error);
+  console.log("===============================");
+
+  if (error) throw error;
+
+  return data;
+}
+
 export async function getPlayerById(id: string) {
   const supabase = await createClient();
 
