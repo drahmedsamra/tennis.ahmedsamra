@@ -1,69 +1,75 @@
 type Props = {
-    coach: string;
-    content: string[];
-    goals: string[];
-  };
-  
-  export default function ReportContent({
-    coach,
-    content,
-    goals,
-  }: Props) {
-    return (
-      <div className="space-y-10">
-  
-        <section>
-  
-          <h3 className="text-2xl font-bold">
-            المدرب
-          </h3>
-  
-          <p className="mt-3 text-xl">
-            {coach}
-          </p>
-  
-        </section>
-  
-        <hr />
-  
-        <section>
-  
-          <h3 className="text-2xl font-bold">
-            الملاحظات
-          </h3>
-  
-          <div className="mt-6 space-y-5">
-  
-            {content.map((item) => (
-              <p key={item} className="text-xl leading-10">
-                {item}
-              </p>
-            ))}
-  
-          </div>
-  
-        </section>
-  
-        <hr />
-  
-        <section>
-  
-          <h3 className="text-2xl font-bold">
-            أهداف الأسبوع القادم
-          </h3>
-  
-          <ul className="mt-6 space-y-4">
-  
-            {goals.map((goal) => (
-              <li key={goal} className="text-xl">
+  coach: string;
+  content: string[];
+  goals: string[];
+};
+
+export default function ReportContent({
+  coach,
+  content,
+  goals,
+}: Props) {
+  return (
+    <div className="space-y-12">
+
+      {/* المدرب */}
+      <section>
+        <h3 className="mb-4 text-3xl font-bold text-gray-900">
+          👨‍🏫 المدرب
+        </h3>
+
+        <p className="text-xl text-gray-700">
+          {coach}
+        </p>
+      </section>
+
+      <hr className="border-gray-200" />
+
+      {/* التقرير */}
+      <section>
+        <h3 className="mb-6 text-3xl font-bold text-gray-900">
+          📝 التقرير الفني
+        </h3>
+
+        <div className="rounded-2xl bg-gray-50 p-8 shadow-sm border border-gray-200">
+
+          {content.map((item) => (
+            <p
+              key={item}
+              className="whitespace-pre-wrap text-[22px] leading-[2.3] text-gray-800 text-right"
+            >
+              {item}
+            </p>
+          ))}
+
+        </div>
+      </section>
+
+      {goals.length > 0 && (
+        <>
+          <hr className="border-gray-200" />
+
+          <section>
+            <h3 className="mb-6 text-3xl font-bold text-gray-900">
+              🎯 أهداف الأسبوع القادم
+            </h3>
+
+            <ul className="space-y-4">
+
+              {goals.map((goal) => (
+                <li
+                  key={goal}
+                  className="rounded-xl bg-green-50 p-4 text-xl text-gray-800"
+                >
                   ✅ {goal}
-              </li>
-            ))}
-  
-          </ul>
-  
-        </section>
-  
-      </div>
-    );
-  }
+                </li>
+              ))}
+
+            </ul>
+          </section>
+        </>
+      )}
+
+    </div>
+  );
+}
