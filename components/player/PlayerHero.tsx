@@ -13,7 +13,7 @@ export default function PlayerHero() {
 
       <div className="relative mb-8 -mx-4 sm:-mx-8 lg:-mx-10 overflow-hidden">
         <Image
-          src="/images/player_portal_photo.webp"
+          src="/images/player_portal_photo2.webp"
           alt="Ahmed Samra Tennis Player Portal"
           width={1600}
           height={900}
