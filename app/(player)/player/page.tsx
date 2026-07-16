@@ -1,4 +1,3 @@
-
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -46,7 +45,7 @@ export default async function PlayerSearchPage({
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-white to-emerald-100 px-4 py-10">
+    <main className="w-full bg-gradient-to-br from-green-50 via-white to-emerald-100 py-6 sm:py-10">
       <PlayerPortalCard>
         <PlayerHero />
 
