@@ -70,7 +70,7 @@ export default async function PlayerSearchPage({
           </h1>
 
           <p className="mt-2 text-lg font-semibold text-green-700">
-            Player Reports Portal
+            بوابة تقارير اللاعبين
           </p>
 
           <p className="mt-6 text-base leading-8 text-gray-600">
@@ -96,7 +96,7 @@ export default async function PlayerSearchPage({
             <div>
 
               <h3 className="font-bold text-green-800">
-                تسجيل دخول آمن
+                تسجيل دخول اللاعب
               </h3>
 
               <p className="mt-1 text-sm leading-7 text-green-700">
@@ -133,7 +133,7 @@ export default async function PlayerSearchPage({
             type="text"
             autoComplete="off"
             dir="ltr"
-            placeholder="OM6"
+            placeholder="أدخل كود اللاعب"
             className="w-full rounded-2xl border border-gray-300 bg-white px-5 py-5 text-center text-3xl font-bold uppercase tracking-[0.35em] shadow-inner outline-none transition-all focus:border-green-600 focus:ring-4 focus:ring-green-100"
           />
 
