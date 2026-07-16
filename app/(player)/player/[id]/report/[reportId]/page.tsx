@@ -25,8 +25,7 @@ export default async function ReportPage({
 
   return (
     <main className="min-h-screen bg-white">
-      <div className="mx-auto max-w-4xl px-8 py-12">
-
+      <div className="mx-auto max-w-4xl px-6 py-10 md:px-8 md:py-12">
         <Link
           href={`/player/${id}`}
           className="inline-flex items-center gap-2 text-green-600 transition hover:text-green-700 hover:underline"
@@ -34,26 +33,23 @@ export default async function ReportPage({
           ← رجوع إلى صفحة اللاعب
         </Link>
 
-        <div className="mt-10">
-
-          <h1 className="text-6xl font-bold text-slate-900">
+        <div className="mt-10 text-center">
+          <h1 className="text-3xl font-bold text-slate-900 md:text-5xl">
             {report.title}
           </h1>
 
-          <p className="mt-4 text-3xl text-gray-500">
+          <p className="mt-3 text-base text-gray-500 md:text-lg">
             {report.report_date || "-"}
           </p>
-
         </div>
 
         <div className="my-10 border-t border-slate-200" />
 
         <ReportContent
           coach={report.author_name ?? "أحمد سمرة"}
-          content={[report.content_markdown ?? ""]}
+          content={report.content_markdown ?? ""}
           goals={[]}
         />
-
       </div>
     </main>
   );
