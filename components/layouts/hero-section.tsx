@@ -21,76 +21,112 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative flex min-h-[calc(100svh-3.5rem)] items-center overflow-hidden lg:min-h-[calc(100svh-4rem)]"
+      className="relative flex min-h-[78svh] items-center overflow-hidden"
     >
       {/* Background */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_-10%,oklch(0.955_0.03_152),transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.97_0.03_150),transparent_65%)]"
       />
 
-      {/* Soft Glow */}
+      {/* Glow */}
       <div
         aria-hidden
-        className="absolute end-0 top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]"
+        className="absolute end-0 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-primary/10 blur-[110px]"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-6 py-8 lg:px-8 lg:py-10 xl:py-14">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-8 xl:gap-12">
+      <div className="relative mx-auto w-full max-w-7xl px-6 py-10 lg:px-8">
+        <div className="grid items-center gap-14 lg:grid-cols-2">
+
           {/* Text */}
           <div className={cn("lg:row-start-1", textColumnClass)}>
+
+            <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary">
+              🎾 Ahmed Samra Tennis
+            </span>
+
             <h1
               id="hero-heading"
-              className="text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl"
+              className="mt-6 text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl"
             >
               {content.heading}
             </h1>
 
-            <p className="mt-3 text-xl font-medium text-primary sm:text-2xl">
+            <p className="mt-4 text-xl font-semibold text-primary">
               {content.subheading}
             </p>
 
-            <p className="mt-6 max-w-lg text-base leading-[1.9] text-muted-foreground sm:text-lg">
+            <p className="mt-6 max-w-xl text-lg leading-9 text-muted-foreground">
               {content.description}
             </p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            {/* Features */}
+
+            <div className="mt-8 flex flex-wrap gap-3">
+
+              <span className="rounded-full border border-primary/10 bg-primary/5 px-4 py-2 text-sm font-medium text-primary">
+                📄 التقارير الفنية
+              </span>
+
+              <span className="rounded-full border border-primary/10 bg-primary/5 px-4 py-2 text-sm font-medium text-primary">
+                📈 تحليل الأداء
+              </span>
+
+              <span className="rounded-full border border-primary/10 bg-primary/5 px-4 py-2 text-sm font-medium text-primary">
+                🎯 خطة التطوير
+              </span>
+
+              <span className="rounded-full border border-primary/10 bg-primary/5 px-4 py-2 text-sm font-medium text-primary">
+                🎥 الفيديوهات
+              </span>
+
+            </div>
+
+            {/* Buttons */}
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+
               <Link
-                href="#contact"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
+                href="#player-portal"
+                className="inline-flex h-14 items-center justify-center rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/25"
               >
                 {content.cta.book}
               </Link>
 
               <Link
-                href="#player-portal"
-                className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-background px-8 text-sm font-medium text-foreground transition-all duration-300 hover:bg-muted"
+                href="#contact"
+                className="inline-flex h-14 items-center justify-center rounded-full border border-border bg-background px-8 text-base font-semibold text-foreground transition-all duration-300 hover:border-primary/20 hover:bg-primary/5"
               >
                 {content.cta.portal}
               </Link>
+
             </div>
+
           </div>
 
           {/* Hero Image */}
+
           <div
             className={cn(
               "relative flex items-end justify-center lg:row-start-1",
               photoColumnClass,
             )}
           >
-            <div className="absolute h-[480px] w-[480px] rounded-full bg-primary/10 blur-[100px]" />
+            <div className="absolute h-[340px] w-[340px] rounded-full bg-primary/10 blur-[90px]" />
 
             <Image
               src="/images/hero/ahmed-samra-hero.webp"
-              alt="Ahmed Samra holding a trophy"
+              alt="Ahmed Samra"
               width={700}
               height={1000}
               priority
-              quality={85}
+              quality={90}
               sizes="(max-width:768px) 90vw, (max-width:1280px) 45vw, 700px"
-              className="relative z-10 h-auto w-full max-w-[660px] object-contain select-none lg:max-w-[720px]"
+              className="relative z-10 h-auto w-full max-w-[400px] object-contain select-none lg:max-w-[470px]"
             />
+
           </div>
+
         </div>
       </div>
     </section>

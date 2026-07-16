@@ -14,20 +14,20 @@
     }
   },
   "hero": {
-    "heading": "Elevate Your Tennis Game",
-    "subheading": "With Ahmed Samra",
-    "description": "Professional training programs, continuous progress tracking, and performance reviews to help you reach your best level.",
+    "heading": "Player Portal",
+    "subheading": "All Your Tennis Reports in One Place",
+    "description": "Enter your player code to access match reports, performance analysis, strengths, improvement areas, development plans, and training videos.",
     "cta": {
-      "book": "Book Training",
-      "portal": "Player Portal"
+      "book": "🎾 Enter Player Portal",
+      "portal": "Private Coaching"
     }
   },
   "about": {
     "eyebrow": "About Ahmed",
-    "heading": "A coach shaped by competition, engineering discipline, and a belief in long-term player development.",
+    "heading": "About Ahmed Samra",
     "story": [
-      "Ahmed Samra brings the mindset of a competitive tennis player and the precision of an engineer to every training session. His work is built around clear fundamentals, deliberate repetition, and honest performance feedback.",
-      "As the founder of Ahmed Samra Tennis, Ahmed mentors players beyond technique. He helps them understand how to train, compete, recover, and carry themselves with confidence on and off the court."
+      "Ahmed Samra is a tennis coach focused on long-term player development through performance analysis and structured coaching.",
+      "He combines match analysis, video review, and personalized development plans to help every player improve with confidence."
     ],
     "roles": [
       {
@@ -200,8 +200,8 @@
   },
   "playerPortal": {
     "eyebrow": "Player Portal",
-    "heading": "A digital space to organize each player’s development journey.",
-    "introduction": "The Player Portal is designed to bring everything a player and parent need into one clear place: progress tracking, training schedule, match results, performance videos, coach notes, and a development plan that is easy to revisit.",
+    "heading": "Everything About Your Tennis Journey",
+    "introduction": "The Player Portal brings together your reports, performance analysis, strengths, improvement areas, training plans, and videos in one place.",
     "features": [
       {
         "icon": "progress",
