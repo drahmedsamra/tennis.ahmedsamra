@@ -47,7 +47,7 @@ export default function PlayerLayout({
 
               <div className="leading-tight">
                 <h1 className="text-base font-bold tracking-tight text-slate-900">
-                  Ahmed Samra Tennis
+                  Ahmed Samra
                 </h1>
 
                 <p className="text-xs text-slate-500">
