@@ -67,15 +67,12 @@ export default function PlayerLayout({
             </Link>
           </div>
 
-          {/* Accent Line */}
           <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         </header>
 
         {/* Main */}
-        <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 text-center">
-          <div className="flex flex-col items-center">
-            {children}
-          </div>
+        <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          {children}
         </main>
       </body>
     </html>
