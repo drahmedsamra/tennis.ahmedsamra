@@ -133,7 +133,7 @@ export default async function PlayerSearchPage({
             type="text"
             autoComplete="off"
             dir="ltr"
-            placeholder="أدخل كود اللاعب"
+            placeholder="كود اللاعب"
             className="w-full rounded-2xl border border-gray-300 bg-white px-5 py-5 text-center text-3xl font-bold uppercase tracking-[0.35em] shadow-inner outline-none transition-all focus:border-green-600 focus:ring-4 focus:ring-green-100"
           />
 
@@ -183,24 +183,9 @@ export default async function PlayerSearchPage({
 
         </div>
 
-        {/* Examples */}
+      
 
-        <div className="mt-8">
-
-          <p className="mb-4 text-center text-sm font-semibold text-slate-600">
-            أمثلة على أكواد اللاعبين
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-3">
-
-            <CodeBadge code="OM3" />
-            <CodeBadge code="OM25" />
-            <CodeBadge code="SHU12" />
-            <CodeBadge code="ZM8" />
-
-          </div>
-
-        </div>
+       
 
         {/* Footer */}
 
