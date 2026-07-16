@@ -12,15 +12,15 @@ type HeroSectionProps = {
 
 const stats = [
   {
-    value: "250+",
+    value: "100+",
     label: "لاعب",
   },
   {
-    value: "120+",
+    value: "20+",
     label: "بطولة",
   },
   {
-    value: "1000+",
+    value: "100+",
     label: "تقرير فني",
   },
 ];
