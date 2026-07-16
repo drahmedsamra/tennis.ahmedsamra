@@ -11,15 +11,17 @@ export default function PlayerHero() {
     <div className="text-center">
       {/* Hero Image */}
 
-      <div className="relative -mx-4 mb-8 h-[220px] overflow-hidden sm:-mx-8 sm:h-[320px] lg:-mx-10 lg:h-[420px]">
+      <div className="relative mb-8 -mx-4 sm:-mx-8 lg:-mx-10 overflow-hidden">
         <Image
           src="/images/player_portal_photo.webp"
           alt="Ahmed Samra Tennis Player Portal"
-          fill
+          width={1600}
+          height={900}
           priority
-          className="object-cover"
-          sizes="100vw"
+          className="w-full h-auto"
         />
+
+        {/* Overlay */}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
       </div>
