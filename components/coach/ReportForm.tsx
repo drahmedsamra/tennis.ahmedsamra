@@ -17,6 +17,8 @@ export default function ReportForm({
   action,
   players,
 }: ReportFormProps) {
+  const today = new Date().toISOString().split("T")[0];
+
   return (
     <form action={action} className="space-y-8">
       <section className="rounded-2xl bg-white p-8 shadow">
@@ -57,12 +59,11 @@ export default function ReportForm({
             </label>
 
             <input
-  name="report_date"
-  type="text"
-  defaultValue={report?.report_date ?? ""}
-  placeholder="2026-07-15"
-  className="w-full rounded-xl border p-3"
-/>
+              name="report_date"
+              type="date"
+              defaultValue={report?.report_date ?? today}
+              className="w-full rounded-xl border p-3"
+            />
           </div>
 
           <div>
@@ -84,11 +85,11 @@ export default function ReportForm({
             </label>
 
             <input
-              name="report_type"
-              defaultValue={report?.report_type}
-              placeholder="Assessment"
-              className="w-full rounded-xl border p-3"
-            />
+  name="report_type"
+  defaultValue={report?.report_type ?? "تقرير ماتش"}
+  placeholder="تقرير ماتش"
+  className="w-full rounded-xl border p-3"
+/>
           </div>
 
           <div>
