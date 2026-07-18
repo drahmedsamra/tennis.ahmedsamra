@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
-import type { SearchState } from "@/app/player/actions";
+import type { SearchState } from "@/app/(player)/player/actions";
 
 type PlayerSearchFormProps = {
   action: (
@@ -55,7 +55,6 @@ export default function PlayerSearchForm({
 
   return (
     <form action={formAction} className="mt-8 space-y-6">
-      {/* Label */}
       <div className="text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-green-600">
           PLAYER CODE
@@ -66,7 +65,6 @@ export default function PlayerSearchForm({
         </h3>
       </div>
 
-      {/* Input */}
       <input
         name="id"
         type="text"
