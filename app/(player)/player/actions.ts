@@ -1,10 +1,11 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 export type SearchState = {
+  success: boolean;
   error: string;
+  playerCode?: string;
 };
 
 export async function searchPlayer(
@@ -19,6 +20,7 @@ export async function searchPlayer(
 
   if (!playerCode) {
     return {
+      success: false,
       error: "برجاء إدخال كود اللاعب.",
     };
   }
@@ -33,10 +35,15 @@ export async function searchPlayer(
 
   if (!data) {
     return {
+      success: false,
       error:
         "هذا الكود غير موجود، تأكد من كتابته أو تواصل مع الكابتن أحمد سمرة.",
     };
   }
 
-  redirect(`/player/${playerCode}`);
+  return {
+    success: true,
+    error: "",
+    playerCode,
+  };
 }
