@@ -6,24 +6,23 @@ export function HeroContent() {
         Ahmed Samra Tennis Platform
       </span>
 
-      <h1 className="mt-6 text-4xl font-black leading-tight text-foreground lg:text-5xl">
+      <h1 className="mt-4 text-4xl font-black leading-tight text-foreground lg:text-5xl">
         التقييم الفني للاعب
       </h1>
 
-      <p className="mt-3 text-xl font-bold text-primary">
+      <p className="mt-2 text-xl font-bold text-primary">
         لأن كل لاعب يحتاج إلى خريطة واضحة للتطور
       </p>
 
-      <p className="mt-4 max-w-xl text-base leading-8 text-muted-foreground">
-        اكتشف نقاط قوتك، واعرف ما الذي يمنعك من الوصول إلى المستوى التالي من
-        خلال تقييم فني احترافي يشمل تحليل الأداء الفني والتكتيكي، وتحديد نقاط
-        القوة والضعف، مع خطة تطوير شخصية وتوصيات عملية تساعدك على تحقيق أفضل
-        أداء داخل الملعب.
+      <p className="mt-3 max-w-xl text-base leading-8 text-muted-foreground">
+        اكتشف نقاط قوتك واعرف ما الذي يمنعك من الوصول إلى المستوى التالي من
+        خلال تقييم فني احترافي يشمل التحليل الفني والتكتيكي، مع تحديد نقاط القوة
+        والضعف وخطة تطوير شخصية تساعدك على تحقيق أفضل أداء داخل الملعب.
       </p>
 
-      <p className="mt-4 max-w-xl text-base leading-8 text-muted-foreground">
-        يمكن إجراء التقييم أثناء مباراة، أو أثناء التدريب، أو من خلال فيديو،
-        كما يمكن إعداد خطة فنية وتكتيكية قبل مواجهة لاعب معين.
+      <p className="mt-3 max-w-xl text-base leading-8 text-muted-foreground">
+        يمكن إجراء التقييم أثناء المباريات أو التدريبات أو من خلال تحليل
+        الفيديو، مع إمكانية إعداد خطة فنية وتكتيكية قبل مواجهة أي لاعب.
       </p>
     </>
   );
