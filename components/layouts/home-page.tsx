@@ -9,6 +9,7 @@ import { BenefitsSection } from "@/components/layouts/benefits/benefits-section"
 import { getMarketingNavLinks } from "@/config/navigation";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
+import { AssessmentSection } from "@/components/layouts/assessment";
 
 type HomePageProps = {
   dictionary: Dictionary;
@@ -31,6 +32,8 @@ export function HomePage({ dictionary, locale }: HomePageProps) {
           locale={locale}
           content={dictionary.hero}
         />
+
+<AssessmentSection />
 
         <PlayerAccessSection />
 

@@ -3,12 +3,12 @@ import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
 import {
   HeroActions,
-  HeroAssessmentCard,
+  
   HeroContent,
   HeroFeatures,
   HeroImage,
-  HeroStats,
-  HeroSteps,
+  
+  
 } from ".";
 
 type HeroSectionProps = {
@@ -45,11 +45,7 @@ export function HeroSection({
 
           <HeroActions isRtl={isRtl} />
 
-          <HeroAssessmentCard />
 
-          <HeroStats />
-
-          <HeroSteps />
         </div>
       </div>
     </section>

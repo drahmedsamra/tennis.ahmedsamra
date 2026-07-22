@@ -1,4 +1,3 @@
-
 import { heroStats } from "../hero/data";
 
 export function AssessmentStats() {
