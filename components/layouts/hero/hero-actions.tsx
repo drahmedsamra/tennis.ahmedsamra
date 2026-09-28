@@ -1,42 +1,33 @@
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { ArrowUpLeft } from "lucide-react";
+
+import type { Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
 type HeroActionsProps = {
-  isRtl: boolean;
+  content: Dictionary["hero"];
+  locale: Locale;
 };
 
-export function HeroActions({ isRtl }: HeroActionsProps) {
+export function HeroActions({ content, locale }: HeroActionsProps) {
   return (
-    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+    <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
       <Link
         href="#contact"
-        className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-bold text-primary-foreground shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl"
+        className="inline-flex h-12 items-center justify-center gap-3 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
       >
-        🎁 ابدأ تقييمك المجاني
-
-        <svg
-          className={cn(
-            "ms-2 h-4 w-4 transition-transform",
-            isRtl && "rotate-180"
-          )}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M5 12h14M13 5l7 7-7 7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        {content.cta.book}
+        <ArrowUpLeft
+          className={`size-4 ${locale === "ar" ? "rotate-180" : ""}`}
+          aria-hidden
+        />
       </Link>
 
       <Link
         href="#player-portal"
-        className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-background/80 px-8 text-sm font-semibold backdrop-blur transition-all hover:border-primary hover:bg-primary/5"
+        className="inline-flex h-12 items-center justify-center border border-border bg-transparent px-6 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
       >
-        🎾 دخول بوابة اللاعبين
+        {content.cta.portal}
       </Link>
     </div>
   );

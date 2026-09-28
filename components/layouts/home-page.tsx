@@ -6,6 +6,7 @@ import { ServicesSection } from "@/components/layouts/services-section";
 import { SiteFooter } from "@/components/layouts/site-footer";
 import { SiteNavbar } from "@/components/layouts/site-navbar";
 import { BenefitsSection } from "@/components/layouts/benefits/benefits-section";
+import { AchievementsSection } from "@/components/layouts/achievements-section";
 import { getMarketingNavLinks } from "@/config/navigation";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
@@ -33,11 +34,11 @@ export function HomePage({ dictionary, locale }: HomePageProps) {
           content={dictionary.hero}
         />
 
-<AssessmentSection />
+        <AssessmentSection locale={locale} />
 
-        <PlayerAccessSection />
+        <PlayerAccessSection locale={locale} />
 
-        <BenefitsSection />
+        <BenefitsSection locale={locale} />
 
         <ServicesSection
           content={dictionary.services}
@@ -45,7 +46,10 @@ export function HomePage({ dictionary, locale }: HomePageProps) {
 
         <AboutSection
           content={dictionary.about}
+          locale={locale}
         />
+
+        <AchievementsSection content={dictionary.achievements} />
 
         <ContactSection
           content={dictionary.contact}

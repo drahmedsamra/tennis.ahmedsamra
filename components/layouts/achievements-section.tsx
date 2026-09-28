@@ -1,5 +1,6 @@
+import { Award } from "lucide-react";
+
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
-import { cn } from "@/lib/utils";
 
 type AchievementsSectionProps = {
   content: Dictionary["achievements"];
@@ -7,64 +8,35 @@ type AchievementsSectionProps = {
 
 export function AchievementsSection({ content }: AchievementsSectionProps) {
   return (
-    <section
-      id="achievements"
-      aria-labelledby="achievements-heading"
-      className="scroll-mt-14 overflow-hidden lg:scroll-mt-16"
-    >
-      <div className="mx-auto max-w-6xl px-6 py-32 lg:px-8 lg:py-44">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-28">
-          <div className="luxury-reveal">
-            <p className="text-[0.6875rem] font-semibold tracking-[0.28em] text-primary uppercase">
-              {content.eyebrow}
-            </p>
-            <h2
-              id="achievements-heading"
-              className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.18] text-foreground sm:text-4xl lg:text-5xl"
-            >
+    <section id="achievements" aria-labelledby="achievements-heading" className="bg-[#173b2c] text-white">
+      <div className="marketing-shell py-16 sm:py-20 lg:py-28">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#a9d6aa]">
+            {content.eyebrow}
+          </p>
+          <div>
+            <h2 id="achievements-heading" className="max-w-4xl text-3xl font-semibold leading-[1.12] text-white sm:text-4xl lg:text-5xl">
               {content.heading}
             </h2>
-          </div>
-
-          <div className="luxury-reveal luxury-reveal-delay-1 flex items-end">
-            <p className="max-w-2xl text-base leading-[1.95] text-muted-foreground sm:text-lg">
+            <p className="mt-6 max-w-3xl text-base leading-8 text-white/70 sm:text-lg sm:leading-9">
               {content.introduction}
             </p>
           </div>
         </div>
 
-        <div className="mt-20 grid gap-4 sm:grid-cols-2 lg:mt-28 lg:grid-cols-3">
+        <ol className="mt-12 divide-y divide-white/15 border-y border-white/15">
           {content.cards.map((card, index) => (
-            <article
-              key={card.title}
-              className={cn(
-                "luxury-reveal group relative min-h-64 overflow-hidden rounded-xl border border-border/70 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30",
-                index === 0 && "luxury-reveal-delay-1",
-                index === 1 && "luxury-reveal-delay-2",
-                index === 2 && "luxury-reveal-delay-3",
-                index === 3 && "luxury-reveal-delay-4",
-                index >= 4 && "luxury-reveal-delay-5",
-              )}
-            >
-              <div
-                aria-hidden
-                className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <p className="text-[0.6875rem] font-semibold tracking-[0.22em] text-primary/80 uppercase">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <p className="mt-10 text-2xl font-semibold leading-none text-foreground sm:text-3xl">
-                {card.value}
-              </p>
-              <h3 className="mt-7 text-lg font-semibold leading-tight text-foreground">
-                {card.title}
-              </h3>
-              <p className="mt-5 text-sm leading-7 text-muted-foreground">
-                {card.description}
-              </p>
-            </article>
+            <li key={card.title} className="grid gap-3 py-6 sm:grid-cols-[4rem_minmax(0,0.7fr)_1.3fr_auto] sm:items-center sm:gap-6">
+              <span className="text-xs font-semibold text-[#a9d6aa]">{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <p className="text-xs font-medium text-[#a9d6aa]">{card.value}</p>
+                <h3 className="mt-2 text-lg font-semibold text-white">{card.title}</h3>
+              </div>
+              <p className="text-sm leading-7 text-white/65">{card.description}</p>
+              <Award className="hidden size-5 text-[#a9d6aa] sm:block" aria-hidden />
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

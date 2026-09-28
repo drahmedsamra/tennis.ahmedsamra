@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { contactInfo } from "@/config/contact";
@@ -12,32 +13,25 @@ type SiteFooterProps = {
 
 export function SiteFooter({ brand, content, links }: SiteFooterProps) {
   return (
-    <footer className="border-t border-border/60 bg-background">
-      <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-24">
-        <div className="grid gap-14 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.9fr_0.8fr] lg:gap-12">
+    <footer className="border-t border-white/10 bg-[#0b2118] text-white">
+      <div className="marketing-shell py-14 sm:py-16 lg:py-20">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.25fr_0.75fr_0.9fr_0.7fr] lg:gap-10">
           <div>
-            <p
-              dir="ltr"
-              className="text-[0.8125rem] font-semibold tracking-[0.12em] text-foreground uppercase"
-            >
-              {brand}
-            </p>
-            <p className="mt-6 max-w-xs text-sm leading-7 text-muted-foreground">
-              {content.description}
-            </p>
+            <div className="flex items-center gap-3" dir="ltr">
+              <span className="grid size-8 place-items-center border border-white/20 bg-white/5">
+                <Image src="/images/icon.webp" alt="" width={20} height={20} />
+              </span>
+              <p className="text-xs font-semibold uppercase tracking-[0.1em]">{brand}</p>
+            </div>
+            <p className="mt-6 max-w-xs text-sm leading-7 text-white/65">{content.description}</p>
           </div>
 
           <nav aria-label={content.navigationLabel}>
-            <h2 className="text-sm font-semibold text-foreground">
-              {content.navigationTitle}
-            </h2>
-            <ul className="mt-6 flex flex-col gap-4">
+            <h2 className="text-sm font-semibold text-white">{content.navigationTitle}</h2>
+            <ul className="mt-5 space-y-3">
               {links.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-[0.8125rem] font-medium tracking-wide text-muted-foreground transition-colors duration-200 hover:text-primary"
-                  >
+                  <Link href={link.href} className="text-sm text-white/65 transition-colors hover:text-[#a9d6aa]">
                     {link.label}
                   </Link>
                 </li>
@@ -46,63 +40,28 @@ export function SiteFooter({ brand, content, links }: SiteFooterProps) {
           </nav>
 
           <div>
-            <h2 className="text-sm font-semibold text-foreground">
-              {content.contactTitle}
-            </h2>
-            <ul className="mt-6 flex flex-col gap-4">
-              <li>
-                <a
-                  href={contactInfo.phoneHref}
-                  className="text-[0.8125rem] font-medium tracking-wide text-muted-foreground transition-colors duration-200 hover:text-primary"
-                >
-                  {content.phoneLabel}: {contactInfo.phoneDisplay}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={contactInfo.whatsappHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[0.8125rem] font-medium tracking-wide text-muted-foreground transition-colors duration-200 hover:text-primary"
-                >
-                  {content.whatsappLabel}: {contactInfo.whatsappDisplay}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={contactInfo.emailHref}
-                  className="text-[0.8125rem] font-medium tracking-wide text-muted-foreground transition-colors duration-200 hover:text-primary"
-                >
-                  {content.emailLabel}: {contactInfo.email}
-                </a>
-              </li>
+            <h2 className="text-sm font-semibold text-white">{content.contactTitle}</h2>
+            <ul className="mt-5 space-y-3 text-sm text-white/65">
+              <li><a href={contactInfo.phoneHref} className="transition-colors hover:text-[#a9d6aa]">{content.phoneLabel}: {contactInfo.phoneDisplay}</a></li>
+              <li><a href={contactInfo.whatsappHref} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#a9d6aa]">{content.whatsappLabel}: {contactInfo.whatsappDisplay}</a></li>
+              <li><a href={contactInfo.emailHref} className="transition-colors hover:text-[#a9d6aa]">{content.emailLabel}: {contactInfo.email}</a></li>
             </ul>
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold text-foreground">
-              {content.socialTitle}
-            </h2>
-            <ul className="mt-6 flex flex-wrap gap-3">
+            <h2 className="text-sm font-semibold text-white">{content.socialTitle}</h2>
+            <ul className="mt-5 space-y-3">
               {contactInfo.socials.map((social) => (
                 <li key={social.label}>
-                  <a
-                    href={social.href}
-                    aria-label={social.label}
-                    className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-background text-[0.6875rem] font-semibold text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:text-primary"
-                  >
-                    {social.label.slice(0, 1)}
-                  </a>
+                  <a href={social.href} className="text-sm text-white/65 transition-colors hover:text-[#a9d6aa]">{social.label}</a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-20 border-t border-border/60 pt-8">
-          <p className="text-[0.6875rem] tracking-wide text-muted-foreground">
-            &copy; {new Date().getFullYear()} {brand}. {content.rights}
-          </p>
+        <div className="mt-14 border-t border-white/10 pt-6">
+          <p className="text-xs text-white/45">&copy; {new Date().getFullYear()} {brand}. {content.rights}</p>
         </div>
       </div>
     </footer>

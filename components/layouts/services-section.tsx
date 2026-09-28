@@ -5,6 +5,7 @@ import {
   Video,
   type LucideIcon,
 } from "lucide-react";
+
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
 type ServicesSectionProps = {
@@ -13,6 +14,7 @@ type ServicesSectionProps = {
 
 const serviceIcons: Record<string, LucideIcon> = {
   individual: CircleDot,
+  juniors: CircleDot,
   tournaments: ChartNoAxesCombined,
   video: Video,
   followup: Repeat,
@@ -20,83 +22,37 @@ const serviceIcons: Record<string, LucideIcon> = {
 
 export function ServicesSection({ content }: ServicesSectionProps) {
   return (
-    <section
-      id="services"
-      aria-labelledby="services-heading"
-      className="scroll-mt-16 bg-muted/40"
-    >
-      <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
-
-        {/* Header */}
-
-        <div className="mx-auto max-w-3xl text-center">
-
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary">
-            {content.eyebrow}
-          </p>
-
-          <h2
-            id="services-heading"
-            className="mt-4 text-3xl font-bold leading-tight text-foreground sm:text-4xl"
-          >
-            {content.heading}
-          </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
-            {content.introduction}
-          </p>
-
+    <section id="services" aria-labelledby="services-heading" className="border-b border-border/70 bg-muted/45">
+      <div className="marketing-shell py-16 sm:py-20 lg:py-28">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
+          <p className="marketing-kicker">{content.eyebrow}</p>
+          <div>
+            <h2 id="services-heading" className="marketing-heading max-w-3xl">
+              {content.heading}
+            </h2>
+            <p className="marketing-copy mt-5 max-w-3xl">{content.introduction}</p>
+          </div>
         </div>
 
-        {/* Cards */}
-
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-
-          {content.cards.slice(0, 4).map((service) => {
-
+        <div className="mt-12 border-y border-border/80">
+          {content.cards.map((service, index) => {
             const Icon = serviceIcons[service.icon] ?? CircleDot;
 
             return (
-
               <article
                 key={service.title}
-                className="group rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+                className="grid gap-4 border-b border-border/80 py-6 last:border-b-0 sm:grid-cols-[4rem_minmax(0,0.8fr)_1.2fr_auto] sm:items-center sm:gap-6"
               >
-
-                <div className="flex items-start gap-4">
-
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
-
-                    <Icon className="h-6 w-6" />
-
-                  </div>
-
-                  <div className="flex-1">
-
-                    <h3 className="text-xl font-bold text-foreground">
-
-                      {service.title}
-
-                    </h3>
-
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
-
-                      {service.description}
-
-                    </p>
-
-                  </div>
-
-                </div>
-
+                <span className="text-xs font-semibold text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
+                <p className="text-sm leading-7 text-muted-foreground">{service.description}</p>
+                <Icon className="hidden size-5 text-primary sm:block" aria-hidden />
               </article>
-
             );
-
           })}
-
         </div>
-
       </div>
     </section>
   );
