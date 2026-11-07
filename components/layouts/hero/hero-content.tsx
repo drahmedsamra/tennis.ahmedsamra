@@ -18,11 +18,7 @@ export function HeroContent({ content, locale }: HeroContentProps) {
         {content.heading}
       </h1>
 
-      <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-primary sm:text-xl sm:leading-9">
-        {content.subheading}
-      </p>
-
-      <p className="marketing-copy mt-5 max-w-2xl">
+      <p className="marketing-copy mt-6 max-w-2xl">
         {content.description}
       </p>
     </>

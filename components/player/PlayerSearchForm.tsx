@@ -6,12 +6,15 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
 import type { SearchState } from "@/app/(player)/player/actions";
+import type { Locale } from "@/lib/i18n/config";
 
 type PlayerSearchFormProps = {
   action: (
     prevState: SearchState,
     formData: FormData
   ) => Promise<SearchState>;
+  locale?: Locale;
+  redirectToHome?: boolean;
 };
 
 const initialState: SearchState = {
@@ -19,22 +22,25 @@ const initialState: SearchState = {
   error: "",
 };
 
-function SubmitButton() {
+function SubmitButton({ locale }: { locale: Locale }) {
   const { pending } = useFormStatus();
+  const content = locale === "ar"
+    ? { loading: "جارٍ فتح الملف...", submit: "عرض الملف الفني" }
+    : { loading: "Opening profile...", submit: "View profile" };
 
   return (
     <button
       type="submit"
       disabled={pending}
-      className="flex w-full items-center justify-center rounded-3xl bg-gradient-to-r from-green-600 to-emerald-600 py-5 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-lg"
+      className="flex h-12 w-full items-center justify-center rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70"
     >
       {pending ? (
         <>
           <Loader2 className="mr-3 h-6 w-6 animate-spin" />
-          جاري تحميل الملف الفني...
+          {content.loading}
         </>
       ) : (
-        <>🎾 عرض الملف الفني</>
+        content.submit
       )}
     </button>
   );
@@ -42,6 +48,8 @@ function SubmitButton() {
 
 export default function PlayerSearchForm({
   action,
+  locale = "ar",
+  redirectToHome = false,
 }: PlayerSearchFormProps) {
   const router = useRouter();
 
@@ -49,19 +57,35 @@ export default function PlayerSearchForm({
 
   useEffect(() => {
     if (state.success && state.playerCode) {
-      router.push(`/player/${state.playerCode}`);
+      router.push(
+        redirectToHome
+          ? `/?player=${encodeURIComponent(state.playerCode)}`
+          : `/player/${state.playerCode}`,
+      );
     }
-  }, [state, router]);
+  }, [state, router, redirectToHome]);
+
+  const content = locale === "ar"
+    ? {
+        code: "كود اللاعب",
+        heading: "أدخل كود اللاعب",
+        help: "لا تملك كودًا؟ تواصل مع المدرب.",
+      }
+    : {
+        code: "Player code",
+        heading: "Enter your player code",
+        help: "Need a code? Contact the coach.",
+      };
 
   return (
-    <form action={formAction} className="mt-8 space-y-6">
+    <form action={formAction} className="mt-6 space-y-4">
       <div className="text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-green-600">
-          PLAYER CODE
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+          {content.code}
         </p>
 
-        <h3 className="mt-2 text-lg font-bold text-gray-900">
-          أدخل كود اللاعب
+        <h3 className="mt-2 text-base font-semibold text-foreground">
+          {content.heading}
         </h3>
       </div>
 
@@ -71,19 +95,19 @@ export default function PlayerSearchForm({
         autoComplete="off"
         dir="ltr"
         placeholder="AST-0001"
-        className="w-full rounded-3xl border-2 border-green-100 bg-white px-6 py-5 text-center text-3xl font-extrabold uppercase tracking-[0.35em] text-gray-900 shadow-sm outline-none transition-all duration-300 placeholder:text-gray-300 focus:border-green-600 focus:ring-4 focus:ring-green-100"
+        className="h-12 w-full rounded-md border border-border bg-background px-4 text-center text-lg font-semibold uppercase tracking-[0.2em] text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary"
       />
 
       {state.error && (
-        <p className="rounded-2xl bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-600">
+        <p className="rounded-md bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-600">
           {state.error}
         </p>
       )}
 
-      <SubmitButton />
+      <SubmitButton locale={locale} />
 
-      <p className="text-center text-sm leading-7 text-gray-500">
-        إذا لم يكن لديك كود اللاعب، تواصل مع المدرب للحصول على بيانات الدخول.
+      <p className="text-center text-sm text-muted-foreground">
+        {content.help}
       </p>
     </form>
   );

@@ -1,24 +1,24 @@
 {
   "metadata": {
     "title": "Ahmed Samra Tennis",
-    "description": "Professional training programs, continuous progress tracking, and performance reviews to help you reach your best level."
+    "description": "Individual tennis coaching and performance analysis."
   },
   "nav": {
     "brand": "Ahmed Samra Tennis",
     "links": {
       "about": "About",
       "services": "Services",
+      "pricing": "Pricing",
       "achievements": "Achievements",
       "playerPortal": "Player Portal",
       "contact": "Contact"
     }
   },
   "hero": {
-    "heading": "Professional tennis coaching. A clear path forward.",
-    "subheading": "Ahmed Samra is a tennis coach focused on the details that make a real difference on court.",
-    "description": "Individual coaching, performance analysis, and structured development plans that help every player understand their level and progress with confidence.",
+    "heading": "Professional tennis coaching.",
+    "description": "Individual coaching, performance analysis, and a clear development plan.",
     "cta": {
-      "book": "Start Your Free Assessment",
+      "book": "Start Your Assessment",
       "portal": "Enter Player Portal"
     }
   },
@@ -26,93 +26,101 @@
     "eyebrow": "About Ahmed",
     "heading": "About Ahmed Samra",
     "story": [
-      "Ahmed Samra is a tennis coach focused on long-term player development through performance analysis and structured coaching.",
-      "He combines match analysis, video review, and personalized development plans to help every player improve with confidence."
+      "Ahmed Samra is a tennis player and coach focused on clear player development."
     ],
     "roles": [
       {
-        "title": "Professional Tennis Coach",
-        "description": "Designs structured programs that turn daily practice into measurable progress."
+        "title": "Tennis Coach",
+        "description": "Individual coaching with a clear plan."
       },
       {
-        "title": "Competitive Tennis Player",
-        "description": "Coaches from lived match experience, with a practical eye for pressure, timing, and decision-making."
+        "title": "Tennis Player",
+        "description": "Practical experience on court."
       },
       {
         "title": "Engineer",
-        "description": "Applies analytical thinking to movement, performance patterns, and player development."
-      },
-      {
-        "title": "Mentor",
-        "description": "Guides players with discipline, patience, and a standard that builds lasting confidence."
-      },
-      {
-        "title": "Founder",
-        "description": "Built Ahmed Samra Tennis as a focused training environment for serious, modern player growth."
+        "description": "Sharper performance analysis."
       }
     ]
   },
   "achievements": {
     "eyebrow": "Achievements",
-    "heading": "Credibility measured by player growth, not trophies alone.",
-    "introduction": "Ahmed Samra's work is built on sustained court experience, a competitive playing background, and a training method centered on long-term development. The result is a calm, precise training experience that gives every player a clear path toward confident improvement.",
+    "heading": "Training built on detail.",
+    "introduction": "The focus is clear progress on court.",
     "cards": [
       {
-        "value": "Years on court",
-        "title": "Sustained tennis experience",
-        "description": "Experience shaped by training, playing, and studying the details of movement, timing, and decision-making."
+        "value": "On court",
+        "title": "Practical experience",
+        "description": "Training, playing, and follow-up."
       },
       {
-        "value": "Training method",
-        "title": "Structured player development",
-        "description": "Programs connect every session to a clear goal, from technical foundations to realistic match situations."
-      },
-      {
-        "value": "Competitive background",
-        "title": "Match-tested perspective",
-        "description": "A practical understanding of rhythm, pressure, mental stability, and better choices under stress."
+        "value": "Structured coaching",
+        "title": "Clear plan",
+        "description": "Every session has a goal."
       },
       {
         "value": "Junior development",
-        "title": "Building young players correctly",
-        "description": "Focus on movement fundamentals, discipline, confidence, and learning capacity before rushing results."
-      },
-      {
-        "value": "Long-term improvement",
-        "title": "Sustainable progress philosophy",
-        "description": "Ahmed believes strong players are built through measurement, patience, intelligent repetition, and honest review."
+        "title": "Strong foundation",
+        "description": "Movement, confidence, and discipline."
       }
     ]
   },
   "services": {
     "eyebrow": "Services",
-    "heading": "Training programs for players who want clear, confident progress.",
-    "introduction": "Each service is built around a precise goal: improving level, building foundations, preparing for competition, and reading performance with clarity. A refined training experience shaped by discipline, detail, and calm follow-up.",
+    "heading": "Coaching services for players.",
+    "introduction": "Every service has a clear next step.",
     "cards": [
       {
         "icon": "individual",
         "title": "Individual Training",
-        "description": "Focused technical and tactical development tailored to the player's needs, level, and most important areas for improvement."
+        "description": "Technical and tactical development for each player."
       },
       {
         "icon": "juniors",
         "title": "Junior Training",
-        "description": "Building the player correctly from the foundation, with attention to movement, control, discipline, and love for the game."
+        "description": "A strong base for movement and control."
       },
       {
         "icon": "tournaments",
         "title": "Tournament Preparation",
-        "description": "Preparing players for competition through a clear training plan that supports season management and match pressure."
+        "description": "A clear plan for competition."
       },
       {
         "icon": "video",
         "title": "Video Analysis",
-        "description": "Reviewing performance to identify strengths and weaknesses, revealing the small details that matter on court."
+        "description": "Understand strengths and development areas."
+      }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Pricing",
+    "heading": "Choose what suits your goal.",
+    "introduction": "Choose the service that suits you.",
+    "items": [
+      {
+        "name": "Private session",
+        "description": "One-to-one on-court coaching with technical and tactical guidance for the player's needs.",
+        "price": "EGP 1,200"
       },
       {
-        "icon": "followup",
-        "title": "Continuous Follow-Up",
-        "description": "Creating a training plan and tracking player development regularly to support steady progress through clear feedback."
+        "name": "Academy",
+        "description": "A 12-session academy membership with other players.",
+        "price": "EGP 9,000"
+      },
+      {
+        "name": "Assessment",
+        "description": "A practical test and analysis of strengths and weaknesses, with clear recommendations for the next step.",
+        "price": "EGP 1,000"
+      },
+      {
+        "name": "Technical reports",
+        "description": "A detailed development plan, general assessment, or match review before or after play with tactical advice.",
+        "price": "EGP 300"
+      },
+      {
+        "name": "Rally or match",
+        "description": "A rally or match with the player, followed by a report with clear notes and development points.",
+        "price": "EGP 500"
       }
     ]
   },
@@ -272,24 +280,27 @@
   },
   "contact": {
     "eyebrow": "Contact",
-    "heading": "Start with a clear step toward a better level.",
-    "introduction": "For bookings or questions about training programs, use the direct contact details or leave a message and you will be guided toward the most suitable training path.",
+    "heading": "Start now.",
+    "introduction": "For bookings or questions, contact Ahmed directly.",
     "methods": {
+      "instagram": "Instagram",
       "phone": "Phone",
-      "whatsapp": "WhatsApp",
-      "email": "Email"
+      "whatsapp": "WhatsApp"
     },
     "form": {
       "name": "Name",
       "phone": "Phone",
-      "email": "Email",
       "message": "Message",
       "messagePlaceholder": "Share your training goal or question",
       "submit": "Send Message"
+    },
+    "actions": {
+      "call": "Call now",
+      "whatsapp": "WhatsApp message"
     }
   },
   "footer": {
-    "description": "Professional tennis coaching focused on technical foundations, discipline, confidence, and long-term player development.",
+    "description": "Clear, structured tennis coaching.",
     "navigationLabel": "Footer navigation",
     "navigationTitle": "Navigation",
     "contactTitle": "Contact",

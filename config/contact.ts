@@ -5,10 +5,12 @@ export const contactInfo = {
   whatsappHref: "https://wa.me/201007031009",
   email: "info@ahmedsamra.com",
   emailHref: "mailto:info@ahmedsamra.com",
+  instagramDisplay: "@ahmedsamra_official",
+  instagramHref: "https://www.instagram.com/ahmedsamra_official",
   socials: [
     {
       label: "Instagram",
-      href: "#",
+      href: "https://www.instagram.com/ahmedsamra_official",
     },
     {
       label: "Facebook",

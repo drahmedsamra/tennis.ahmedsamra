@@ -1,24 +1,75 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
 import { AboutSection } from "@/components/layouts/about-section";
 import { ContactSection } from "@/components/layouts/contact-section";
 import { HeroSection } from "@/components/layouts/hero/hero-section";
 import { PlayerAccessSection } from "@/components/layouts/player-access-section";
+import { PricingSection } from "@/components/layouts/pricing-section";
 import { ServicesSection } from "@/components/layouts/services-section";
 import { SiteFooter } from "@/components/layouts/site-footer";
 import { SiteNavbar } from "@/components/layouts/site-navbar";
-import { BenefitsSection } from "@/components/layouts/benefits/benefits-section";
 import { AchievementsSection } from "@/components/layouts/achievements-section";
 import { getMarketingNavLinks } from "@/config/navigation";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
-import { AssessmentSection } from "@/components/layouts/assessment";
+import PlayerHero from "@/components/player/playerid/PlayerHero";
+import PlayerDashboard from "@/components/player/playerid/PlayerDashboard";
+import PlayerDetails from "@/components/player/playerid/PlayerDetails";
+import PlayerReports from "@/components/player/playerid/PlayerReports";
+import type { SearchState } from "@/app/(player)/player/actions";
+import type { Player } from "@/types/player";
+import type { Report } from "@/types/reports";
+
+type PlayerSearchAction = (
+  prevState: SearchState,
+  formData: FormData,
+) => Promise<SearchState>;
+
+type PlayerDashboardData = {
+  player: Player;
+  reports: Report[];
+};
 
 type HomePageProps = {
   dictionary: Dictionary;
   locale: Locale;
+  playerDashboard?: PlayerDashboardData;
+  playerSearchAction?: PlayerSearchAction;
+  playerSearchRedirectToHome?: boolean;
 };
 
-export function HomePage({ dictionary, locale }: HomePageProps) {
+export function HomePage({
+  dictionary,
+  locale,
+  playerDashboard,
+  playerSearchAction,
+  playerSearchRedirectToHome = false,
+}: HomePageProps) {
   const navLinks = getMarketingNavLinks(dictionary);
+
+  if (playerDashboard) {
+    const { player, reports } = playerDashboard;
+
+    return (
+      <main className="min-h-screen bg-slate-50">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-5 sm:px-6 sm:py-8">
+          <Link
+            href="/"
+            className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-green-700 transition hover:text-green-900"
+          >
+            <ArrowRight className="size-4" aria-hidden />
+            العودة للرئيسية / البحث عن لاعب آخر
+          </Link>
+
+          <PlayerHero player={player} reportsCount={reports.length} />
+          <PlayerDashboard reportsCount={reports.length} />
+          <PlayerDetails player={player} />
+          <PlayerReports playerCode={player.player_code} reports={reports} />
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>
@@ -34,11 +85,13 @@ export function HomePage({ dictionary, locale }: HomePageProps) {
           content={dictionary.hero}
         />
 
-        <AssessmentSection locale={locale} />
+        <PlayerAccessSection
+          locale={locale}
+          searchAction={playerSearchAction}
+          redirectToHome={playerSearchRedirectToHome}
+        />
 
-        <PlayerAccessSection locale={locale} />
-
-        <BenefitsSection locale={locale} />
+        <PricingSection content={dictionary.pricing} />
 
         <ServicesSection
           content={dictionary.services}

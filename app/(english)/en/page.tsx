@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { searchPlayer } from "@/app/(player)/player/actions";
 import { HomePage } from "@/components/layouts/home-page";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createPageMetadata } from "@/lib/seo/metadata";
@@ -15,5 +16,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const dictionary = await getDictionary(locale);
 
-  return <HomePage dictionary={dictionary} locale={locale} />;
+  return (
+    <HomePage
+      dictionary={dictionary}
+      locale={locale}
+      playerSearchAction={searchPlayer}
+    />
+  );
 }

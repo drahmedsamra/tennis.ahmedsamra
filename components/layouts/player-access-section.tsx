@@ -2,10 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpLeft, FileText, FolderOpen, NotebookPen } from "lucide-react";
 
+import PlayerSearchForm from "@/components/player/PlayerSearchForm";
+import type { SearchState } from "@/app/(player)/player/actions";
 import type { Locale } from "@/lib/i18n/config";
 
 type PlayerAccessSectionProps = {
   locale: Locale;
+  redirectToHome?: boolean;
+  searchAction?: (
+    prevState: SearchState,
+    formData: FormData,
+  ) => Promise<SearchState>;
 };
 
 const portalContent = {
@@ -39,8 +46,42 @@ const portalContent = {
 
 const featureIcons = [FileText, NotebookPen, FolderOpen];
 
-export function PlayerAccessSection({ locale }: PlayerAccessSectionProps) {
+export function PlayerAccessSection({
+  locale,
+  redirectToHome = false,
+  searchAction,
+}: PlayerAccessSectionProps) {
   const content = portalContent[locale];
+
+  if (searchAction) {
+    return (
+      <section id="player-portal" className="border-b border-border/70 bg-muted/45">
+        <div className="marketing-shell grid gap-8 py-10 sm:py-12 lg:grid-cols-[1fr_minmax(22rem,0.8fr)] lg:items-center lg:gap-16">
+          <div>
+            <p className="marketing-kicker">{content.eyebrow}</p>
+            <h2 className="marketing-heading mt-4 max-w-xl">
+              {locale === "ar"
+                ? "أدخل كود اللاعب لعرض ملفك وتقاريرك."
+                : "Enter your player code to view your profile and reports."}
+            </h2>
+            <p className="marketing-copy mt-4 max-w-xl">
+              {locale === "ar"
+                ? "كل ما تحتاجه في مكان واحد."
+                : "Everything you need in one place."}
+            </p>
+          </div>
+
+          <div className="rounded-md border border-border/80 bg-background px-5 pb-5 sm:px-7 sm:pb-7">
+            <PlayerSearchForm
+              action={searchAction}
+              locale={locale}
+              redirectToHome={redirectToHome}
+            />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="player-portal" className="overflow-hidden bg-[#11291e] text-white">

@@ -3,7 +3,7 @@ import ReportCard from "@/components/player/ReportCard";
 type Report = {
   id: string;
   title: string;
-  summary: string;
+  summary: string | null;
   report_date: string;
 };
 

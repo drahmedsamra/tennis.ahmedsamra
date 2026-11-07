@@ -9,7 +9,7 @@ type Props = {
   id: string;
   playerId: string;
   title: string;
-  summary: string;
+  summary: string | null;
   date: string;
 };
 
@@ -60,7 +60,7 @@ export default function ReportCard({
         {/* Summary */}
 
         <p className="mt-6 line-clamp-3 text-lg leading-8 text-slate-600">
-          {summary}
+          {summary ?? ""}
         </p>
 
         {/* Footer */}

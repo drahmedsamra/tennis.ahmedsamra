@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { ArrowUpLeft, AtSign, Mail, MessageCircle, Phone, Send, User } from "lucide-react";
+import { ArrowUpLeft, AtSign, MessageCircle, Phone, Send, User } from "lucide-react";
 
 import { contactInfo } from "@/config/contact";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
@@ -11,9 +11,9 @@ type ContactSectionProps = {
 };
 
 const contactMethods = [
+  { key: "instagram", icon: AtSign, value: contactInfo.instagramDisplay, href: contactInfo.instagramHref },
   { key: "phone", icon: Phone, value: contactInfo.phoneDisplay, href: contactInfo.phoneHref },
   { key: "whatsapp", icon: MessageCircle, value: contactInfo.whatsappDisplay, href: contactInfo.whatsappHref },
-  { key: "email", icon: Mail, value: contactInfo.email, href: contactInfo.emailHref },
 ] as const;
 
 export function ContactSection({ content }: ContactSectionProps) {
@@ -24,7 +24,6 @@ export function ContactSection({ content }: ContactSectionProps) {
     const message = [
       `${content.form.name}: ${formData.get("name") ?? ""}`,
       `${content.form.phone}: ${formData.get("phone") ?? ""}`,
-      `${content.form.email}: ${formData.get("email") ?? ""}`,
       `${content.form.message}: ${formData.get("message") ?? ""}`,
     ].join("\n");
 
@@ -57,8 +56,8 @@ export function ContactSection({ content }: ContactSectionProps) {
                   <li key={method.key}>
                     <a
                       href={method.href}
-                      target={method.key === "whatsapp" ? "_blank" : undefined}
-                      rel={method.key === "whatsapp" ? "noreferrer" : undefined}
+                      target={method.key === "phone" ? undefined : "_blank"}
+                      rel={method.key === "phone" ? undefined : "noreferrer"}
                       className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-5"
                     >
                       <Icon className="size-5 text-primary" aria-hidden />
@@ -77,8 +76,7 @@ export function ContactSection({ content }: ContactSectionProps) {
           <form className="border border-border/80 bg-muted/30 p-5 sm:p-8" onSubmit={handleSubmit}>
             <div className="grid gap-5 sm:grid-cols-2">
               <FormField id="contact-name" label={content.form.name} name="name" autoComplete="name" icon={User} required />
-              <FormField id="contact-phone" label={content.form.phone} name="phone" type="tel" autoComplete="tel" icon={Phone} />
-              <FormField id="contact-email" label={content.form.email} name="email" type="email" autoComplete="email" icon={AtSign} className="sm:col-span-2" />
+              <FormField id="contact-phone" label={content.form.phone} name="phone" type="tel" autoComplete="tel" icon={Phone} required />
               <div className="sm:col-span-2">
                 <label htmlFor="contact-message" className="text-sm font-medium text-foreground">{content.form.message}</label>
                 <textarea
@@ -92,10 +90,29 @@ export function ContactSection({ content }: ContactSectionProps) {
               </div>
             </div>
 
-            <button type="submit" className="mt-8 inline-flex h-12 items-center gap-3 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+            <button type="submit" className="mt-8 inline-flex h-12 w-full items-center justify-center gap-3 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
               <Send className="size-4" aria-hidden />
               {content.form.submit}
             </button>
+
+            <div className="mt-3 grid grid-cols-2 gap-3">
+              <a
+                href={contactInfo.phoneHref}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <Phone className="size-4" aria-hidden />
+                {content.actions.call}
+              </a>
+              <a
+                href={contactInfo.whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <MessageCircle className="size-4" aria-hidden />
+                {content.actions.whatsapp}
+              </a>
+            </div>
           </form>
         </div>
       </div>
