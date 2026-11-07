@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { AboutSection } from "@/components/layouts/about-section";
 import { ContactSection } from "@/components/layouts/contact-section";
 import { HeroSection } from "@/components/layouts/hero/hero-section";
+import { MobileContactActions } from "@/components/layouts/mobile-contact-actions";
 import { PlayerAccessSection } from "@/components/layouts/player-access-section";
 import { PricingSection } from "@/components/layouts/pricing-section";
 import { ServicesSection } from "@/components/layouts/services-section";
@@ -105,6 +106,11 @@ export function HomePage({
           content={dictionary.contact}
         />
       </main>
+
+      <MobileContactActions
+        callLabel={dictionary.contact.actions.call}
+        whatsappLabel={dictionary.contact.actions.whatsapp}
+      />
 
       <SiteFooter
         brand={dictionary.nav.brand}
