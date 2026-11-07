@@ -45,7 +45,7 @@ export function AboutSection({ content, locale }: AboutSectionProps) {
             >
               <span className="text-xs font-semibold text-primary">{String(index + 1).padStart(2, "0")}</span>
               <h3 className="mt-3 text-sm font-semibold leading-6 text-foreground sm:mt-0 sm:text-base sm:leading-normal">{role.title}</h3>
-              <p className="hidden text-sm leading-7 text-muted-foreground sm:block">{role.description}</p>
+              <p className="mt-2 text-xs leading-5 text-muted-foreground sm:mt-0 sm:text-sm sm:leading-7">{role.description}</p>
               <CircleCheck className="hidden size-5 text-primary sm:block" aria-hidden />
             </li>
           ))}

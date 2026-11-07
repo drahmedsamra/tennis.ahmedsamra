@@ -1,8 +1,7 @@
 import {
-  ChartNoAxesCombined,
-  CircleDot,
-  Repeat,
-  Video,
+  Flag,
+  Target,
+  TrendingUp,
   type LucideIcon,
 } from "lucide-react";
 
@@ -13,11 +12,9 @@ type ServicesSectionProps = {
 };
 
 const serviceIcons: Record<string, LucideIcon> = {
-  individual: CircleDot,
-  juniors: CircleDot,
-  tournaments: ChartNoAxesCombined,
-  video: Video,
-  followup: Repeat,
+  tactics: Target,
+  ranking: TrendingUp,
+  pathway: Flag,
 };
 
 export function ServicesSection({ content }: ServicesSectionProps) {
@@ -34,21 +31,21 @@ export function ServicesSection({ content }: ServicesSectionProps) {
           </div>
         </div>
 
-        <div className="mt-8 border-y border-border/80 sm:mt-12">
+        <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-border/80 bg-border/80 sm:mt-12 sm:grid-cols-3">
           {content.cards.map((service, index) => {
-            const Icon = serviceIcons[service.icon] ?? CircleDot;
+            const Icon = serviceIcons[service.icon] ?? Target;
 
             return (
               <article
                 key={service.title}
-                className="grid gap-3 border-b border-border/80 py-5 last:border-b-0 sm:grid-cols-[4rem_minmax(0,0.8fr)_1.2fr_auto] sm:gap-6 sm:py-6 sm:items-center"
+                className="relative min-h-44 bg-background p-5 last:col-span-2 sm:min-h-56 sm:p-7 sm:last:col-span-1"
               >
                 <span className="text-xs font-semibold text-primary">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
-                <p className="text-sm leading-7 text-muted-foreground">{service.description}</p>
-                <Icon className="hidden size-5 text-primary sm:block" aria-hidden />
+                <Icon className="absolute end-5 top-5 size-5 text-primary/45 sm:end-7 sm:top-7 sm:size-6" aria-hidden />
+                <h3 className="mt-7 text-base font-semibold leading-6 text-foreground sm:mt-12 sm:text-xl sm:leading-7">{service.title}</h3>
+                <p className="mt-3 text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-7">{service.description}</p>
               </article>
             );
           })}

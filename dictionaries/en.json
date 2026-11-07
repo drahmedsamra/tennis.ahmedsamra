@@ -31,19 +31,11 @@
     "roles": [
       {
         "title": "Tennis Coach",
-        "description": "Individual coaching with a clear plan."
+        "description": "Certified by the Egyptian Tennis Federation and the International Tennis Federation (ITF)."
       },
       {
         "title": "Tennis Player",
-        "description": "Practical experience on court."
-      },
-      {
-        "title": "Egyptian Tennis Federation Certified Coach",
-        "description": "Official coaching certification."
-      },
-      {
-        "title": "ITF Certified Coach",
-        "description": "International Tennis Federation coach certification."
+        "description": "Top 5 in Egypt (Seniors) and winner of multiple tournaments."
       }
     ]
   },
@@ -71,28 +63,23 @@
   },
   "services": {
     "eyebrow": "Services",
-    "heading": "Coaching services for players.",
-    "introduction": "Every service has a clear next step.",
+    "heading": "Your plan to compete and develop.",
+    "introduction": "Clearer tactics, a better ranking, and a stronger path to clubs and national teams.",
     "cards": [
       {
-        "icon": "individual",
-        "title": "Individual Training",
-        "description": "Technical and tactical development for each player."
+        "icon": "tactics",
+        "title": "Winning tactics",
+        "description": "Tactical guidance and plans for better match decisions."
       },
       {
-        "icon": "juniors",
-        "title": "Junior Training",
-        "description": "A strong base for movement and control."
+        "icon": "ranking",
+        "title": "Improve your ranking",
+        "description": "A training and competition plan to improve your ranking."
       },
       {
-        "icon": "tournaments",
-        "title": "Tournament Preparation",
-        "description": "A clear plan for competition."
-      },
-      {
-        "icon": "video",
-        "title": "Video Analysis",
-        "description": "Understand strengths and development areas."
+        "icon": "pathway",
+        "title": "Clubs and national teams",
+        "description": "Clear development for stronger opportunities with clubs and national teams."
       }
     ]
   },
