@@ -69,12 +69,12 @@ export default function PlayerSearchForm({
     ? {
         code: "كود اللاعب",
         heading: "أدخل كود اللاعب",
-        help: "لا تملك كودًا؟ تواصل مع المدرب.",
+        help: "هذا الكود مخصص للاعبين المتدربين مع الكابتن أحمد سمرة.",
       }
     : {
         code: "Player code",
         heading: "Enter your player code",
-        help: "Need a code? Contact the coach.",
+        help: "This code is for players training with Ahmed Samra.",
       };
 
   return (

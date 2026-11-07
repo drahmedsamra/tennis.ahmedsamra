@@ -1,15 +1,8 @@
 import Image from "next/image";
 
-import type { Locale } from "@/lib/i18n/config";
-
-type HeroImageProps = {
-  locale: Locale;
-};
-
-export function HeroImage({ locale }: HeroImageProps) {
+export function HeroImage() {
   return (
-    <figure className="relative mx-auto flex min-h-[27rem] max-w-[38rem] items-end justify-center px-4 pt-8 sm:min-h-[34rem] sm:px-8 sm:pt-10 lg:min-h-[39rem]">
-
+    <figure className="relative mx-auto flex min-h-[27rem] max-w-[38rem] flex-col items-center justify-end px-4 pt-8 sm:min-h-[34rem] sm:px-8 sm:pt-10 lg:min-h-[39rem]">
       <Image
         src="/images/hero/ahmed-samra-hero2.webp"
         alt="Ahmed Samra holding a tennis trophy"
@@ -20,8 +13,8 @@ export function HeroImage({ locale }: HeroImageProps) {
         className="relative z-10 h-auto w-full max-w-[31rem] object-contain drop-shadow-[0_28px_32px_rgba(13,38,28,0.22)] sm:max-w-[34rem]"
       />
 
-      <figcaption className="absolute bottom-4 start-4 z-20 border-s-2 border-primary ps-3 text-xs font-semibold text-foreground sm:bottom-6 sm:start-6">
-        {locale === "ar" ? "أحمد سمرة | لاعب ومدرب تنس" : "Ahmed Samra | Tennis Player & Coach"}
+      <figcaption className="relative z-20 mt-3 self-start border-s-2 border-primary ps-3 text-xs font-semibold text-foreground lg:absolute lg:bottom-4 lg:start-4 lg:mt-0">
+        ITF Certified Coach
       </figcaption>
     </figure>
   );

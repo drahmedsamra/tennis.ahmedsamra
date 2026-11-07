@@ -181,7 +181,7 @@
   }
 
   .marketing-copy {
-    @apply text-base leading-8 text-muted-foreground sm:text-lg sm:leading-9;
+    @apply text-base leading-7 text-muted-foreground sm:text-lg sm:leading-9;
   }
 
   .court-mark {

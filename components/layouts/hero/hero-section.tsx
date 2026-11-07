@@ -45,21 +45,21 @@ export function HeroSection({
 
           <HeroActions content={content} locale={locale} />
 
-          <dl className="mt-10 grid border-y border-border/80 sm:grid-cols-3">
+          <dl className="mt-10 grid grid-cols-3 border-y border-border/80">
             {highlights.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-3 border-border/80 py-4 text-sm font-medium text-foreground sm:px-4 sm:first:ps-0 sm:not-last:border-e"
+                className="flex items-center justify-center gap-1.5 border-border/80 py-3 text-xs font-medium text-foreground not-last:border-e sm:gap-3 sm:px-4 sm:py-4 sm:text-sm sm:first:ps-0"
               >
-                <Icon className="size-4 shrink-0 text-primary" aria-hidden />
-                <dt>{label}</dt>
+                <Icon className="size-3.5 shrink-0 text-primary sm:size-4" aria-hidden />
+                <dt className="whitespace-nowrap">{label}</dt>
               </div>
             ))}
           </dl>
         </div>
 
         <div className="order-1 lg:order-2">
-          <HeroImage locale={locale} />
+          <HeroImage />
         </div>
       </div>
     </section>

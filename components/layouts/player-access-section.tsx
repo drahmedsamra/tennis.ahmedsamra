@@ -56,7 +56,7 @@ export function PlayerAccessSection({
   if (searchAction) {
     return (
       <section id="player-portal" className="border-b border-border/70 bg-muted/45">
-        <div className="marketing-shell grid gap-8 py-10 sm:py-12 lg:grid-cols-[1fr_minmax(22rem,0.8fr)] lg:items-center lg:gap-16">
+        <div className="marketing-shell grid gap-6 py-10 sm:gap-8 sm:py-12 lg:grid-cols-[1fr_minmax(22rem,0.8fr)] lg:items-center lg:gap-16">
           <div>
             <p className="marketing-kicker">{content.eyebrow}</p>
             <h2 className="marketing-heading mt-4 max-w-xl">

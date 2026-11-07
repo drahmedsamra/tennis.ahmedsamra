@@ -9,7 +9,6 @@ import { PricingSection } from "@/components/layouts/pricing-section";
 import { ServicesSection } from "@/components/layouts/services-section";
 import { SiteFooter } from "@/components/layouts/site-footer";
 import { SiteNavbar } from "@/components/layouts/site-navbar";
-import { AchievementsSection } from "@/components/layouts/achievements-section";
 import { getMarketingNavLinks } from "@/config/navigation";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
@@ -101,8 +100,6 @@ export function HomePage({
           content={dictionary.about}
           locale={locale}
         />
-
-        <AchievementsSection content={dictionary.achievements} />
 
         <ContactSection
           content={dictionary.contact}

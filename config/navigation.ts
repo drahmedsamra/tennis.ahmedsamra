@@ -14,7 +14,6 @@ export function getMarketingNavLinks(
     { label: links.about, href: "#about" },
     { label: links.pricing, href: "#pricing" },
     { label: links.services, href: "#services" },
-    { label: links.achievements, href: "#achievements" },
     { label: links.playerPortal, href: "#player-portal" },
     { label: links.contact, href: "#contact" },
   ];

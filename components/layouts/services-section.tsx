@@ -23,25 +23,25 @@ const serviceIcons: Record<string, LucideIcon> = {
 export function ServicesSection({ content }: ServicesSectionProps) {
   return (
     <section id="services" aria-labelledby="services-heading" className="border-b border-border/70 bg-muted/45">
-      <div className="marketing-shell py-16 sm:py-20 lg:py-28">
-        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
+      <div className="marketing-shell py-10 sm:py-20 lg:py-28">
+        <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
           <p className="marketing-kicker">{content.eyebrow}</p>
           <div>
             <h2 id="services-heading" className="marketing-heading max-w-3xl">
               {content.heading}
             </h2>
-            <p className="marketing-copy mt-5 max-w-3xl">{content.introduction}</p>
+            <p className="marketing-copy mt-3 max-w-3xl sm:mt-5">{content.introduction}</p>
           </div>
         </div>
 
-        <div className="mt-12 border-y border-border/80">
+        <div className="mt-8 border-y border-border/80 sm:mt-12">
           {content.cards.map((service, index) => {
             const Icon = serviceIcons[service.icon] ?? CircleDot;
 
             return (
               <article
                 key={service.title}
-                className="grid gap-4 border-b border-border/80 py-6 last:border-b-0 sm:grid-cols-[4rem_minmax(0,0.8fr)_1.2fr_auto] sm:items-center sm:gap-6"
+                className="grid gap-3 border-b border-border/80 py-5 last:border-b-0 sm:grid-cols-[4rem_minmax(0,0.8fr)_1.2fr_auto] sm:gap-6 sm:py-6 sm:items-center"
               >
                 <span className="text-xs font-semibold text-primary">
                   {String(index + 1).padStart(2, "0")}

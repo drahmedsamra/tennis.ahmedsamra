@@ -36,16 +36,16 @@ export function ContactSection({ content }: ContactSectionProps) {
 
   return (
     <section id="contact" aria-labelledby="contact-heading" className="bg-background">
-      <div className="marketing-shell py-16 sm:py-20 lg:py-28">
-        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
+      <div className="marketing-shell py-10 sm:py-20 lg:py-28">
+        <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
           <p className="marketing-kicker">{content.eyebrow}</p>
           <div>
             <h2 id="contact-heading" className="marketing-heading max-w-3xl">{content.heading}</h2>
-            <p className="marketing-copy mt-5 max-w-3xl">{content.introduction}</p>
+            <p className="marketing-copy mt-3 max-w-3xl sm:mt-5">{content.introduction}</p>
           </div>
         </div>
 
-        <div className="mt-12 grid gap-10 border-t border-border/80 pt-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+        <div className="mt-8 grid gap-8 border-t border-border/80 pt-8 sm:mt-12 sm:gap-10 sm:pt-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
           <address className="not-italic">
             <ul className="divide-y divide-border/80 border-y border-border/80">
               {contactMethods.map((method) => {
