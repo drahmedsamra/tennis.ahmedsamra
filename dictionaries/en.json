@@ -89,9 +89,19 @@
     "introduction": "Choose the service that suits you.",
     "items": [
       {
+        "name": "Assessment",
+        "description": "A practical test and analysis of strengths and weaknesses, with clear recommendations for the next step.",
+        "price": "EGP 1,000"
+      },
+      {
         "name": "Private session",
         "description": "One-to-one on-court coaching with technical and tactical guidance for the player's needs.",
         "price": "EGP 1,200"
+      },
+      {
+        "name": "Rally or match",
+        "description": "A rally or match with the player, followed by a report with clear notes and development points.",
+        "price": "EGP 500"
       },
       {
         "name": "Academy",
@@ -99,19 +109,9 @@
         "price": "EGP 9,000"
       },
       {
-        "name": "Assessment",
-        "description": "A practical test and analysis of strengths and weaknesses, with clear recommendations for the next step.",
-        "price": "EGP 1,000"
-      },
-      {
         "name": "Technical reports",
         "description": "A detailed development plan, general assessment, or match review before or after play with tactical advice.",
         "price": "EGP 300"
-      },
-      {
-        "name": "Rally or match",
-        "description": "A rally or match with the player, followed by a report with clear notes and development points.",
-        "price": "EGP 500"
       }
     ]
   },
