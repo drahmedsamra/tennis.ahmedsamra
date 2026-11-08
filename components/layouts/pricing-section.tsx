@@ -8,7 +8,7 @@ type PricingSectionProps = {
 
 export function PricingSection({ content }: PricingSectionProps) {
   return (
-    <section id="pricing" aria-labelledby="pricing-heading" className="border-b border-border/70 bg-muted/45">
+    <section id="pricing" aria-labelledby="pricing-heading" className="border-b border-border/70 bg-background">
       <div className="marketing-shell py-10 sm:py-20 lg:py-28">
         <div className="grid gap-4 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
           <p className="marketing-kicker">{content.eyebrow}</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { ArrowUpLeft, AtSign, MessageCircle, Phone, Send, User } from "lucide-react";
+import { Phone, Send, User } from "lucide-react";
 
 import { contactInfo } from "@/config/contact";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
@@ -9,12 +9,6 @@ import type { Dictionary } from "@/lib/i18n/get-dictionary";
 type ContactSectionProps = {
   content: Dictionary["contact"];
 };
-
-const contactMethods = [
-  { key: "instagram", icon: AtSign, value: contactInfo.instagramDisplay, href: contactInfo.instagramHref },
-  { key: "phone", icon: Phone, value: contactInfo.phoneDisplay, href: contactInfo.phoneHref },
-  { key: "whatsapp", icon: MessageCircle, value: contactInfo.whatsappDisplay, href: contactInfo.whatsappHref },
-] as const;
 
 export function ContactSection({ content }: ContactSectionProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -35,7 +29,7 @@ export function ContactSection({ content }: ContactSectionProps) {
   }
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="bg-background">
+    <section id="contact" aria-labelledby="contact-heading" className="bg-[#f6f8f5]">
       <div className="marketing-shell py-10 sm:py-20 lg:py-28">
         <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
           <p className="marketing-kicker">{content.eyebrow}</p>
@@ -45,34 +39,7 @@ export function ContactSection({ content }: ContactSectionProps) {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-8 border-t border-border/80 pt-8 sm:mt-12 sm:gap-10 sm:pt-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-          <address className="not-italic">
-            <ul className="divide-y divide-border/80 border-y border-border/80">
-              {contactMethods.map((method) => {
-                const Icon = method.icon;
-                const label = content.methods[method.key];
-
-                return (
-                  <li key={method.key}>
-                    <a
-                      href={method.href}
-                      target={method.key === "phone" ? undefined : "_blank"}
-                      rel={method.key === "phone" ? undefined : "noreferrer"}
-                      className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-5"
-                    >
-                      <Icon className="size-5 text-primary" aria-hidden />
-                      <div>
-                        <p className="text-sm font-semibold text-foreground">{label}</p>
-                        <p className="mt-1 text-sm text-muted-foreground">{method.value}</p>
-                      </div>
-                      <ArrowUpLeft className="size-4 text-muted-foreground transition-colors group-hover:text-primary" aria-hidden />
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </address>
-
+        <div className="mt-8 max-w-2xl border-t border-border/80 pt-8 sm:mt-12 sm:pt-10">
           <form className="border border-border/80 bg-muted/30 p-5 sm:p-8" onSubmit={handleSubmit}>
             <div className="grid gap-5 sm:grid-cols-2">
               <FormField id="contact-name" label={content.form.name} name="name" autoComplete="name" icon={User} required />
@@ -94,25 +61,6 @@ export function ContactSection({ content }: ContactSectionProps) {
               <Send className="size-4" aria-hidden />
               {content.form.submit}
             </button>
-
-            <div className="mt-3 grid grid-cols-2 gap-3">
-              <a
-                href={contactInfo.phoneHref}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
-              >
-                <Phone className="size-4" aria-hidden />
-                {content.actions.call}
-              </a>
-              <a
-                href={contactInfo.whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
-              >
-                <MessageCircle className="size-4" aria-hidden />
-                {content.actions.whatsapp}
-              </a>
-            </div>
           </form>
         </div>
       </div>

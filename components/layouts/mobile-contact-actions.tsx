@@ -12,25 +12,25 @@ export function MobileContactActions({
   whatsappLabel,
 }: MobileContactActionsProps) {
   return (
-    <div className="fixed inset-x-0 bottom-4 z-50 flex justify-center px-5 sm:hidden">
-      <div className="grid w-full max-w-sm grid-cols-2 gap-2 rounded-md border border-border/80 bg-background p-2 shadow-[0_12px_32px_rgba(13,38,28,0.18)]">
-        <a
-          href={contactInfo.phoneHref}
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-sm bg-primary px-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        >
-          <Phone className="size-4" aria-hidden />
-          {callLabel}
-        </a>
-        <a
-          href={contactInfo.whatsappHref}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-sm border border-border bg-background px-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        >
-          <MessageCircle className="size-4" aria-hidden />
-          {whatsappLabel}
-        </a>
-      </div>
+    <div className="pointer-events-none fixed inset-x-0 bottom-5 z-50 flex justify-between px-5 sm:hidden">
+      <a
+        href={contactInfo.phoneHref}
+        aria-label={callLabel}
+        title={callLabel}
+        className="pointer-events-auto inline-flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_24px_rgba(13,38,28,0.25)] transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      >
+        <Phone className="size-5" aria-hidden />
+      </a>
+      <a
+        href={contactInfo.whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={whatsappLabel}
+        title={whatsappLabel}
+        className="pointer-events-auto inline-flex size-12 items-center justify-center rounded-full border border-primary/25 bg-background text-primary shadow-[0_10px_24px_rgba(13,38,28,0.18)] transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      >
+        <MessageCircle className="size-5" aria-hidden />
+      </a>
     </div>
   );
 }
