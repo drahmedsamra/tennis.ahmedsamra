@@ -13,7 +13,7 @@ export function AboutSection({ content, locale }: AboutSectionProps) {
   const contactLabel = locale === "ar" ? "تواصل مع أحمد" : "Contact Ahmed";
 
   return (
-    <section id="about" aria-labelledby="about-heading" className="border-b border-border/70 bg-[#eaf3ec]">
+    <section id="about" aria-labelledby="about-heading" className="border-b-4 border-background bg-[#eaf3ec]">
       <div className="marketing-shell grid gap-8 py-10 sm:py-20 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:py-28">
         <div>
           <p className="marketing-kicker">{content.eyebrow}</p>

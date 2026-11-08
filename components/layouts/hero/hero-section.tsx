@@ -32,7 +32,7 @@ export function HeroSection({
   return (
     <section
       id="hero"
-      className="relative isolate overflow-hidden border-b border-border/70 bg-[#f8faf7]"
+      className="relative isolate overflow-hidden border-b-4 border-background bg-[#f8faf7]"
     >
       <div
         aria-hidden

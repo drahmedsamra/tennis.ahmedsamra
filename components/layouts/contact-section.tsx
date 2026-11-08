@@ -29,7 +29,7 @@ export function ContactSection({ content }: ContactSectionProps) {
   }
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="bg-[#f6f8f5]">
+    <section id="contact" aria-labelledby="contact-heading" className="border-b-4 border-background bg-[#f6f8f5]">
       <div className="marketing-shell py-10 sm:py-20 lg:py-28">
         <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
           <p className="marketing-kicker">{content.eyebrow}</p>

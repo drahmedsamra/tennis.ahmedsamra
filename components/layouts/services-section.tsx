@@ -19,7 +19,7 @@ const serviceIcons: Record<string, LucideIcon> = {
 
 export function ServicesSection({ content }: ServicesSectionProps) {
   return (
-    <section id="services" aria-labelledby="services-heading" className="border-b border-border/70 bg-[#f1f3ef]">
+    <section id="services" aria-labelledby="services-heading" className="border-b-4 border-background bg-[#f1f3ef]">
       <div className="marketing-shell py-10 sm:py-20 lg:py-28">
         <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
           <p className="marketing-kicker">{content.eyebrow}</p>
