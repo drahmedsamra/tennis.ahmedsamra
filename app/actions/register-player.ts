@@ -65,6 +65,8 @@ export async function submitPlayerRegistration(
     const parentName = formData.get("parent_name")?.toString().trim() || null;
     const egyptTennisId =
       formData.get("egypt_tennis_id")?.toString().trim() || null;
+    const preferredPlayerCode =
+      formData.get("preferred_player_code")?.toString().trim().toUpperCase() || null;
     const whatsappNumber =
       formData.get("whatsapp_number")?.toString().trim() || null;
     const email = formData.get("email")?.toString().trim() || null;
@@ -102,6 +104,7 @@ export async function submitPlayerRegistration(
       gender,
       parent_name: parentName,
       egypt_tennis_id: egyptTennisId,
+      preferred_player_code: preferredPlayerCode,
       mobile_number: mobileNumber,
       whatsapp_number: whatsappNumber,
       email,

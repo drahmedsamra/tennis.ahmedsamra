@@ -312,6 +312,35 @@ export function PlayerRegistrationForm({
                             </label>
                           </div>
                         </div>
+
+                        {/* Preferred Player Code (Optional) */}
+                        <div className="sm:col-span-2 lg:col-span-4">
+                          <label
+                            htmlFor="preferred_player_code"
+                            className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+                          >
+                            {isRtl
+                              ? "كود الدخول المفضل لك لبوابة اللاعب (اختياري)"
+                              : "Preferred Player Access Code (Optional)"}
+                          </label>
+                          <input
+                            id="preferred_player_code"
+                            name="preferred_player_code"
+                            type="text"
+                            maxLength={15}
+                            placeholder={
+                              isRtl
+                                ? "مثال: SAMRA-10 أو 2012 (أو اتركه فارغاً)"
+                                : "e.g. SAMRA-10 or 2012 (or leave blank)"
+                            }
+                            className="mt-1.5 h-11 w-full rounded-lg border border-border bg-background px-3.5 text-sm uppercase placeholder:normal-case text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                          />
+                          <p className="mt-1 text-[11px] text-muted-foreground">
+                            {isRtl
+                              ? "يمكنك كتابة كود تفضله ليسهل عليك حفظه، أو اتركه فارغاً وسننشئ لك كوداً مخصصاً."
+                              : "Choose a memorable code, or leave blank and we will generate one for you."}
+                          </p>
+                        </div>
                       </div>
                     </div>
 

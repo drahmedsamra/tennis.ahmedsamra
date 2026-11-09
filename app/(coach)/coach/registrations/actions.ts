@@ -48,26 +48,39 @@ export async function convertRequestToPlayerAction(
       throw new Error("طلب التسجيل غير موجود.");
     }
 
-    // 2. Generate a unique player code if not provided
-    let finalCode = (customCode || "").trim().toUpperCase();
+    // 2. Determine or generate unique player code
+    let finalCode = (
+      customCode ||
+      request.preferred_player_code ||
+      ""
+    )
+      .trim()
+      .toUpperCase();
+
+    // Check existing codes to prevent duplicate
+    const { data: existingPlayers } = await supabase
+      .from("players")
+      .select("player_code");
+
+    const takenCodes = new Set(
+      (existingPlayers || []).map((p) => p.player_code?.toUpperCase())
+    );
 
     if (!finalCode) {
-      // Find existing codes to prevent collision
-      const { data: existingPlayers } = await supabase
-        .from("players")
-        .select("player_code");
-
-      const takenCodes = new Set(
-        (existingPlayers || []).map((p) => p.player_code?.toUpperCase())
-      );
-
-      // Generate random AS-XXXX
+      // Auto generate random AS-XXXX
       let attempts = 0;
       do {
         const randNum = Math.floor(1000 + Math.random() * 9000);
         finalCode = `AS-${randNum}`;
         attempts++;
       } while (takenCodes.has(finalCode) && attempts < 50);
+    } else if (takenCodes.has(finalCode)) {
+      // If requested code is already taken, append a number
+      let counter = 1;
+      while (takenCodes.has(`${finalCode}-${counter}`)) {
+        counter++;
+      }
+      finalCode = `${finalCode}-${counter}`;
     }
 
     // 3. Prepare birth year

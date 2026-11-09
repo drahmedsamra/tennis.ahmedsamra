@@ -148,6 +148,7 @@ export function RegistrationRequestsView({
   }
 
   const [convertingId, setConvertingId] = useState<string | null>(null);
+  const [customCodeInput, setCustomCodeInput] = useState("");
   const [conversionResult, setConversionResult] = useState<{
     playerCode: string;
     playerId: string;
@@ -158,11 +159,17 @@ export function RegistrationRequestsView({
   const [copiedCode, setCopiedCode] = useState(false);
   const [conversionError, setConversionError] = useState<string | null>(null);
 
-  async function handleConvertToPlayer(req: PlayerRegistrationRequest) {
+  async function handleConvertToPlayer(
+    req: PlayerRegistrationRequest,
+    codeOverride?: string
+  ) {
     setConvertingId(req.id);
     setConversionError(null);
     try {
-      const res = await convertRequestToPlayerAction(req.id);
+      const res = await convertRequestToPlayerAction(
+        req.id,
+        codeOverride || customCodeInput || undefined
+      );
       if (res.success && res.player && res.playerCode) {
         setConversionResult({
           playerCode: res.playerCode,
@@ -470,7 +477,12 @@ export function RegistrationRequestsView({
                       <td className="px-4 py-3.5 text-center">
                         <button
                           type="button"
-                          onClick={() => setSelectedRequest(req)}
+                          onClick={() => {
+                            setSelectedRequest(req);
+                            setCustomCodeInput(req.preferred_player_code || "");
+                            setConversionResult(null);
+                            setConversionError(null);
+                          }}
                           className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-800"
                         >
                           <Eye className="size-3.5" />
@@ -552,6 +564,14 @@ export function RegistrationRequestsView({
                       {selectedRequest.gender}
                     </dd>
                   </div>
+                  {selectedRequest.preferred_player_code ? (
+                    <div>
+                      <dt className="text-slate-400">Preferred Code (الكود المفضل)</dt>
+                      <dd className="mt-0.5 font-mono font-bold text-emerald-700">
+                        {selectedRequest.preferred_player_code}
+                      </dd>
+                    </div>
+                  ) : null}
                 </dl>
               </div>
 
@@ -739,7 +759,7 @@ export function RegistrationRequestsView({
 
               {/* Convert to Player Profile */}
               <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/90 to-slate-50 p-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-2">
                     <span className="flex size-7 items-center justify-center rounded-lg bg-emerald-600 text-white">
                       <UserCheck className="size-4" />
@@ -754,24 +774,33 @@ export function RegistrationRequestsView({
                     </div>
                   </div>
 
-                  <button
-                    type="button"
-                    disabled={convertingId === selectedRequest.id}
-                    onClick={() => handleConvertToPlayer(selectedRequest)}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-emerald-500 disabled:opacity-60"
-                  >
-                    {convertingId === selectedRequest.id ? (
-                      <>
-                        <Loader2 className="size-3.5 animate-spin" />
-                        جاري الإنشاء...
-                      </>
-                    ) : (
-                      <>
-                        <UserPlus className="size-3.5" />
-                        إنشاء ملف اللاعب
-                      </>
-                    )}
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      placeholder="الكود (اختياري/تلقائي)"
+                      value={customCodeInput}
+                      onChange={(e) => setCustomCodeInput(e.target.value.toUpperCase())}
+                      className="h-9 w-36 rounded-lg border border-slate-300 bg-white px-2.5 font-mono text-xs uppercase text-slate-800 placeholder:normal-case placeholder:text-[10px] focus:border-emerald-500 focus:outline-hidden"
+                    />
+                    <button
+                      type="button"
+                      disabled={convertingId === selectedRequest.id}
+                      onClick={() => handleConvertToPlayer(selectedRequest, customCodeInput)}
+                      className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-emerald-500 disabled:opacity-60"
+                    >
+                      {convertingId === selectedRequest.id ? (
+                        <>
+                          <Loader2 className="size-3.5 animate-spin" />
+                          جاري الإنشاء...
+                        </>
+                      ) : (
+                        <>
+                          <UserPlus className="size-3.5" />
+                          إنشاء ملف اللاعب
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
 
                 {/* Conversion Error */}
