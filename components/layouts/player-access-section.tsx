@@ -28,24 +28,24 @@ const portalContent = {
   ar: {
     badge: "بوابة المتابعة الفنية",
     eyebrow: "بوابة اللاعبين",
-    heading: "مساحة خاصة لمتابعة التطور والتقارير الفنية.",
+    heading: "متابعة التطور والتقارير الفنية",
     description:
-      "تجمع بوابة اللاعب التقارير الدورية، وملاحظات التدريب، وخطط التطوير المخصصة في مكان واحد، لتظل على دراية كاملة بمستوى تقدمك في الملعب خطوة بخطوة.",
+      "تقاريرك الدورية وخطة تطورك في الملعب في مكان واحد، خطوة بخطوة.",
     features: [
       {
         icon: FileText,
-        title: "التقارير الفنية الدورية",
-        description: "مراجعة تقييمات الأداء الفني والتكتيكي في أي وقت.",
+        title: "تقارير فنية دورية",
+        description: "تقييم مستمر للأداء الفني والتكتيكي.",
       },
       {
         icon: Target,
-        title: "نقاط التطوير والتركيز",
-        description: "فهم دقيق للتفاصيل ونقاط القوة والضربات التي تحتاج لتركيز.",
+        title: "نقاط التركيز",
+        description: "تحديد دقيق لنقاط القوة وفرص التطوير.",
       },
       {
         icon: BarChart3,
-        title: "متابعة مسار التطور",
-        description: "خطة واضحة وأهداف عملية محددة للمرحلة التالية.",
+        title: "خطة التطور",
+        description: "أهداف واضحة وخطوات للمرحلة القادمة.",
       },
     ],
     cardEyebrow: "بطاقة وصول المتدرب",
@@ -59,24 +59,24 @@ const portalContent = {
   en: {
     badge: "Performance Portal",
     eyebrow: "Player Portal",
-    heading: "A dedicated space to track technical progress and reports.",
+    heading: "Track Technical Progress & Reports",
     description:
-      "The Player Portal brings periodic evaluations, coaching notes, and customized development plans together, keeping you fully informed about your progress on court.",
+      "Your periodic reports and tailored development plan in one place, step by step.",
     features: [
       {
         icon: FileText,
-        title: "Periodic Technical Reports",
-        description: "Review technical and tactical performance evaluations anytime.",
+        title: "Periodic Reports",
+        description: "Continuous technical & tactical reviews.",
       },
       {
         icon: Target,
-        title: "Key Focus & Development",
-        description: "Clear understanding of strengths, technical nuances, and priorities.",
+        title: "Key Focus",
+        description: "Clear strengths & improvement areas.",
       },
       {
         icon: BarChart3,
-        title: "Progress Tracking",
-        description: "Actionable goals and practical steps for the upcoming training cycle.",
+        title: "Progress Plan",
+        description: "Clear goals for the upcoming stage.",
       },
     ],
     cardEyebrow: "Player Access Pass",
@@ -127,23 +127,25 @@ export function PlayerAccessSection({
             </p>
 
             {/* Feature Highlights Grid */}
-            <div className="mt-8 grid gap-3.5 sm:grid-cols-3">
+            <div className="mt-6 grid gap-2.5 sm:mt-8 sm:grid-cols-3 sm:gap-3.5">
               {content.features.map((feat) => {
                 const Icon = feat.icon;
                 return (
                   <div
                     key={feat.title}
-                    className="group rounded-2xl border border-primary/15 bg-white/80 p-4 shadow-xs backdrop-blur-xs transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-white hover:shadow-md"
+                    className="group flex items-center gap-3 rounded-xl border border-primary/15 bg-white/90 p-3 shadow-2xs backdrop-blur-xs transition-all hover:border-primary/40 hover:bg-white hover:shadow-xs sm:flex-col sm:items-start sm:rounded-2xl sm:p-4"
                   >
-                    <div className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground sm:size-9 sm:rounded-xl">
                       <Icon className="size-4" aria-hidden />
                     </div>
-                    <h3 className="mt-3 text-xs font-bold text-foreground sm:text-sm">
-                      {feat.title}
-                    </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                      {feat.description}
-                    </p>
+                    <div>
+                      <h3 className="text-xs font-bold text-foreground sm:mt-3 sm:text-sm">
+                        {feat.title}
+                      </h3>
+                      <p className="mt-0.5 text-[11px] leading-snug text-muted-foreground sm:mt-1 sm:text-xs sm:leading-relaxed">
+                        {feat.description}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
