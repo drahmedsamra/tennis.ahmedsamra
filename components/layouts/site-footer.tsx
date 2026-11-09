@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 
 import { contactInfo } from "@/config/contact";
+import { BrandLogo } from "@/components/common/brand-logo";
 import type { MarketingNavLink } from "@/config/navigation";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
@@ -82,14 +82,7 @@ export function SiteFooter({ brand, content, links }: SiteFooterProps) {
         {/* Main row: Brand, Nav links, Contact & Social icons */}
         <div className="flex flex-col items-center justify-between gap-5 md:flex-row md:gap-8">
           {/* Brand */}
-          <div className="flex items-center gap-3" dir="ltr">
-            <span className="grid size-7 place-items-center border border-white/20 bg-white/5">
-              <Image src="/images/icon.webp" alt="" width={18} height={18} />
-            </span>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-white">
-              {brand}
-            </p>
-          </div>
+          <BrandLogo variant="dark" size="md" subtitle="Tennis Academy" />
 
           {/* Navigation Links - Horizontal */}
           <nav aria-label={content.navigationLabel}>

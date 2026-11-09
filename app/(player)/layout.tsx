@@ -1,8 +1,9 @@
 import "../globals.css";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Home } from "lucide-react";
+
+import { BrandLogo } from "@/components/common/brand-logo";
 
 import { localeDirections } from "@/lib/i18n/config";
 import { getLocaleFontClass } from "@/lib/fonts";
@@ -33,27 +34,13 @@ export default function PlayerLayout({
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-3 transition-opacity hover:opacity-90"
+              className="group transition-opacity hover:opacity-90"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-green-100 shadow-sm">
-                <Image
-                  src="/images/icon.webp"
-                  alt="Ahmed Samra Tennis"
-                  width={28}
-                  height={28}
-                  priority
-                />
-              </div>
-
-              <div className="leading-tight">
-                <h1 className="text-base font-bold tracking-tight text-slate-900">
-                  Ahmed Samra
-                </h1>
-
-                <p className="text-xs text-slate-500">
-                  Player Reports Portal
-                </p>
-              </div>
+              <BrandLogo
+                variant="light"
+                size="md"
+                subtitle="Player Reports Portal"
+              />
             </Link>
 
             {/* Back Button */}

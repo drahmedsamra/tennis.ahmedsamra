@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { coachNavItems, isCoachNavActive } from "@/components/coach/nav-config";
+import { BrandLogo } from "@/components/common/brand-logo";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -12,11 +13,7 @@ export default function Sidebar() {
   return (
     <aside className="flex h-full min-h-screen w-72 flex-col bg-slate-900 text-white">
       <div className="border-b border-slate-800 px-6 py-6">
-        <p className="text-xs font-medium uppercase tracking-wider text-emerald-400">
-          Coach
-        </p>
-        <h1 className="mt-1 text-xl font-bold">Ahmed Samra</h1>
-        <p className="mt-1 text-sm text-slate-400">Tennis Control Center</p>
+        <BrandLogo variant="dark" size="md" subtitle="Coach Dashboard" />
       </div>
 
       <nav className="flex-1 space-y-1 p-4">

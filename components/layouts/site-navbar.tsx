@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpLeft, Menu, X } from "lucide-react";
@@ -9,6 +8,7 @@ import { ArrowUpLeft, Menu, X } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localizedPath } from "@/lib/i18n/navigation";
 import type { MarketingNavLink } from "@/config/navigation";
+import { BrandLogo } from "@/components/common/brand-logo";
 import { cn } from "@/lib/utils";
 
 type SiteNavbarProps = {
@@ -17,7 +17,7 @@ type SiteNavbarProps = {
   locale: Locale;
 };
 
-export function SiteNavbar({ brand, links, locale }: SiteNavbarProps) {
+export function SiteNavbar({ links, locale }: SiteNavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("");
   const pathname = usePathname();
@@ -87,20 +87,13 @@ export function SiteNavbar({ brand, links, locale }: SiteNavbarProps) {
       >
         <Link
           href={localizedPath(locale)}
-          dir="ltr"
-          className="flex items-center gap-3 text-foreground"
+          className="group transition-opacity hover:opacity-90"
         >
-          <span className="grid size-8 place-items-center border border-primary/25 bg-primary/5">
-            <Image
-              src="/images/icon.webp"
-              alt=""
-              width={20}
-              height={20}
-            />
-          </span>
-          <span className="text-xs font-semibold uppercase tracking-[0.1em]">
-            {brand}
-          </span>
+          <BrandLogo
+            variant="light"
+            size="md"
+            subtitle={locale === "ar" ? "أكاديمية التنس" : "Tennis Academy"}
+          />
         </Link>
 
         <div className="hidden items-center gap-6 lg:flex">
