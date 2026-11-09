@@ -33,6 +33,7 @@ async function test() {
     age: 12,
     gender: "Male",
     parent_name: "محمد سمرة",
+    egypt_tennis_id: "12345",
     mobile_number: "01007031009",
     whatsapp_number: "01007031009",
     email: "test@ahmedsamra.com",

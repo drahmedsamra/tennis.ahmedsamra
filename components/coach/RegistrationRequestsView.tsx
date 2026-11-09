@@ -620,6 +620,12 @@ export function RegistrationRequestsView({
                     </dd>
                   </div>
                   <div>
+                    <dt className="text-slate-400">Federation ID (قيد الاتحاد)</dt>
+                    <dd className="mt-0.5 font-semibold text-emerald-800">
+                      {selectedRequest.egypt_tennis_id || "None"}
+                    </dd>
+                  </div>
+                  <div>
                     <dt className="text-slate-400">Previous Coach</dt>
                     <dd className="mt-0.5 font-semibold text-slate-800">
                       {selectedRequest.previous_coach || "None"}

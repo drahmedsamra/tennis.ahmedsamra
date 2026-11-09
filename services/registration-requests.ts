@@ -21,7 +21,7 @@ export async function createRegistrationRequest(
 
   if (error) {
     console.error("Error creating registration request:", error);
-    throw error;
+    throw new Error(error.message || "Failed to insert registration request into Supabase");
   }
 
   return inserted as PlayerRegistrationRequest;

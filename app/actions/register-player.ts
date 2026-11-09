@@ -63,6 +63,8 @@ export async function submitPlayerRegistration(
     const age = calculateAge(dateOfBirth);
 
     const parentName = formData.get("parent_name")?.toString().trim() || null;
+    const egyptTennisId =
+      formData.get("egypt_tennis_id")?.toString().trim() || null;
     const whatsappNumber =
       formData.get("whatsapp_number")?.toString().trim() || null;
     const email = formData.get("email")?.toString().trim() || null;
@@ -99,6 +101,7 @@ export async function submitPlayerRegistration(
       age,
       gender,
       parent_name: parentName,
+      egypt_tennis_id: egyptTennisId,
       mobile_number: mobileNumber,
       whatsapp_number: whatsappNumber,
       email,
@@ -121,14 +124,25 @@ export async function submitPlayerRegistration(
       message:
         "Your registration has been submitted successfully! We will contact you soon.",
     };
-  } catch (err) {
+  } catch (err: unknown) {
     console.error("Failed to submit player registration:", err);
+    let errorMsg =
+      "حدث خطأ غير متوقع أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.";
+
+    if (err instanceof Error) {
+      if (err.message.includes("schema cache") || err.message.includes("PGRST205")) {
+        errorMsg =
+          "قاعدة البيانات: جدول player_registration_requests لم يتم إنشاؤه في Supabase بعد. يرجى تشغيل كود الـ SQL في Supabase SQL Editor أولاً.";
+      } else {
+        errorMsg = err.message;
+      }
+    } else if (typeof err === "object" && err !== null && "message" in err) {
+      errorMsg = String((err as { message: unknown }).message);
+    }
+
     return {
       success: false,
-      error:
-        err instanceof Error
-          ? err.message
-          : "An unexpected error occurred during submission. Please try again.",
+      error: errorMsg,
     };
   }
 }

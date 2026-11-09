@@ -36,6 +36,7 @@ export interface PlayerRegistrationRequest {
   age: number;
   gender: string;
   parent_name: string | null;
+  egypt_tennis_id: string | null;
   mobile_number: string;
   whatsapp_number: string | null;
   email: string | null;

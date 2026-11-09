@@ -392,6 +392,8 @@
     "submittingButton": "Submitting your request...",
     "successTitle": "Registration Submitted Successfully!",
     "successMessage": "Your registration has been submitted successfully! We will contact you soon.",
-    "errorMessage": "Failed to submit request. Please verify the required fields and try again."
+    "errorMessage": "Failed to submit request. Please verify the required fields and try again.",
+    "egyptTennisId": "Federation Registration ID (Optional)",
+    "egyptTennisIdPlaceholder": "Egypt Tennis Federation ID if registered"
   }
 }

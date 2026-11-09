@@ -574,6 +574,23 @@ export function PlayerRegistrationForm({
                             className="mt-1.5 h-11 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
                           />
                         </div>
+
+                        {/* Federation Registration ID */}
+                        <div className="sm:col-span-2">
+                          <label
+                            htmlFor="egypt_tennis_id"
+                            className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+                          >
+                            {content.egyptTennisId}
+                          </label>
+                          <input
+                            id="egypt_tennis_id"
+                            name="egypt_tennis_id"
+                            type="text"
+                            placeholder={content.egyptTennisIdPlaceholder}
+                            className="mt-1.5 h-11 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                          />
+                        </div>
                       </div>
                     </div>
 
@@ -689,12 +706,7 @@ export function PlayerRegistrationForm({
                     </div>
 
                     {/* Submit Bar */}
-                    <div className="flex flex-col items-center justify-between gap-4 border-t border-border/80 pt-6 sm:flex-row">
-                      <p className="text-xs text-muted-foreground">
-                        🔒 بياناتك مؤمنة ولن يتم استخدامها إلا للتواصل معك
-                        بخصوص التدريب.
-                      </p>
-
+                    <div className="flex justify-end border-t border-border/80 pt-6">
                       <button
                         type="submit"
                         disabled={isPending}
