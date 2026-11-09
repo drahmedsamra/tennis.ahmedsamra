@@ -1,6 +1,15 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpLeft, FileText, FolderOpen, NotebookPen } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BarChart3,
+  FileText,
+  KeyRound,
+  Lock,
+  ShieldCheck,
+  Sparkles,
+  Target,
+} from "lucide-react";
 
 import PlayerSearchForm from "@/components/player/PlayerSearchForm";
 import type { SearchState } from "@/app/(player)/player/actions";
@@ -11,40 +20,74 @@ type PlayerAccessSectionProps = {
   redirectToHome?: boolean;
   searchAction?: (
     prevState: SearchState,
-    formData: FormData,
+    formData: FormData
   ) => Promise<SearchState>;
 };
 
 const portalContent = {
   ar: {
-    eyebrow: "بوابة اللاعب",
-    heading: "مساحة منظمة للعودة إلى تفاصيل التطور.",
+    badge: "بوابة المتابعة الفنية",
+    eyebrow: "بوابة اللاعبين",
+    heading: "مساحة خاصة لمتابعة التطور والتقارير الفنية.",
     description:
-      "بوابة اللاعب تجمع التقارير الفنية والملاحظات وخطط التطوير في مكان واحد، ليظل التواصل بين التدريب والمراجعة واضحاً.",
+      "تجمع بوابة اللاعب التقارير الدورية، وملاحظات التدريب، وخطط التطوير المخصصة في مكان واحد، لتظل على دراية كاملة بمستوى تقدمك في الملعب خطوة بخطوة.",
     features: [
-      ["التقارير الفنية", "راجع الملاحظات والتوصيات في أي وقت."],
-      ["تحليل الأداء", "افهم التفاصيل التي تحتاج إلى انتباه في الملعب."],
-      ["خطة التطوير", "ارجع إلى نقاط التركيز للمرحلة التالية."],
+      {
+        icon: FileText,
+        title: "التقارير الفنية الدورية",
+        description: "مراجعة تقييمات الأداء الفني والتكتيكي في أي وقت.",
+      },
+      {
+        icon: Target,
+        title: "نقاط التطوير والتركيز",
+        description: "فهم دقيق للتفاصيل ونقاط القوة والضربات التي تحتاج لتركيز.",
+      },
+      {
+        icon: BarChart3,
+        title: "متابعة مسار التطور",
+        description: "خطة واضحة وأهداف عملية محددة للمرحلة التالية.",
+      },
     ],
-    cta: "الدخول إلى بوابة اللاعب",
-    caption: "متابعة هادئة. تركيز أوضح.",
+    cardEyebrow: "بطاقة وصول المتدرب",
+    cardTitle: "الدخول بكود اللاعب",
+    cardSubtitle: "أدخل كودك الخاص للوصول المباشر إلى ملفك وتقاريرك.",
+    noCodeText: "ليس لديك كود لاعب حتى الآن؟",
+    registerAction: "سجّل طلبك هنا",
+    ctaDirect: "الدخول إلى بوابة اللاعبين",
+    caption: "متابعة هادئة · تركيز أوضح",
   },
   en: {
-    eyebrow: "Player portal",
-    heading: "An organised place to return to the details of progress.",
+    badge: "Performance Portal",
+    eyebrow: "Player Portal",
+    heading: "A dedicated space to track technical progress and reports.",
     description:
-      "The Player Portal brings technical reports, coaching notes, and development plans together, keeping the connection between training and review clear.",
+      "The Player Portal brings periodic evaluations, coaching notes, and customized development plans together, keeping you fully informed about your progress on court.",
     features: [
-      ["Technical reports", "Return to feedback and recommendations any time."],
-      ["Performance analysis", "Understand the details that need attention on court."],
-      ["Development plan", "Keep the next phase of focus within reach."],
+      {
+        icon: FileText,
+        title: "Periodic Technical Reports",
+        description: "Review technical and tactical performance evaluations anytime.",
+      },
+      {
+        icon: Target,
+        title: "Key Focus & Development",
+        description: "Clear understanding of strengths, technical nuances, and priorities.",
+      },
+      {
+        icon: BarChart3,
+        title: "Progress Tracking",
+        description: "Actionable goals and practical steps for the upcoming training cycle.",
+      },
     ],
-    cta: "Enter the Player Portal",
-    caption: "Calm follow-up. Clearer focus.",
+    cardEyebrow: "Player Access Pass",
+    cardTitle: "Access with Player Code",
+    cardSubtitle: "Enter your private code for instant access to your profile & reports.",
+    noCodeText: "Don't have a player code yet?",
+    registerAction: "Register here",
+    ctaDirect: "Enter Player Portal",
+    caption: "Structured follow-up · Clearer focus",
   },
 } as const;
-
-const featureIcons = [FileText, NotebookPen, FolderOpen];
 
 export function PlayerAccessSection({
   locale,
@@ -52,94 +95,136 @@ export function PlayerAccessSection({
   searchAction,
 }: PlayerAccessSectionProps) {
   const content = portalContent[locale];
-
-  if (searchAction) {
-    return (
-      <section id="player-portal" className="border-b-4 border-background bg-[#e8f2e9]">
-        <div className="marketing-shell grid gap-6 py-10 sm:gap-8 sm:py-12 lg:grid-cols-[1fr_minmax(22rem,0.8fr)] lg:items-center lg:gap-16">
-          <div>
-            <p className="marketing-kicker">{content.eyebrow}</p>
-            <h2 className="marketing-heading mt-4 max-w-xl">
-              {locale === "ar"
-                ? "أدخل كود اللاعب لعرض ملفك وتقاريرك."
-                : "Enter your player code to view your profile and reports."}
-            </h2>
-            <p className="marketing-copy mt-4 max-w-xl">
-              {locale === "ar"
-                ? "كل ما تحتاجه في مكان واحد."
-                : "Everything you need in one place."}
-            </p>
-          </div>
-
-          <div className="rounded-md border border-primary/20 px-5 pb-5 sm:px-7 sm:pb-7">
-            <PlayerSearchForm
-              action={searchAction}
-              locale={locale}
-              redirectToHome={redirectToHome}
-            />
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const isRtl = locale === "ar";
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
-    <section id="player-portal" className="overflow-hidden bg-[#11291e] text-white">
-      <div className="marketing-shell grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20 lg:py-28">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#a9d6aa]">
-            {content.eyebrow}
-          </p>
-          <h2 className="mt-5 max-w-xl text-3xl font-semibold leading-[1.12] text-white sm:text-4xl lg:text-5xl">
-            {content.heading}
-          </h2>
-          <p className="mt-6 max-w-xl text-base leading-8 text-white/70 sm:text-lg sm:leading-9">
-            {content.description}
-          </p>
+    <section
+      id="player-portal"
+      className="relative isolate overflow-hidden border-b-4 border-background bg-gradient-to-b from-[#f8faf7] via-[#eef6f0] to-[#f8faf7] py-12 sm:py-16 lg:py-24"
+    >
+      {/* Subtle court grid background accent */}
+      <div
+        aria-hidden
+        className="court-mark absolute -start-20 top-10 hidden size-96 opacity-40 lg:block"
+      />
 
-          <ul className="mt-9 divide-y divide-white/15 border-y border-white/15">
-            {content.features.map(([title, description], index) => {
-              const Icon = featureIcons[index];
+      <div className="marketing-shell relative z-10">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14 xl:gap-20">
+          {/* Left Column: Context, Story & Value */}
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 text-xs font-semibold text-primary">
+              <Sparkles className="size-3.5" aria-hidden />
+              <span>{content.badge}</span>
+            </div>
 
-              return (
-                <li key={title} className="grid grid-cols-[auto_1fr] gap-4 py-5">
-                  <Icon className="mt-1 size-5 text-[#a9d6aa]" aria-hidden />
-                  <div>
-                    <h3 className="text-sm font-semibold text-white sm:text-base">{title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-white/65">{description}</p>
+            <h2 className="marketing-heading mt-4 max-w-xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              {content.heading}
+            </h2>
+
+            <p className="marketing-copy mt-4 max-w-xl text-sm leading-relaxed sm:text-base">
+              {content.description}
+            </p>
+
+            {/* Feature Highlights Grid */}
+            <div className="mt-8 grid gap-3.5 sm:grid-cols-3">
+              {content.features.map((feat) => {
+                const Icon = feat.icon;
+                return (
+                  <div
+                    key={feat.title}
+                    className="group rounded-2xl border border-primary/15 bg-white/80 p-4 shadow-xs backdrop-blur-xs transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-white hover:shadow-md"
+                  >
+                    <div className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Icon className="size-4" aria-hidden />
+                    </div>
+                    <h3 className="mt-3 text-xs font-bold text-foreground sm:text-sm">
+                      {feat.title}
+                    </h3>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                      {feat.description}
+                    </p>
                   </div>
-                </li>
-              );
-            })}
-          </ul>
+                );
+              })}
+            </div>
 
-          <Link
-            href="/player"
-            className="mt-9 inline-flex h-12 items-center gap-3 rounded-md border border-white/30 px-5 text-sm font-semibold text-white transition-colors hover:border-[#a9d6aa] hover:text-[#a9d6aa]"
-          >
-            {content.cta}
-            <ArrowUpLeft
-              className={`size-4 ${locale === "ar" ? "rotate-180" : ""}`}
-              aria-hidden
-            />
-          </Link>
+            {/* Trust badge */}
+            <div className="mt-8 flex items-center gap-2 text-xs font-medium text-emerald-800 dark:text-emerald-400">
+              <ShieldCheck className="size-4 shrink-0 text-primary" />
+              <span>
+                {isRtl
+                  ? "جميع التقارير الفنية تصدر بإشراف ومتابعة الكابتن أحمد سمرة مباشرة."
+                  : "All technical reports are supervised directly by Coach Ahmed Samra."}
+              </span>
+            </div>
+          </div>
+
+          {/* Right Column: Luxury Player Access Card */}
+          <div className="relative">
+            {/* Card glow layer */}
+            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/20 via-emerald-400/20 to-primary/10 blur-xl" />
+
+            <div className="relative overflow-hidden rounded-3xl border-2 border-primary/25 bg-card p-6 shadow-xl ring-1 ring-primary/10 sm:p-8">
+              {/* Decorative top strip */}
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-primary via-emerald-400 to-primary" />
+
+              {/* Card Header */}
+              <div className="flex items-center gap-3.5 border-b border-border/70 pb-5">
+                <div className="flex size-11 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary shadow-xs">
+                  <KeyRound className="size-5" aria-hidden />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-primary">
+                    {content.cardEyebrow}
+                  </p>
+                  <h3 className="text-lg font-bold text-foreground sm:text-xl">
+                    {content.cardTitle}
+                  </h3>
+                </div>
+              </div>
+
+              <p className="mt-4 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                {content.cardSubtitle}
+              </p>
+
+              {/* Search Form or Direct CTA */}
+              <div className="mt-5">
+                {searchAction ? (
+                  <PlayerSearchForm
+                    action={searchAction}
+                    locale={locale}
+                    redirectToHome={redirectToHome}
+                  />
+                ) : (
+                  <div className="space-y-4 pt-2">
+                    <Link
+                      href="/player"
+                      className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-md transition hover:bg-primary/90 hover:shadow-lg"
+                    >
+                      <span>{content.ctaDirect}</span>
+                      <ArrowIcon className="size-4" aria-hidden />
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Card Footer: Registration link if no code */}
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-border/70 pt-4 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1.5">
+                  <Lock className="size-3 text-primary" />
+                  {content.noCodeText}
+                </span>
+                <Link
+                  href="#register"
+                  className="font-bold text-primary transition hover:underline"
+                >
+                  {content.registerAction} &larr;
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <figure className="relative mx-auto flex min-h-[22rem] w-full max-w-[30rem] items-end justify-center overflow-hidden border border-white/15 bg-[#173b2c] px-8 pt-8 sm:min-h-[30rem] sm:px-12">
-          <div aria-hidden className="absolute inset-0 border-[1.4rem] border-[#1d4936]" />
-          <div aria-hidden className="absolute start-8 top-8 h-20 w-20 border-s border-t border-[#a9d6aa]/40" />
-          <Image
-            src="/images/hero/ahmed-samra-hero.webp"
-            alt="Ahmed Samra holding a tennis trophy"
-            width={600}
-            height={1027}
-            sizes="(max-width: 1023px) min(30rem, calc(100vw - 40px)), 38vw"
-            className="relative z-10 h-auto w-full max-w-[23rem] object-contain"
-          />
-          <figcaption className="absolute bottom-5 start-5 z-20 text-xs font-medium text-white/75">
-            {content.caption}
-          </figcaption>
-        </figure>
       </div>
     </section>
   );
