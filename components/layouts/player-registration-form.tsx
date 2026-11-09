@@ -115,25 +115,44 @@ export function PlayerRegistrationForm({
   return (
     <section
       id="register"
-      className="border-b-4 border-background bg-gradient-to-b from-[#f3f7f3] to-background py-8 sm:py-12"
+      className={cn(
+        "border-b-4 border-background py-8 sm:py-12 transition-colors duration-500",
+        isExpanded
+          ? "bg-gradient-to-b from-emerald-100/60 via-emerald-50/40 to-background"
+          : "bg-gradient-to-b from-[#f3f7f3] to-background"
+      )}
     >
       <div className="marketing-shell">
         {/* Compact Card Header */}
         <div
           className={cn(
-            "relative overflow-hidden rounded-2xl border-2 transition-all duration-300",
+            "relative overflow-hidden rounded-3xl border-2 transition-all duration-500",
             isExpanded
-              ? "border-primary/40 bg-card shadow-lg ring-1 ring-primary/20"
+              ? "border-emerald-500/80 bg-gradient-to-b from-[#edf7ed] via-[#f7fbf7] to-white shadow-2xl ring-4 ring-emerald-500/15"
               : "border-primary/25 bg-card/90 shadow-sm hover:border-primary/50 hover:shadow-md"
           )}
         >
           {/* Subtle decorative top bar */}
-          <div className="h-1.5 w-full bg-gradient-to-r from-primary via-emerald-500 to-primary" />
+          <div
+            className={cn(
+              "w-full transition-all duration-500",
+              isExpanded
+                ? "h-2 bg-gradient-to-r from-emerald-600 via-emerald-400 to-emerald-600"
+                : "h-1.5 bg-gradient-to-r from-primary via-emerald-500 to-primary"
+            )}
+          />
 
           <div className="p-6 sm:p-8">
             <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
               <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                <div
+                  className={cn(
+                    "inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-300",
+                    isExpanded
+                      ? "border border-emerald-600/30 bg-emerald-600 text-white shadow-xs"
+                      : "border border-primary/25 bg-primary/10 text-primary"
+                  )}
+                >
                   <Sparkles className="size-3.5" aria-hidden />
                   {content.badge}
                 </div>
@@ -155,7 +174,7 @@ export function PlayerRegistrationForm({
                 className={cn(
                   "inline-flex h-12 shrink-0 items-center justify-center gap-2.5 rounded-xl px-6 text-sm font-semibold transition-all duration-200",
                   isExpanded
-                    ? "border border-border bg-muted/60 text-foreground hover:bg-muted"
+                    ? "border border-emerald-400/80 bg-emerald-100 text-emerald-900 shadow-xs hover:bg-emerald-200/90"
                     : "bg-primary text-primary-foreground shadow-md hover:bg-primary/90 hover:shadow-lg"
                 )}
               >
@@ -184,7 +203,14 @@ export function PlayerRegistrationForm({
               )}
             >
               <div className="overflow-hidden">
-                <div className="border-t border-border/80 pt-8">
+                <div
+                  className={cn(
+                    "pt-8 transition-colors duration-500",
+                    isExpanded
+                      ? "border-t border-emerald-200/80"
+                      : "border-t border-border/80"
+                  )}
+                >
                   {statusMessage ? (
                     <div
                       className={cn(
@@ -215,9 +241,18 @@ export function PlayerRegistrationForm({
                     className="space-y-8"
                   >
                     {/* SECTION A: Player Information */}
-                    <div className="rounded-xl border border-border/70 bg-muted/30 p-5 sm:p-6">
-                      <div className="flex items-center gap-2 border-b border-border/60 pb-3 text-base font-bold text-foreground">
-                        <User className="size-4 text-primary" aria-hidden />
+                    <div
+                      className={cn(
+                        "rounded-2xl p-5 sm:p-6 transition-all",
+                        isExpanded
+                          ? "border border-emerald-200/90 bg-white/95 shadow-xs ring-1 ring-emerald-500/5"
+                          : "border border-border/70 bg-muted/30"
+                      )}
+                    >
+                      <div className="flex items-center gap-2 border-b border-emerald-100 pb-3 text-base font-bold text-foreground">
+                        <span className="flex size-7 items-center justify-center rounded-lg bg-emerald-600/10 text-emerald-700">
+                          <User className="size-4" aria-hidden />
+                        </span>
                         <h3>{content.sectionPlayer}</h3>
                       </div>
 
@@ -345,10 +380,19 @@ export function PlayerRegistrationForm({
                     </div>
 
                     {/* SECTION B: Parent / Guardian Information */}
-                    <div className="rounded-xl border border-border/70 bg-muted/30 p-5 sm:p-6">
-                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-3">
+                    <div
+                      className={cn(
+                        "rounded-2xl p-5 sm:p-6 transition-all",
+                        isExpanded
+                          ? "border border-emerald-200/90 bg-white/95 shadow-xs ring-1 ring-emerald-500/5"
+                          : "border border-border/70 bg-muted/30"
+                      )}
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-100 pb-3">
                         <div className="flex items-center gap-2 text-base font-bold text-foreground">
-                          <Phone className="size-4 text-primary" aria-hidden />
+                          <span className="flex size-7 items-center justify-center rounded-lg bg-emerald-600/10 text-emerald-700">
+                            <Phone className="size-4" aria-hidden />
+                          </span>
                           <h3>{content.sectionParent}</h3>
                         </div>
                         {isAdult ? (
@@ -443,9 +487,18 @@ export function PlayerRegistrationForm({
                     </div>
 
                     {/* SECTION C: Tennis Background */}
-                    <div className="rounded-xl border border-border/70 bg-muted/30 p-5 sm:p-6">
-                      <div className="flex items-center gap-2 border-b border-border/60 pb-3 text-base font-bold text-foreground">
-                        <Trophy className="size-4 text-primary" aria-hidden />
+                    <div
+                      className={cn(
+                        "rounded-2xl p-5 sm:p-6 transition-all",
+                        isExpanded
+                          ? "border border-emerald-200/90 bg-white/95 shadow-xs ring-1 ring-emerald-500/5"
+                          : "border border-border/70 bg-muted/30"
+                      )}
+                    >
+                      <div className="flex items-center gap-2 border-b border-emerald-100 pb-3 text-base font-bold text-foreground">
+                        <span className="flex size-7 items-center justify-center rounded-lg bg-emerald-600/10 text-emerald-700">
+                          <Trophy className="size-4" aria-hidden />
+                        </span>
                         <h3>{content.sectionTennis}</h3>
                       </div>
 
@@ -624,9 +677,18 @@ export function PlayerRegistrationForm({
                     </div>
 
                     {/* SECTION D: Training Preferences */}
-                    <div className="rounded-xl border border-border/70 bg-muted/30 p-5 sm:p-6">
-                      <div className="flex items-center gap-2 border-b border-border/60 pb-3 text-base font-bold text-foreground">
-                        <Clock className="size-4 text-primary" aria-hidden />
+                    <div
+                      className={cn(
+                        "rounded-2xl p-5 sm:p-6 transition-all",
+                        isExpanded
+                          ? "border border-emerald-200/90 bg-white/95 shadow-xs ring-1 ring-emerald-500/5"
+                          : "border border-border/70 bg-muted/30"
+                      )}
+                    >
+                      <div className="flex items-center gap-2 border-b border-emerald-100 pb-3 text-base font-bold text-foreground">
+                        <span className="flex size-7 items-center justify-center rounded-lg bg-emerald-600/10 text-emerald-700">
+                          <Clock className="size-4" aria-hidden />
+                        </span>
                         <h3>{content.sectionTraining}</h3>
                       </div>
 
@@ -704,8 +766,8 @@ export function PlayerRegistrationForm({
                                   className={cn(
                                     "rounded-lg border px-3.5 py-2 text-xs font-semibold transition-all",
                                     isSelected
-                                      ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                                      : "border-border bg-background text-foreground hover:border-primary/50 hover:bg-muted/50"
+                                      ? "border-emerald-600 bg-emerald-600 text-white shadow-sm"
+                                      : "border-border bg-background text-foreground hover:border-emerald-500/50 hover:bg-emerald-50/40"
                                   )}
                                 >
                                   {content.days[key]}
@@ -735,11 +797,18 @@ export function PlayerRegistrationForm({
                     </div>
 
                     {/* Submit Bar */}
-                    <div className="flex justify-end border-t border-border/80 pt-6">
+                    <div
+                      className={cn(
+                        "flex justify-end pt-6 transition-colors duration-500",
+                        isExpanded
+                          ? "border-t border-emerald-200/80"
+                          : "border-t border-border/80"
+                      )}
+                    >
                       <button
                         type="submit"
                         disabled={isPending}
-                        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+                        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-8 text-sm font-semibold text-white shadow-md shadow-emerald-600/20 transition-all hover:bg-emerald-500 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                       >
                         {isPending ? (
                           <>
