@@ -101,7 +101,7 @@ export function HomePage({
           redirectToHome={playerSearchRedirectToHome}
         />
 
-        <PricingSection content={dictionary.pricing} />
+        <PricingSection content={dictionary.pricing} locale={locale} />
 
         <ServicesSection
           content={dictionary.services}

@@ -89,34 +89,83 @@
     ]
   },
   "pricing": {
-    "eyebrow": "Pricing",
-    "heading": "Choose what suits your goal.",
-    "introduction": "Choose the service that suits you.",
+    "eyebrow": "Coaching Plans & Pricing",
+    "heading": "Invest in Your Tennis Game.",
+    "introduction": "Flexible coaching programs tailored for all age groups and skill levels.",
+    "ctaText": "Book This Plan",
+    "ctaPopular": "Get Started Now",
     "items": [
       {
-        "name": "Assessment",
-        "description": "A practical test and analysis of strengths and weaknesses, with clear recommendations for the next step.",
-        "price": "EGP 1,000"
+        "name": "Assessment Session",
+        "price": "EGP 1,000",
+        "currency": "",
+        "period": "Full practical assessment",
+        "badge": "Ideal Starting Point",
+        "popular": false,
+        "description": "On-court skill analysis to pinpoint exact technical strengths and development areas.",
+        "features": [
+          "Complete on-court stroke and movement testing",
+          "Analysis of tactical and technical strengths",
+          "Clear recommendations for your optimal training path"
+        ]
       },
       {
-        "name": "Private session",
-        "description": "One-to-one on-court coaching with technical and tactical guidance for the player's needs.",
-        "price": "EGP 1,200"
+        "name": "Private Coaching (1-on-1)",
+        "price": "EGP 1,200",
+        "currency": "",
+        "period": "/ single session",
+        "badge": "Most Popular",
+        "popular": true,
+        "description": "Intensive 1-on-1 on-court coaching with Coach Ahmed Samra for rapid, tangible results.",
+        "features": [
+          "Dedicated 100% 1-on-1 coaching focus",
+          "Stroke mechanics and precise footwork correction",
+          "Tactical simulation of actual match scenarios",
+          "Immediate on-court guidance and live feedback"
+        ]
       },
       {
-        "name": "Rally or match",
-        "description": "A rally or match with the player, followed by a report with clear notes and development points.",
-        "price": "EGP 500"
+        "name": "Academy Membership",
+        "price": "EGP 9,000",
+        "currency": "",
+        "period": "12-session package",
+        "badge": "Comprehensive Program",
+        "popular": false,
+        "description": "Structured group training program over 12 intensive sessions with matched-level players.",
+        "features": [
+          "12 professional academy group sessions",
+          "Weekly match play and competitive rallies",
+          "High-energy atmosphere and team sportsmanship",
+          "Continuous performance and fitness tracking"
+        ]
       },
       {
-        "name": "Academy",
-        "description": "A 12-session academy membership with other players.",
-        "price": "EGP 9,000"
+        "name": "Rally & Match Simulation",
+        "price": "EGP 500",
+        "currency": "",
+        "period": "/ match session",
+        "badge": "Competition Rhythm",
+        "popular": false,
+        "description": "High-tempo rally and practice match to test composure under real point pressure.",
+        "features": [
+          "Simulation of official match conditions and pressure",
+          "High-tempo rallies for shot depth and consistency",
+          "Fast tactical feedback to improve point decisions"
+        ]
       },
       {
-        "name": "Technical reports",
-        "description": "A detailed development plan, general assessment, or match review before or after play with tactical advice.",
-        "price": "EGP 300"
+        "name": "Custom Technical Reports",
+        "price": "EGP 300",
+        "currency": "",
+        "period": "/ report",
+        "badge": "Pro Analytics",
+        "popular": false,
+        "description": "Detailed written assessment, tournament preparation, or match tactical analysis.",
+        "features": [
+          "In-depth written analysis of stroke mechanics",
+          "Pre and post-tournament tactical strategies",
+          "Permanently stored in your private player portal"
+        ]
       }
     ]
   },
