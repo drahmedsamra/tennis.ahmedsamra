@@ -10,6 +10,7 @@ import { PlayerAccessSection } from "@/components/layouts/player-access-section"
 import { PlayerRegistrationForm } from "@/components/layouts/player-registration-form";
 import { PricingSection } from "@/components/layouts/pricing-section";
 import { ServicesSection } from "@/components/layouts/services-section";
+import { TestimonialsSection } from "@/components/layouts/testimonials-section";
 import { SiteFooter } from "@/components/layouts/site-footer";
 import { SiteNavbar } from "@/components/layouts/site-navbar";
 import { getMarketingNavLinks } from "@/config/navigation";
@@ -116,6 +117,11 @@ export function HomePage({
           content={dictionary.gallery}
           locale={locale}
           initialImages={galleryImages}
+        />
+
+        <TestimonialsSection
+          content={dictionary.testimonials}
+          locale={locale}
         />
 
         <ContactSection

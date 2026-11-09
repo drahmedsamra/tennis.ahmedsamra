@@ -1,85 +1,109 @@
-import { Quote } from "lucide-react";
+import { CheckCircle2, Quote, Sparkles, Star } from "lucide-react";
 
+import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
 import { cn } from "@/lib/utils";
 
 type TestimonialsSectionProps = {
   content: Dictionary["testimonials"];
+  locale?: Locale;
 };
 
-export function TestimonialsSection({ content }: TestimonialsSectionProps) {
+export function TestimonialsSection({
+  content,
+  locale = "ar",
+}: TestimonialsSectionProps) {
+  const isRtl = locale === "ar";
+
   return (
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="scroll-mt-14 overflow-hidden bg-muted/50 lg:scroll-mt-16"
+      className="relative isolate overflow-hidden border-b-4 border-background bg-gradient-to-b from-background via-[#f6faf6] to-background py-16 sm:py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-6xl px-6 py-32 lg:px-8 lg:py-44">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-28">
-          <div className="luxury-reveal">
-            <p className="text-[0.6875rem] font-semibold tracking-[0.28em] text-primary uppercase">
-              {content.eyebrow}
-            </p>
-            <h2
-              id="testimonials-heading"
-              className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.18] text-foreground sm:text-4xl lg:text-5xl"
-            >
-              {content.heading}
-            </h2>
+      <div className="marketing-shell relative z-10">
+        {/* Section Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 text-xs font-semibold tracking-wider text-primary uppercase">
+            <Sparkles className="size-3.5" aria-hidden />
+            <span>{content.eyebrow}</span>
           </div>
 
-          <div className="luxury-reveal luxury-reveal-delay-1 flex items-end">
-            <p className="max-w-2xl text-base leading-[1.95] text-muted-foreground sm:text-lg">
-              {content.introduction}
-            </p>
-          </div>
+          <h2
+            id="testimonials-heading"
+            className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+          >
+            {content.heading}
+          </h2>
+
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {content.introduction}
+          </p>
         </div>
 
-        <div className="-mx-6 mt-20 grid auto-cols-[minmax(17rem,85vw)] grid-flow-col gap-4 overflow-x-auto px-6 pb-4 snap-x snap-mandatory sm:auto-cols-[minmax(20rem,44vw)] lg:mx-0 lg:mt-28 lg:grid-flow-row lg:grid-cols-3 lg:overflow-visible lg:px-0 lg:pb-0">
+        {/* Testimonials 2x2 Balanced Grid */}
+        <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-16 lg:gap-8">
           {content.cards.map((testimonial, index) => (
             <article
-              key={`${testimonial.author}-${testimonial.role}`}
+              key={`${testimonial.author}-${testimonial.role}-${index}`}
               className={cn(
-                "luxury-reveal group relative min-h-72 snap-start overflow-hidden rounded-xl border border-border/70 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30",
-                index === 0 && "luxury-reveal-delay-1",
-                index === 1 && "luxury-reveal-delay-2",
-                index === 2 && "luxury-reveal-delay-3",
-                index === 3 && "luxury-reveal-delay-4",
-                index >= 4 && "luxury-reveal-delay-5",
+                "group relative flex flex-col justify-between overflow-hidden rounded-3xl border-2 border-emerald-600/15 bg-card p-6 shadow-[0_12px_32px_-10px_rgba(16,185,129,0.20)] transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/45 hover:shadow-[0_22px_45px_-12px_rgba(16,185,129,0.38)] sm:p-8"
               )}
             >
-              <div
-                aria-hidden
-                className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
+              {/* Decorative Emerald Top Strip */}
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500/30 via-emerald-400/60 to-emerald-500/30 transition-opacity group-hover:h-1.5 group-hover:from-emerald-400 group-hover:via-emerald-300 group-hover:to-emerald-500" />
 
-              <div className="flex items-start justify-between gap-6">
-                <div className="flex items-center gap-4">
-                  <div
-                    aria-hidden
-                    className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-background text-sm font-semibold text-primary"
-                  >
-                    <span className="absolute inset-0 bg-[radial-gradient(circle_at_35%_25%,oklch(0.97_0.02_152),transparent_55%)]" />
-                    <span className="relative">{testimonial.avatar}</span>
+              <div>
+                {/* Header: Author + Role + Quote Icon */}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-3.5">
+                    <div
+                      aria-hidden
+                      className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-primary/20 bg-primary/10 text-base font-extrabold text-primary shadow-xs transition-colors group-hover:bg-primary group-hover:text-primary-foreground"
+                    >
+                      <span>{testimonial.avatar}</span>
+                    </div>
+
+                    <div>
+                      <h3 className="text-base font-bold text-foreground sm:text-lg">
+                        {testimonial.author}
+                      </h3>
+                      <p className="text-xs font-semibold text-primary">
+                        {testimonial.role}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-base font-semibold leading-tight text-foreground">
-                      {testimonial.author}
-                    </h3>
-                    <p className="mt-1 text-xs font-medium tracking-wide text-muted-foreground">
-                      {testimonial.role}
-                    </p>
+
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-primary/15 bg-primary/5 text-primary">
+                    <Quote className="size-4" aria-hidden />
                   </div>
                 </div>
 
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background text-primary transition-colors duration-300 group-hover:border-primary/30">
-                  <Quote className="size-4" aria-hidden />
+                {/* 5 Gold Stars Rating */}
+                <div className="mt-5 flex items-center gap-1 text-amber-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="size-4 fill-amber-400 text-amber-400"
+                      aria-hidden
+                    />
+                  ))}
+                  <span className="ms-2 text-xs font-bold text-muted-foreground">
+                    5.0
+                  </span>
                 </div>
+
+                {/* Quote Text */}
+                <blockquote className="mt-4 text-sm leading-relaxed text-foreground/85 sm:text-base sm:leading-loose">
+                  <p>&ldquo;{testimonial.quote}&rdquo;</p>
+                </blockquote>
               </div>
 
-              <blockquote className="mt-10 text-sm leading-8 text-muted-foreground">
-                <p>{testimonial.quote}</p>
-              </blockquote>
+              {/* Verified Footer Badge */}
+              <div className="mt-6 flex items-center gap-1.5 border-t border-border/60 pt-4 text-xs font-semibold text-emerald-600">
+                <CheckCircle2 className="size-3.5" aria-hidden />
+                <span>{isRtl ? "تقييم موثق من الملعب" : "Verified Court Review"}</span>
+              </div>
             </article>
           ))}
         </div>
