@@ -75,6 +75,7 @@ export function PricingSection({ content, locale = "ar" }: PricingSectionProps) 
                 icon={Icon}
                 isPopular={isPopular}
                 ArrowIcon={ArrowIcon}
+                isRtl={isRtl}
                 ctaText={isPopular ? content.ctaPopular : content.ctaText}
               />
             );
@@ -95,6 +96,7 @@ export function PricingSection({ content, locale = "ar" }: PricingSectionProps) 
                   icon={Icon}
                   isPopular={false}
                   ArrowIcon={ArrowIcon}
+                  isRtl={isRtl}
                   ctaText={content.ctaText}
                 />
               );
@@ -121,6 +123,7 @@ type PricingCardProps = {
   isPopular?: boolean;
   ArrowIcon: LucideIcon;
   ctaText: string;
+  isRtl?: boolean;
 };
 
 function PricingCard({
@@ -129,13 +132,14 @@ function PricingCard({
   isPopular = false,
   ArrowIcon,
   ctaText,
+  isRtl = true,
 }: PricingCardProps) {
   return (
     <div
       className={cn(
         "group relative flex flex-col justify-between overflow-hidden rounded-3xl transition-all duration-300",
         isPopular
-          ? "border-2 border-emerald-500 bg-gradient-to-b from-slate-950 via-[#071d12] to-slate-950 text-white shadow-2xl ring-4 ring-emerald-500/20 lg:-translate-y-2 lg:hover:-translate-y-3"
+          ? "border-2 border-emerald-500 bg-gradient-to-b from-slate-950 via-[#071d12] to-slate-950 text-white shadow-2xl shadow-emerald-950/40 ring-4 ring-emerald-500/20 lg:-translate-y-2 lg:hover:-translate-y-3"
           : "border-2 border-border/80 bg-card p-6 shadow-sm hover:-translate-y-1 hover:border-primary/45 hover:shadow-xl sm:p-8"
       )}
     >
@@ -154,16 +158,21 @@ function PricingCard({
         </>
       ) : null}
 
-      <div className={cn(isPopular ? "p-6 pt-3 sm:p-8 sm:pt-4" : "")}>
+      <div
+        className={cn(
+          "flex flex-1 flex-col",
+          isPopular ? "p-6 pt-3 sm:p-8 sm:pt-4" : ""
+        )}
+      >
         {/* Card Header (Icon + Name + Non-popular Badge) */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
             <span
               className={cn(
-                "flex size-11 items-center justify-center rounded-2xl transition-colors",
+                "flex size-11 items-center justify-center rounded-2xl transition-all duration-300",
                 isPopular
-                  ? "bg-emerald-500/20 text-emerald-400"
-                  : "border border-primary/20 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
+                  ? "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30"
+                  : "border border-primary/20 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-sm"
               )}
             >
               <Icon className="size-5" aria-hidden />
@@ -181,7 +190,7 @@ function PricingCard({
                 <p
                   className={cn(
                     "text-xs font-medium",
-                    isPopular ? "text-slate-400" : "text-muted-foreground"
+                    isPopular ? "text-emerald-400/80" : "text-muted-foreground"
                   )}
                 >
                   {plan.period}
@@ -208,7 +217,12 @@ function PricingCard({
         </p>
 
         {/* Price Block */}
-        <div className="mt-6 border-y py-4 border-border/60">
+        <div
+          className={cn(
+            "mt-6 border-y py-4",
+            isPopular ? "border-emerald-500/20" : "border-border/60"
+          )}
+        >
           <div className="flex items-baseline gap-1.5">
             <span
               className={cn(
@@ -233,14 +247,14 @@ function PricingCard({
 
         {/* Included Features List */}
         {plan.features && plan.features.length > 0 ? (
-          <ul className="mt-6 space-y-3">
+          <ul className="mt-6 flex-1 space-y-3">
             {plan.features.map((feature, fIdx) => (
               <li key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
                 <span
                   className={cn(
                     "mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full",
                     isPopular
-                      ? "bg-emerald-500/20 text-emerald-400"
+                      ? "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30"
                       : "bg-primary/10 text-primary"
                   )}
                 >
@@ -261,18 +275,26 @@ function PricingCard({
       </div>
 
       {/* CTA Button */}
-      <div className={cn("mt-8", isPopular ? "p-6 pt-0 sm:p-8 sm:pt-0" : "")}>
+      <div className={cn("mt-8 pt-2", isPopular ? "p-6 pt-0 sm:p-8 sm:pt-0" : "")}>
         <Link
           href="#register"
           className={cn(
-            "inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-bold transition-all duration-200",
+            "group/btn inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-bold transition-all duration-200",
             isPopular
-              ? "bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/30 hover:bg-emerald-400 hover:scale-[1.01]"
+              ? "bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/30 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/40 hover:scale-[1.01]"
               : "border border-primary/25 bg-primary/5 text-primary hover:border-primary hover:bg-primary hover:text-primary-foreground hover:shadow-md"
           )}
         >
           <span>{ctaText}</span>
-          <ArrowIcon className="size-4" aria-hidden />
+          <ArrowIcon
+            className={cn(
+              "size-4 transition-transform duration-200",
+              isRtl
+                ? "group-hover/btn:-translate-x-1"
+                : "group-hover/btn:translate-x-1"
+            )}
+            aria-hidden
+          />
         </Link>
       </div>
     </div>
