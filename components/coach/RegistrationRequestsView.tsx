@@ -3,19 +3,28 @@
 import { useMemo, useState, useTransition } from "react";
 import {
   AlertCircle,
+  CheckCircle2,
   Clock,
+  Copy,
+  ExternalLink,
   Eye,
   Filter,
+  Loader2,
   MessageCircle,
   Phone,
   Search,
   Sparkles,
   Trophy,
   User,
+  UserCheck,
+  UserPlus,
   X,
 } from "lucide-react";
 
-import { updateRequestStatusAction } from "@/app/(coach)/coach/registrations/actions";
+import {
+  convertRequestToPlayerAction,
+  updateRequestStatusAction,
+} from "@/app/(coach)/coach/registrations/actions";
 import type {
   PlayerRegistrationRequest,
   RegistrationRequestStatus,
@@ -136,6 +145,50 @@ export function RegistrationRequestsView({
     startTransition(async () => {
       await updateRequestStatusAction(requestId, newStatus);
     });
+  }
+
+  const [convertingId, setConvertingId] = useState<string | null>(null);
+  const [conversionResult, setConversionResult] = useState<{
+    playerCode: string;
+    playerId: string;
+    playerName: string;
+    whatsappUrl: string;
+    whatsappGreeting: string;
+  } | null>(null);
+  const [copiedCode, setCopiedCode] = useState(false);
+  const [conversionError, setConversionError] = useState<string | null>(null);
+
+  async function handleConvertToPlayer(req: PlayerRegistrationRequest) {
+    setConvertingId(req.id);
+    setConversionError(null);
+    try {
+      const res = await convertRequestToPlayerAction(req.id);
+      if (res.success && res.player && res.playerCode) {
+        setConversionResult({
+          playerCode: res.playerCode,
+          playerId: res.player.id,
+          playerName: req.player_name,
+          whatsappUrl: res.whatsappUrl || "",
+          whatsappGreeting: res.whatsappGreeting || "",
+        });
+        setRequests((prev) =>
+          prev.map((r) => (r.id === req.id ? { ...r, status: "approved" } : r))
+        );
+        if (selectedRequest?.id === req.id) {
+          setSelectedRequest((prev) =>
+            prev ? { ...prev, status: "approved" } : null
+          );
+        }
+      } else {
+        setConversionError(res.error || "حدث خطأ أثناء إنشاء ملف اللاعب.");
+      }
+    } catch (err) {
+      setConversionError(
+        err instanceof Error ? err.message : "فشل إنشاء ملف اللاعب."
+      );
+    } finally {
+      setConvertingId(null);
+    }
   }
 
   return (
@@ -684,7 +737,102 @@ export function RegistrationRequestsView({
                 </div>
               ) : null}
 
-              {/* Status Update Actions */}
+              {/* Convert to Player Profile */}
+              <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/90 to-slate-50 p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="flex size-7 items-center justify-center rounded-lg bg-emerald-600 text-white">
+                      <UserCheck className="size-4" />
+                    </span>
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-900 sm:text-sm">
+                        تحويل إلى لاعب رسمي (إنشاء كود وملف)
+                      </h4>
+                      <p className="text-[11px] text-slate-500">
+                        إنشاء ملف رسمي للاعب في قاعدة البيانات واعتماد طلبه تلقائياً
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    disabled={convertingId === selectedRequest.id}
+                    onClick={() => handleConvertToPlayer(selectedRequest)}
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-emerald-500 disabled:opacity-60"
+                  >
+                    {convertingId === selectedRequest.id ? (
+                      <>
+                        <Loader2 className="size-3.5 animate-spin" />
+                        جاري الإنشاء...
+                      </>
+                    ) : (
+                      <>
+                        <UserPlus className="size-3.5" />
+                        إنشاء ملف اللاعب
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Conversion Error */}
+                {conversionError ? (
+                  <div className="mt-3 flex items-center gap-2 rounded-lg bg-red-50 p-2.5 text-xs text-red-700">
+                    <AlertCircle className="size-4 shrink-0" />
+                    <span>{conversionError}</span>
+                  </div>
+                ) : null}
+
+                {/* Conversion Success Card */}
+                {conversionResult ? (
+                  <div className="mt-3 rounded-xl border border-emerald-300 bg-white p-3.5 shadow-xs">
+                    <div className="flex items-center gap-2 text-emerald-800">
+                      <CheckCircle2 className="size-5 shrink-0 text-emerald-600" />
+                      <span className="text-xs font-bold sm:text-sm">
+                        تم إنشاء ملف اللاعب {conversionResult.playerName} بنجاح!
+                      </span>
+                    </div>
+
+                    <div className="mt-2.5 flex items-center gap-2 rounded-lg bg-slate-100 p-2 text-xs">
+                      <span className="text-slate-500">كود اللاعب للمتابعة:</span>
+                      <strong className="font-mono text-sm font-bold text-slate-900">
+                        {conversionResult.playerCode}
+                      </strong>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard.writeText(conversionResult.playerCode);
+                          setCopiedCode(true);
+                          setTimeout(() => setCopiedCode(false), 2000);
+                        }}
+                        className="ms-auto inline-flex items-center gap-1 rounded bg-white px-2 py-1 text-[11px] font-semibold text-slate-700 shadow-2xs hover:bg-slate-50"
+                      >
+                        <Copy className="size-3" />
+                        {copiedCode ? "تم النسخ!" : "نسخ الكود"}
+                      </button>
+                    </div>
+
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <a
+                        href={conversionResult.whatsappUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-2xs transition hover:bg-emerald-500"
+                      >
+                        <MessageCircle className="size-3.5" />
+                        إرسال كود الدخول والترحيب عبر واتساب
+                      </a>
+
+                      <a
+                        href={`/coach/players/${conversionResult.playerId}`}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                      >
+                        <ExternalLink className="size-3.5" />
+                        فتح ملف اللاعب
+                      </a>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
               <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4">
                 <p className="text-xs font-bold text-emerald-900">
                   Update Request Status:

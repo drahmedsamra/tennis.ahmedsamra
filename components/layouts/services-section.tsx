@@ -1,4 +1,5 @@
 import {
+  Activity,
   Flag,
   Target,
   TrendingUp,
@@ -6,18 +7,22 @@ import {
 } from "lucide-react";
 
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
+import { cn } from "@/lib/utils";
 
 type ServicesSectionProps = {
   content: Dictionary["services"];
 };
 
 const serviceIcons: Record<string, LucideIcon> = {
+  technique: Activity,
   tactics: Target,
   ranking: TrendingUp,
   pathway: Flag,
 };
 
 export function ServicesSection({ content }: ServicesSectionProps) {
+  const isOddCount = content.cards.length % 2 !== 0;
+
   return (
     <section id="services" aria-labelledby="services-heading" className="border-b-4 border-background bg-[#f1f3ef]">
       <div className="marketing-shell py-10 sm:py-20 lg:py-28">
@@ -31,14 +36,18 @@ export function ServicesSection({ content }: ServicesSectionProps) {
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-border/80 bg-border/80 sm:mt-12 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-border/80 bg-border/80 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
           {content.cards.map((service, index) => {
             const Icon = serviceIcons[service.icon] ?? Target;
+            const isLast = index === content.cards.length - 1;
 
             return (
               <article
                 key={service.title}
-                className="relative min-h-44 bg-[#f8faf7] p-5 last:col-span-2 sm:min-h-56 sm:p-7 sm:last:col-span-1"
+                className={cn(
+                  "relative min-h-44 bg-[#f8faf7] p-5 sm:min-h-56 sm:p-7 transition-colors hover:bg-white",
+                  isOddCount && isLast && "col-span-2 sm:col-span-1"
+                )}
               >
                 <span className="text-xs font-semibold text-primary">
                   {String(index + 1).padStart(2, "0")}

@@ -64,8 +64,13 @@
   "services": {
     "eyebrow": "Services",
     "heading": "Your plan to compete and develop.",
-    "introduction": "Clearer tactics, a better ranking, and a stronger path to clubs and national teams.",
+    "introduction": "Cleaner technique, sharper tactics, a higher ranking, and a clear path to clubs and national teams.",
     "cards": [
+      {
+        "icon": "technique",
+        "title": "Technique correction",
+        "description": "Biomechanical stroke analysis and footwork refinement for solid performance."
+      },
       {
         "icon": "tactics",
         "title": "Winning tactics",
