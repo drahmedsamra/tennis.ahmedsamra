@@ -20,11 +20,12 @@ export function JsonLd({ locale }: JsonLdProps) {
       "Ahmed Samra Tennis",
       "أكاديمية أحمد سمرة للتنس",
       "كابتن أحمد سمرة مدرب تنس",
-      "تدريب تنس المنصورة",
+      "تدريب تنس القاهرة",
+      "مدرب تنس في القاهرة",
     ],
     description: isAr
-      ? "أكاديمية تدريب تنس أرضي احترافي وحصص فردية (برايفت) بإشراف الكابتن أحمد سمرة. بناء الأساس الفني، تصحيح التكنيك، وتأهيل لبطولات وتصنيف الاتحاد المصري للتنس."
-      : "Professional tennis academy offering private coaching, biomechanics correction, and tournament preparation under Coach Ahmed Samra.",
+      ? "أكاديمية تدريب تنس أرضي احترافي وحصص فردية (برايفت) في القاهرة بإشراف الكابتن أحمد سمرة. بناء الأساس الفني، تصحيح التكنيك، وتأهيل لبطولات وتصنيف الاتحاد المصري للتنس."
+      : "Professional tennis academy in Cairo offering private coaching, biomechanics correction, and tournament preparation under Coach Ahmed Samra.",
     url: siteConfig.url,
     logo: `${siteConfig.url}/images/logo/logo-icon.webp`,
     image: `${siteConfig.url}/images/hero/ahmed-samra-hero2.webp`,
@@ -33,14 +34,14 @@ export function JsonLd({ locale }: JsonLdProps) {
     priceRange: "300 - 9000 EGP",
     address: {
       "@type": "PostalAddress",
-      addressLocality: isAr ? "المنصورة" : "Mansoura",
-      addressRegion: isAr ? "الدقهلية" : "Dakahlia",
+      addressLocality: isAr ? "القاهرة" : "Cairo",
+      addressRegion: isAr ? "القاهرة" : "Cairo",
       addressCountry: "EG",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 31.0409,
-      longitude: 31.3785,
+      latitude: 30.0444,
+      longitude: 31.2357,
     },
     sport: "Tennis",
     coach: {
@@ -141,3 +142,4 @@ export function JsonLd({ locale }: JsonLdProps) {
     </>
   );
 }
+
