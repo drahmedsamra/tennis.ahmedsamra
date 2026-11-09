@@ -46,6 +46,7 @@ Env names (values never in this file):
 
 ```
 players 1──* player_reports  (?──* report_videos)
+player_registration_requests (inbound registration leads)
 ```
 
 - `players`: `id`, `player_code` (public lookup key, e.g. AST-0001), bilingual names, `egypt_tennis_id`, `birth_year`, `gender`, `dominant_hand`/`dominant_eye`, club/coach, parent contact, `photo_url`, `notes`, `active`, timestamps
@@ -78,7 +79,8 @@ There is **no** `getUser` / `signIn` / session gate.
 - `/player/[id]` — `[id]` is **player_code**, not UUID
 - `/player/[id]/report` — stub
 - `/player/[id]/report/[reportId]` — markdown report (does not verify report belongs to that player)
-- `/coach` — control center (stats, quick actions, recent players/reports, videos empty state)
+- `/coach` — control center (stats, quick actions, recent players/reports, videos empty state, registration requests)
+- `/coach/registrations` — review, search, filter, and manage new player registration requests
 - `/coach/players`, `/new`, `/[id]`, `/[id]/edit` — `[id]` is **UUID**
 - `/coach/reports`, `/new`, `/[id]`, `/[id]/edit`
 - `/coach/videos`, `/videos/new` — “Hello”

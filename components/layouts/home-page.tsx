@@ -6,6 +6,7 @@ import { ContactSection } from "@/components/layouts/contact-section";
 import { HeroSection } from "@/components/layouts/hero/hero-section";
 import { MobileContactActions } from "@/components/layouts/mobile-contact-actions";
 import { PlayerAccessSection } from "@/components/layouts/player-access-section";
+import { PlayerRegistrationForm } from "@/components/layouts/player-registration-form";
 import { PricingSection } from "@/components/layouts/pricing-section";
 import { ServicesSection } from "@/components/layouts/services-section";
 import { SiteFooter } from "@/components/layouts/site-footer";
@@ -83,6 +84,11 @@ export function HomePage({
         <HeroSection
           locale={locale}
           content={dictionary.hero}
+        />
+
+        <PlayerRegistrationForm
+          locale={locale}
+          content={dictionary.registration}
         />
 
         <PlayerAccessSection

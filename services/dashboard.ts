@@ -18,6 +18,15 @@ export type DashboardReportPreview = {
   player_code: string | null;
 };
 
+export type DashboardRegistrationPreview = {
+  id: string;
+  player_name: string;
+  age: number;
+  mobile_number: string;
+  status: string;
+  created_at: string;
+};
+
 export type CoachDashboardData = {
   stats: {
     players: number;
@@ -25,9 +34,12 @@ export type CoachDashboardData = {
     reports: number;
     publishedReports: number;
     videos: number;
+    registrations: number;
+    pendingRegistrations: number;
   };
   recentPlayers: DashboardPlayerPreview[];
   recentReports: DashboardReportPreview[];
+  recentRegistrations: DashboardRegistrationPreview[];
   error: string | null;
 };
 
@@ -84,14 +96,46 @@ export async function getCoachDashboard(): Promise<CoachDashboardData> {
       reports: 0,
       publishedReports: 0,
       videos: 0,
+      registrations: 0,
+      pendingRegistrations: 0,
     },
     recentPlayers: [],
     recentReports: [],
+    recentRegistrations: [],
     error: null,
   };
 
   try {
     const supabase = await createClient();
+
+    let regCount = 0;
+    let pendingRegCount = 0;
+    let recentRegs: DashboardRegistrationPreview[] = [];
+
+    try {
+      const [totalRes, pendingRes, recentRes] = await Promise.all([
+        supabase
+          .from("player_registration_requests")
+          .select("*", { count: "exact", head: true }),
+        supabase
+          .from("player_registration_requests")
+          .select("*", { count: "exact", head: true })
+          .eq("status", "pending"),
+        supabase
+          .from("player_registration_requests")
+          .select("id, player_name, age, mobile_number, status, created_at")
+          .order("created_at", { ascending: false })
+          .limit(5),
+      ]);
+
+      if (!totalRes.error) regCount = totalRes.count ?? 0;
+      if (!pendingRes.error) pendingRegCount = pendingRes.count ?? 0;
+      if (!recentRes.error && recentRes.data) {
+        recentRegs = recentRes.data as DashboardRegistrationPreview[];
+      }
+    } catch {
+      // Table may not exist yet before migration
+    }
 
     const [
       playersCount,
@@ -169,6 +213,8 @@ export async function getCoachDashboard(): Promise<CoachDashboardData> {
         reports: reportsCount.count ?? 0,
         publishedReports: publishedReportsCount.count ?? 0,
         videos: videosCount.count ?? 0,
+        registrations: regCount,
+        pendingRegistrations: pendingRegCount,
       },
       recentPlayers: players.map((player) => ({
         id: player.id,
@@ -193,6 +239,7 @@ export async function getCoachDashboard(): Promise<CoachDashboardData> {
           player_code: player?.player_code ?? null,
         };
       }),
+      recentRegistrations: recentRegs,
       error: queryError,
     };
   } catch (error) {

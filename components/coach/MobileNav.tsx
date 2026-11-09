@@ -11,7 +11,7 @@ export default function MobileNav() {
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 backdrop-blur-md lg:hidden">
-      <ul className="mx-auto grid max-w-lg grid-cols-4 px-2 pb-[env(safe-area-inset-bottom)]">
+      <ul className="mx-auto grid max-w-lg grid-cols-5 px-1 pb-[env(safe-area-inset-bottom)]">
         {coachNavItems.map((item) => {
           const Icon = item.icon;
           const active = isCoachNavActive(pathname, item.href);
@@ -21,17 +21,17 @@ export default function MobileNav() {
               <Link
                 href={item.href}
                 className={cn(
-                  "flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium",
-                  active ? "text-emerald-700" : "text-slate-500",
+                  "flex flex-col items-center gap-1 py-2 text-[10px] font-medium leading-none",
+                  active ? "text-emerald-700 font-bold" : "text-slate-500",
                 )}
               >
                 <Icon
                   className={cn(
-                    "h-5 w-5",
+                    "h-4 w-4",
                     active ? "text-emerald-700" : "text-slate-400",
                   )}
                 />
-                {item.title}
+                <span className="truncate">{item.shortTitle ?? item.title}</span>
               </Link>
             </li>
           );

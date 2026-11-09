@@ -5,6 +5,7 @@ import {
   FilePlus,
   FileText,
   Plus,
+  UserPlus,
   Users,
   Video,
 } from "lucide-react";
@@ -38,9 +39,20 @@ function playerAge(birthYear: number | null) {
 export default function CoachDashboardView({
   data,
 }: CoachDashboardViewProps) {
-  const { stats, recentPlayers, recentReports, error } = data;
+  const { stats, recentPlayers, recentReports, recentRegistrations, error } =
+    data;
 
   const statCards = [
+    {
+      label: "Requests",
+      value: stats.registrations,
+      hint:
+        stats.pendingRegistrations > 0
+          ? `${stats.pendingRegistrations} pending review`
+          : "All reviewed",
+      href: "/coach/registrations",
+      highlight: stats.pendingRegistrations > 0,
+    },
     {
       label: "Players",
       value: stats.players,
@@ -49,6 +61,7 @@ export default function CoachDashboardView({
           ? `${stats.activePlayers} active`
           : "No players yet",
       href: "/coach/players",
+      highlight: false,
     },
     {
       label: "Reports",
@@ -58,16 +71,24 @@ export default function CoachDashboardView({
           ? `${stats.publishedReports} published`
           : "No reports yet",
       href: "/coach/reports",
+      highlight: false,
     },
     {
       label: "Videos",
       value: stats.videos,
       hint: stats.videos > 0 ? "Linked to reports" : "None uploaded",
       href: "/coach/videos",
+      highlight: false,
     },
   ];
 
   const quickActions = [
+    {
+      href: "/coach/registrations",
+      label: "New Requests",
+      icon: UserPlus,
+      primary: stats.pendingRegistrations > 0,
+    },
     {
       href: "/coach/players",
       label: "View Players",
@@ -77,7 +98,7 @@ export default function CoachDashboardView({
       href: "/coach/players/new",
       label: "Add Player",
       icon: Plus,
-      primary: true,
+      primary: stats.pendingRegistrations === 0,
     },
     {
       href: "/coach/reports",
@@ -125,16 +146,27 @@ export default function CoachDashboardView({
         </div>
       ) : null}
 
-      <section className="grid grid-cols-3 gap-2 sm:gap-4">
+      <section className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-4">
         {statCards.map((card) => (
           <Link
             key={card.label}
             href={card.href}
-            className="rounded-2xl border border-slate-200/80 bg-white px-3 py-3 shadow-sm transition hover:border-emerald-200 hover:shadow-md sm:px-4 sm:py-4"
+            className={`rounded-2xl border bg-white px-3 py-3 shadow-sm transition hover:shadow-md sm:px-4 sm:py-4 ${
+              card.highlight
+                ? "border-amber-400 bg-amber-50/40 hover:border-amber-500"
+                : "border-slate-200/80 hover:border-emerald-200"
+            }`}
           >
-            <p className="text-[11px] font-medium text-slate-500 sm:text-sm">
-              {card.label}
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="text-[11px] font-medium text-slate-500 sm:text-sm">
+                {card.label}
+              </p>
+              {card.highlight ? (
+                <span className="rounded-full bg-amber-500 px-1.5 py-0.5 text-[9px] font-bold text-white">
+                  NEW
+                </span>
+              ) : null}
+            </div>
             <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               {card.value}
             </p>
@@ -149,7 +181,7 @@ export default function CoachDashboardView({
         <h2 className="mb-3 text-sm font-semibold text-slate-700">
           Quick actions
         </h2>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
           {quickActions.map((action) => {
             const Icon = action.icon;
             return (
@@ -169,6 +201,50 @@ export default function CoachDashboardView({
           })}
         </div>
       </section>
+
+      {/* Prominent Recent Registration Requests Banner if any exist */}
+      {recentRegistrations && recentRegistrations.length > 0 ? (
+        <section className="rounded-2xl border border-amber-300 bg-gradient-to-r from-amber-50/80 via-white to-amber-50/30 p-4 shadow-sm sm:p-5">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <span className="size-2.5 rounded-full bg-amber-500 animate-ping" />
+              <h2 className="text-sm font-bold text-slate-900">
+                Latest Registration Inquiries
+              </h2>
+            </div>
+            <Link
+              href="/coach/registrations"
+              className="text-xs font-bold text-emerald-700 hover:underline"
+            >
+              View all ({stats.registrations}) &rarr;
+            </Link>
+          </div>
+
+          <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+            {recentRegistrations.slice(0, 3).map((reg) => (
+              <div
+                key={reg.id}
+                className="flex items-center justify-between rounded-xl border border-slate-200/90 bg-white p-3 shadow-xs"
+              >
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-bold text-slate-900">
+                    {reg.player_name}
+                  </p>
+                  <p className="text-xs text-slate-500">
+                    {reg.age} yrs · {reg.mobile_number}
+                  </p>
+                </div>
+                <Link
+                  href="/coach/registrations"
+                  className="rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800 hover:bg-emerald-100"
+                >
+                  Review
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <div className="grid gap-4 lg:grid-cols-2">
         <section className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm sm:p-5">

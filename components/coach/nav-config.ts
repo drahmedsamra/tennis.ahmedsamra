@@ -1,6 +1,7 @@
 import {
   FileText,
   LayoutDashboard,
+  UserPlus,
   Users,
   Video,
   type LucideIcon,
@@ -8,6 +9,7 @@ import {
 
 export type CoachNavItem = {
   title: string;
+  shortTitle?: string;
   href: string;
   icon: LucideIcon;
 };
@@ -15,21 +17,31 @@ export type CoachNavItem = {
 export const coachNavItems: CoachNavItem[] = [
   {
     title: "Dashboard",
+    shortTitle: "Overview",
     href: "/coach",
     icon: LayoutDashboard,
   },
   {
+    title: "Registration Requests",
+    shortTitle: "Requests",
+    href: "/coach/registrations",
+    icon: UserPlus,
+  },
+  {
     title: "Players",
+    shortTitle: "Players",
     href: "/coach/players",
     icon: Users,
   },
   {
     title: "Reports",
+    shortTitle: "Reports",
     href: "/coach/reports",
     icon: FileText,
   },
   {
     title: "Videos",
+    shortTitle: "Videos",
     href: "/coach/videos",
     icon: Video,
   },
