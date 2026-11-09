@@ -139,23 +139,30 @@ function PricingCard({
       className={cn(
         "group relative flex flex-col justify-between overflow-hidden rounded-3xl transition-all duration-300",
         isPopular
-          ? "border-2 border-emerald-500 bg-gradient-to-b from-slate-950 via-[#071d12] to-slate-950 text-white shadow-2xl shadow-emerald-950/40 ring-4 ring-emerald-500/20 lg:-translate-y-2 lg:hover:-translate-y-3"
-          : "border-2 border-border/80 bg-card p-6 shadow-sm hover:-translate-y-1 hover:border-primary/45 hover:shadow-xl sm:p-8"
+          ? "border-2 border-emerald-500 bg-gradient-to-b from-slate-950 via-[#071d12] to-slate-950 text-white shadow-[0_20px_50px_-10px_rgba(16,185,129,0.45)] ring-4 ring-emerald-500/25 hover:shadow-[0_25px_60px_-10px_rgba(16,185,129,0.65)] hover:ring-emerald-500/40 lg:-translate-y-2 lg:hover:-translate-y-3"
+          : "border-2 border-emerald-600/20 bg-card p-6 shadow-[0_12px_32px_-10px_rgba(16,185,129,0.22)] hover:-translate-y-1.5 hover:border-emerald-500/50 hover:shadow-[0_22px_45px_-12px_rgba(16,185,129,0.4)] sm:p-8"
       )}
     >
-      {/* Popular Header Strip & Badge */}
+      {/* Decorative Top Strip for All Cards */}
+      <div
+        className={cn(
+          "absolute inset-x-0 top-0",
+          isPopular
+            ? "h-1.5 bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500"
+            : "h-1 bg-gradient-to-r from-emerald-500/30 via-emerald-400/60 to-emerald-500/30"
+        )}
+      />
+
+      {/* Popular Header Badge */}
       {isPopular ? (
-        <>
-          <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500" />
-          <div className="flex justify-end p-6 pb-0 sm:p-8 sm:pb-0">
-            {plan.badge ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-extrabold tracking-wide text-slate-950 shadow-sm backdrop-blur">
-                <Sparkles className="size-3" aria-hidden />
-                {plan.badge}
-              </span>
-            ) : null}
-          </div>
-        </>
+        <div className="flex justify-end p-6 pb-0 sm:p-8 sm:pb-0">
+          {plan.badge ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-extrabold tracking-wide text-slate-950 shadow-sm backdrop-blur">
+              <Sparkles className="size-3" aria-hidden />
+              {plan.badge}
+            </span>
+          ) : null}
+        </div>
       ) : null}
 
       <div
@@ -282,7 +289,7 @@ function PricingCard({
             "group/btn inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-bold transition-all duration-200",
             isPopular
               ? "bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/30 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/40 hover:scale-[1.01]"
-              : "border border-primary/25 bg-primary/5 text-primary hover:border-primary hover:bg-primary hover:text-primary-foreground hover:shadow-md"
+              : "border border-emerald-600/30 bg-emerald-500/5 text-primary hover:border-primary hover:bg-primary hover:text-primary-foreground hover:shadow-md hover:shadow-emerald-600/25"
           )}
         >
           <span>{ctaText}</span>
