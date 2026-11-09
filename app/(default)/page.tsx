@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { HomePage } from "@/components/layouts/home-page";
+import { JsonLd } from "@/components/seo/json-ld";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { searchPlayer } from "@/app/(player)/player/actions";
@@ -42,13 +43,16 @@ export default async function Page({
   }
 
   return (
-    <HomePage
-      dictionary={dictionary}
-      locale={locale}
-      playerDashboard={playerDashboard}
-      playerSearchAction={searchPlayer}
-      playerSearchRedirectToHome
-      galleryImages={galleryImages}
-    />
+    <>
+      <JsonLd locale={locale} />
+      <HomePage
+        dictionary={dictionary}
+        locale={locale}
+        playerDashboard={playerDashboard}
+        playerSearchAction={searchPlayer}
+        playerSearchRedirectToHome
+        galleryImages={galleryImages}
+      />
+    </>
   );
 }

@@ -17,7 +17,7 @@ export function createPageMetadata({
   dictionary,
   pathname = "",
 }: PageMetadataOptions): Metadata {
-  const { title, description } = dictionary.metadata;
+  const { title, description, keywords } = dictionary.metadata;
   const canonicalPath = localizedPath(locale, pathname);
   const canonicalUrl = absoluteUrl(canonicalPath);
 
@@ -25,14 +25,29 @@ export function createPageMetadata({
     locales.map((loc) => [loc, absoluteUrl(localizedPath(loc, pathname))]),
   );
 
+  const googleVerification =
+    process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+    process.env.GOOGLE_SITE_VERIFICATION ||
+    undefined;
+
+  const ogImage = absoluteUrl("/images/hero/ahmed-samra-hero2.webp");
+
   return {
     title,
     description,
+    keywords,
+    authors: [{ name: "Ahmed Samra", url: canonicalUrl }],
+    creator: "Ahmed Samra",
     metadataBase: new URL(siteConfig.url),
     alternates: {
       canonical: canonicalUrl,
       languages: languageAlternates,
     },
+    verification: googleVerification
+      ? {
+          google: googleVerification,
+        }
+      : undefined,
     openGraph: {
       type: "website",
       locale: locale === "ar" ? "ar_EG" : "en_US",
@@ -43,16 +58,32 @@ export function createPageMetadata({
       siteName: siteConfig.name,
       title,
       description,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
       creator: siteConfig.creator,
+      images: [ogImage],
     },
     robots: {
       index: true,
       follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
   };
 }

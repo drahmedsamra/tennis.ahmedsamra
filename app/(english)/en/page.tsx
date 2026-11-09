@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { searchPlayer } from "@/app/(player)/player/actions";
 import { HomePage } from "@/components/layouts/home-page";
+import { JsonLd } from "@/components/seo/json-ld";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { getActiveGalleryImages } from "@/services/gallery";
@@ -19,11 +20,14 @@ export default async function Page() {
   const galleryImages = await getActiveGalleryImages();
 
   return (
-    <HomePage
-      dictionary={dictionary}
-      locale={locale}
-      playerSearchAction={searchPlayer}
-      galleryImages={galleryImages}
-    />
+    <>
+      <JsonLd locale={locale} />
+      <HomePage
+        dictionary={dictionary}
+        locale={locale}
+        playerSearchAction={searchPlayer}
+        galleryImages={galleryImages}
+      />
+    </>
   );
 }
