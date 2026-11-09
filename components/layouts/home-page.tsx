@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 import { AboutSection } from "@/components/layouts/about-section";
 import { ContactSection } from "@/components/layouts/contact-section";
+import { GallerySlider } from "@/components/layouts/gallery-slider";
 import { HeroSection } from "@/components/layouts/hero/hero-section";
 import { MobileContactActions } from "@/components/layouts/mobile-contact-actions";
 import { PlayerAccessSection } from "@/components/layouts/player-access-section";
@@ -21,6 +22,7 @@ import PlayerReports from "@/components/player/playerid/PlayerReports";
 import type { SearchState } from "@/app/(player)/player/actions";
 import type { Player } from "@/types/player";
 import type { Report } from "@/types/reports";
+import type { GalleryImage } from "@/types/gallery";
 
 type PlayerSearchAction = (
   prevState: SearchState,
@@ -38,6 +40,7 @@ type HomePageProps = {
   playerDashboard?: PlayerDashboardData;
   playerSearchAction?: PlayerSearchAction;
   playerSearchRedirectToHome?: boolean;
+  galleryImages?: GalleryImage[];
 };
 
 export function HomePage({
@@ -46,6 +49,7 @@ export function HomePage({
   playerDashboard,
   playerSearchAction,
   playerSearchRedirectToHome = false,
+  galleryImages = [],
 }: HomePageProps) {
   const navLinks = getMarketingNavLinks(dictionary);
 
@@ -106,6 +110,12 @@ export function HomePage({
         <AboutSection
           content={dictionary.about}
           locale={locale}
+        />
+
+        <GallerySlider
+          content={dictionary.gallery}
+          locale={locale}
+          initialImages={galleryImages}
         />
 
         <ContactSection

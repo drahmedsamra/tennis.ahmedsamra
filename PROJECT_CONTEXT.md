@@ -42,24 +42,28 @@ Env names (values never in this file):
 
 `.env.example` currently documents only `NEXT_PUBLIC_SITE_URL`. Images allow Pexels + that project’s Supabase Storage public URL (`next.config.ts`).
 
-**Tables (inferred from app usage; no migrations in repo)**
+**Tables (inferred from app usage; migrations under `supabase/migrations/`)**
 
 ```
 players 1──* player_reports  (?──* report_videos)
-player_registration_requests (inbound registration leads)
+player_registration_requests (inbound registration leads with RLS)
+gallery_images (dynamic website showcase with titles, descriptions, categories, display order, RLS)
+Supabase Storage bucket: gallery (public images)
 ```
 
 - `players`: `id`, `player_code` (public lookup key, e.g. AST-0001), bilingual names, `egypt_tennis_id`, `birth_year`, `gender`, `dominant_hand`/`dominant_eye`, club/coach, parent contact, `photo_url`, `notes`, `active`, timestamps
 - `player_reports`: `player_id` FK, `title`, `summary`, `content_markdown`, `report_type`, `report_period`, `overall_rating`, `author_name`, `youtube_url`, `report_date`, `is_published`, timestamps
+- `player_registration_requests`: `id`, `player_name`, `date_of_birth`, `age`, `gender`, `parent_name`, `egypt_tennis_id`, `mobile_number`, `whatsapp_number`, `email`, `played_before`, `tennis_experience`, `current_level`, `tournament_experience`, `current_club`, `previous_coach`, `preferred_training_type`, `preferred_days`, `preferred_time`, `additional_notes`, `status` (pending/contacted/approved/rejected), timestamps
 - `report_videos`: counted on coach dashboard only; `services/videos.ts` is empty; `/coach/videos*` is placeholder
 
-Types: `types/player.ts`, `types/reports.ts`. `types/database.ts` is empty (no generated Supabase types).
+Types: `types/player.ts`, `types/reports.ts`, `types/registration-request.ts`. `types/database.ts` is empty (no generated Supabase types).
 
 **Services**
 
 - `services/players.ts` — list/get/create/update/delete; `getPlayer(playerCode)` also loads reports; `getReport(reportId)` lives here (debug `console.log`)
 - `services/reports.ts` — list with nested `players(...)`, get/create/update/delete
-- `services/dashboard.ts` — `getCoachDashboard()`: counts (players, active, reports, published, videos) plus recent player/report previews; `getDashboardStats()` wraps the counts
+- `services/registration-requests.ts` — create request, list with search/status filters, getById, updateStatus, getStats
+- `services/dashboard.ts` — `getCoachDashboard()`: counts (players, active, reports, published, videos, registrations, pendingRegistrations) plus recent previews; `getDashboardStats()` wraps the counts
 
 Deletes exist in services but are not wired to UI.
 
@@ -90,7 +94,7 @@ i18n: `lib/i18n/*` + `dictionaries/{ar,en}.json`. AR is unprefixed; EN is `/en`.
 
 ## UI / forms
 
-- Marketing: `components/layouts/*` (hero, assessment, benefits, player access, services, about, contact, navbar, footer). Dictionary-driven for some sections; several landing blocks are hardcoded Arabic.
+- Marketing: `components/layouts/*` (hero, player registration form, player access, assessment, benefits, services, about, contact, navbar, footer). Dictionary-driven for some sections; several landing blocks are hardcoded Arabic.
 - Player: `components/player/*` (+ `playerid/` for dashboard).
 - Coach: `Sidebar` (desktop) + `MobileNav` (bottom tabs), `CoachDashboardView`, `PlayersTable`, `ReportsTable`, `PlayerForm`, `ReportForm` — HTML `required` only, no zod. Nav items in `components/coach/nav-config.ts`. There is still **no** login/logout.
 - Untracked/WIP duplicates: `components/player/PlayerSearchBox.tsx` (clone of search form), `components/common/SearchBox.tsx` (currently a FeatureCard copy). Backup hero file in layouts.

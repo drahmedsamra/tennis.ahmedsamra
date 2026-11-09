@@ -11,7 +11,7 @@ export default function MobileNav() {
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 backdrop-blur-md lg:hidden">
-      <ul className="mx-auto grid max-w-lg grid-cols-5 px-1 pb-[env(safe-area-inset-bottom)]">
+      <ul className="mx-auto grid max-w-lg grid-cols-6 px-1 pb-[env(safe-area-inset-bottom)]">
         {coachNavItems.map((item) => {
           const Icon = item.icon;
           const active = isCoachNavActive(pathname, item.href);

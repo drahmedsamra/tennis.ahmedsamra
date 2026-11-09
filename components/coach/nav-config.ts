@@ -1,5 +1,6 @@
 import {
   FileText,
+  Images,
   LayoutDashboard,
   UserPlus,
   Users,
@@ -26,6 +27,12 @@ export const coachNavItems: CoachNavItem[] = [
     shortTitle: "Requests",
     href: "/coach/registrations",
     icon: UserPlus,
+  },
+  {
+    title: "Gallery",
+    shortTitle: "Gallery",
+    href: "/coach/gallery",
+    icon: Images,
   },
   {
     title: "Players",

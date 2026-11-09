@@ -5,6 +5,7 @@ import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { searchPlayer } from "@/app/(player)/player/actions";
 import { getPlayer } from "@/services/players";
+import { getActiveGalleryImages } from "@/services/gallery";
 import type { Player } from "@/types/player";
 import type { Report } from "@/types/reports";
 
@@ -22,6 +23,7 @@ export default async function Page({
   searchParams: Promise<{ player?: string }>;
 }) {
   const dictionary = await getDictionary(locale);
+  const galleryImages = await getActiveGalleryImages();
   const { player: playerCode } = await searchParams;
   let playerDashboard:
     | { player: Player; reports: Report[] }
@@ -46,6 +48,7 @@ export default async function Page({
       playerDashboard={playerDashboard}
       playerSearchAction={searchPlayer}
       playerSearchRedirectToHome
+      galleryImages={galleryImages}
     />
   );
 }
