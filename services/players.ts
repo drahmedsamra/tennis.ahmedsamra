@@ -16,14 +16,27 @@ export async function getPlayers() {
 
 export async function getPlayer(playerCode: string) {
   const supabase = await createClient();
+  const trimmed = playerCode?.trim();
+
+  if (!trimmed) {
+    return {
+      player: null as unknown as Player,
+      reports: [],
+    };
+  }
 
   const { data: player, error } = await supabase
     .from("players")
     .select("*")
-    .eq("player_code", playerCode)
-    .single();
+    .ilike("player_code", trimmed)
+    .maybeSingle();
 
-  if (error) throw error;
+  if (error || !player) {
+    return {
+      player: null as unknown as Player,
+      reports: [],
+    };
+  }
 
   const { data: reports } = await supabase
     .from("player_reports")

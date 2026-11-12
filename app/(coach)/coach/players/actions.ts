@@ -11,7 +11,8 @@ import type { NewPlayer } from "@/types/player";
 
 function buildPlayer(formData: FormData): NewPlayer {
   return {
-    player_code: formData.get("player_code")?.toString().trim() ?? "",
+    player_code:
+      formData.get("player_code")?.toString().trim().toUpperCase() ?? "",
 
     egypt_tennis_id: formData.get("egypt_tennis_id")
       ? Number(formData.get("egypt_tennis_id"))

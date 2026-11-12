@@ -15,8 +15,7 @@ export async function searchPlayer(
   const playerCode = formData
     .get("id")
     ?.toString()
-    .trim()
-    .toLowerCase();
+    .trim();
 
   if (!playerCode) {
     return {
@@ -30,7 +29,7 @@ export async function searchPlayer(
   const { data } = await supabase
     .from("players")
     .select("player_code")
-    .eq("player_code", playerCode)
+    .ilike("player_code", playerCode)
     .maybeSingle();
 
   if (!data) {
@@ -44,6 +43,6 @@ export async function searchPlayer(
   return {
     success: true,
     error: "",
-    playerCode,
+    playerCode: data.player_code,
   };
 }
