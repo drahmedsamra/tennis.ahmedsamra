@@ -8,7 +8,8 @@ export function HeroImage() {
         alt="Ahmed Samra holding a tennis trophy"
         width={989}
         height={1116}
-        preload
+        priority
+        fetchPriority="high"
         sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) min(38rem, calc(100vw - 64px)), 48vw"
         className="relative z-10 h-auto w-full max-w-[31rem] object-contain drop-shadow-[0_28px_32px_rgba(13,38,28,0.22)] sm:max-w-[34rem]"
       />

@@ -60,7 +60,6 @@ export function BrandLogo({
           width={sizeClasses.img}
           height={sizeClasses.img}
           className="size-full object-contain"
-          priority
         />
       </div>
 

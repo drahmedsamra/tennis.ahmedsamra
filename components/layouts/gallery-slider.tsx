@@ -206,7 +206,7 @@ export function GallerySlider({
                     src={slide.src}
                     alt={slide.title || "Academy Photo"}
                     fill
-                    priority={idx === 0}
+                    loading="lazy"
                     sizes="(min-width: 1280px) 1200px, 100vw"
                     className={`object-cover transition-transform duration-1000 ease-out ${
                       isActive ? "scale-100" : "scale-105"
