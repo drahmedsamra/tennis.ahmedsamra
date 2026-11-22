@@ -189,7 +189,7 @@ export function SiteNavbar({ links, locale }: SiteNavbarProps) {
         <div className="marketing-shell py-2">
           <nav
             aria-label="Language switcher"
-            className="flex items-center gap-2 border-b border-border/40 py-4 text-[0.75rem] font-medium text-muted-foreground"
+            className="flex items-center gap-2 border-b border-border/40 py-3 text-[0.8rem] font-medium text-muted-foreground"
             dir="ltr"
           >
             <a
@@ -197,8 +197,8 @@ export function SiteNavbar({ links, locale }: SiteNavbarProps) {
               hrefLang="ar"
               aria-current={locale === "ar" ? "true" : undefined}
               className={cn(
-                "transition-colors hover:text-primary",
-                locale === "ar" && "text-foreground",
+                "inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg px-3 transition-colors hover:text-primary",
+                locale === "ar" && "font-bold text-foreground bg-primary/10",
               )}
               onClick={(event) => handleLanguageSwitch(event, "ar")}
             >
@@ -212,8 +212,8 @@ export function SiteNavbar({ links, locale }: SiteNavbarProps) {
               hrefLang="en"
               aria-current={locale === "en" ? "true" : undefined}
               className={cn(
-                "transition-colors hover:text-primary",
-                locale === "en" && "text-foreground",
+                "inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg px-3 transition-colors hover:text-primary",
+                locale === "en" && "font-bold text-foreground bg-primary/10",
               )}
               onClick={(event) => handleLanguageSwitch(event, "en")}
             >

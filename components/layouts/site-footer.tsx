@@ -91,7 +91,7 @@ export function SiteFooter({ brand, content, links }: SiteFooterProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 transition-colors hover:text-[#a9d6aa]"
+                    className="inline-block py-2 px-1.5 text-white/90 transition-colors hover:text-[#a9d6aa]"
                   >
                     {link.label}
                   </Link>
@@ -101,15 +101,15 @@ export function SiteFooter({ brand, content, links }: SiteFooterProps) {
           </nav>
 
           {/* Contact & Social Links - Compact Horizontal Icons */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             {/* Phone */}
             <a
               href={contactInfo.phoneHref}
               aria-label={`${content.phoneLabel}: ${contactInfo.phoneDisplay}`}
               title={`${content.phoneLabel}: ${contactInfo.phoneDisplay}`}
-              className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/75 transition-colors hover:border-[#a9d6aa] hover:bg-[#a9d6aa]/10 hover:text-[#a9d6aa]"
+              className="inline-flex size-11 sm:size-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition-colors hover:border-[#a9d6aa] hover:bg-[#a9d6aa]/10 hover:text-[#a9d6aa]"
             >
-              <Phone className="size-3.5" aria-hidden="true" />
+              <Phone className="size-4 sm:size-3.5" aria-hidden="true" />
             </a>
 
             {/* WhatsApp */}
@@ -119,9 +119,9 @@ export function SiteFooter({ brand, content, links }: SiteFooterProps) {
               rel="noreferrer"
               aria-label={`${content.whatsappLabel}: ${contactInfo.whatsappDisplay}`}
               title={`${content.whatsappLabel}: ${contactInfo.whatsappDisplay}`}
-              className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/75 transition-colors hover:border-[#a9d6aa] hover:bg-[#a9d6aa]/10 hover:text-[#a9d6aa]"
+              className="inline-flex size-11 sm:size-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition-colors hover:border-[#a9d6aa] hover:bg-[#a9d6aa]/10 hover:text-[#a9d6aa]"
             >
-              <MessageCircle className="size-3.5" aria-hidden="true" />
+              <MessageCircle className="size-4 sm:size-3.5" aria-hidden="true" />
             </a>
 
             {/* Email */}
@@ -129,9 +129,9 @@ export function SiteFooter({ brand, content, links }: SiteFooterProps) {
               href={contactInfo.emailHref}
               aria-label={`${content.emailLabel}: ${contactInfo.email}`}
               title={`${content.emailLabel}: ${contactInfo.email}`}
-              className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/75 transition-colors hover:border-[#a9d6aa] hover:bg-[#a9d6aa]/10 hover:text-[#a9d6aa]"
+              className="inline-flex size-11 sm:size-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition-colors hover:border-[#a9d6aa] hover:bg-[#a9d6aa]/10 hover:text-[#a9d6aa]"
             >
-              <Mail className="size-3.5" aria-hidden="true" />
+              <Mail className="size-4 sm:size-3.5" aria-hidden="true" />
             </a>
 
             <span className="mx-1 h-3.5 w-px bg-white/15" aria-hidden="true" />
@@ -152,10 +152,10 @@ export function SiteFooter({ brand, content, links }: SiteFooterProps) {
                   }
                   aria-label={social.label}
                   title={social.label}
-                  className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/75 transition-colors hover:border-[#a9d6aa] hover:bg-[#a9d6aa]/10 hover:text-[#a9d6aa]"
+                  className="inline-flex size-11 sm:size-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition-colors hover:border-[#a9d6aa] hover:bg-[#a9d6aa]/10 hover:text-[#a9d6aa]"
                 >
                   {Icon ? (
-                    <Icon className="size-3.5" />
+                    <Icon className="size-4 sm:size-3.5" />
                   ) : (
                     <span className="text-[10px] font-semibold">
                       {social.label.slice(0, 2)}
@@ -168,7 +168,7 @@ export function SiteFooter({ brand, content, links }: SiteFooterProps) {
         </div>
 
         {/* Bottom bar - slim */}
-        <div className="mt-5 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-4 text-[11px] text-white/45 sm:flex-row">
+        <div className="mt-5 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-4 text-xs font-medium text-white/80 sm:flex-row">
           <p>{content.description}</p>
           <p>
             &copy; {new Date().getFullYear()} {brand}. {content.rights}
