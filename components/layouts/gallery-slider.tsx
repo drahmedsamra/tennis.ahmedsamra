@@ -189,7 +189,7 @@ export function GallerySlider({
           onTouchEnd={handleTouchEnd}
         >
           {/* Main Slide Stage */}
-          <div className="relative aspect-[4/3] w-full sm:aspect-[16/9] lg:aspect-[21/9]">
+          <div className="relative h-[480px] w-full sm:h-[580px] lg:h-[680px]">
             {slides.map((slide, idx) => {
               const isActive = idx === currentIndex;
               return (
@@ -202,39 +202,54 @@ export function GallerySlider({
                       : "pointer-events-none opacity-0 z-0"
                   }`}
                 >
-                  <Image
-                    src={slide.src}
-                    alt={slide.title || "Academy Photo"}
-                    fill
-                    loading="lazy"
-                    sizes="(min-width: 1280px) 1200px, 100vw"
-                    className={`object-cover transition-transform duration-1000 ease-out ${
-                      isActive ? "scale-100" : "scale-105"
-                    }`}
-                  />
+                  {/* Layer 1: Ambient Blurred Backdrop (Atmospheric Glow) */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <Image
+                      src={slide.src}
+                      alt=""
+                      fill
+                      aria-hidden="true"
+                      loading="lazy"
+                      sizes="100vw"
+                      className="object-cover blur-3xl opacity-35 scale-125 saturate-150"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/40" />
+                  </div>
 
-                  {/* Gradient Overlay for Text Legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent sm:via-slate-950/30" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-transparent to-transparent opacity-80" />
+                  {/* Layer 2: Main Subject Image - 100% UNTOUCHED, PROPORTIONAL & UNGARBLED */}
+                  <div className="relative h-full w-full p-4 pb-28 sm:p-8 sm:pb-32">
+                    <Image
+                      src={slide.src}
+                      alt={slide.title || "Academy Photo"}
+                      fill
+                      loading="lazy"
+                      sizes="(min-width: 1280px) 1200px, 100vw"
+                      className={`object-contain transition-transform duration-700 ease-out drop-shadow-2xl ${
+                        isActive ? "scale-100" : "scale-95"
+                      }`}
+                    />
+                  </div>
 
-                  {/* Slide Content Caption */}
-                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14">
-                    <div className="max-w-2xl text-start">
-                      {slide.category ? (
-                        <span className="inline-block rounded-lg bg-emerald-500/90 px-3 py-1 text-xs font-bold text-white shadow-sm backdrop-blur">
-                          {slide.category}
-                        </span>
-                      ) : null}
-
-                      <h3 className="mt-2.5 text-xl font-bold tracking-tight text-white sm:text-2xl lg:text-3xl">
-                        {slide.title}
-                      </h3>
-
-                      {slide.description ? (
-                        <p className="mt-2 text-xs leading-relaxed text-slate-200 line-clamp-2 sm:text-sm sm:line-clamp-3">
-                          {slide.description}
-                        </p>
-                      ) : null}
+                  {/* Layer 3: Glass Floating Caption Badge at bottom */}
+                  <div className="absolute inset-x-0 bottom-0 z-10 p-3 sm:p-6 pointer-events-none">
+                    <div className="mx-auto max-w-2xl pointer-events-auto rounded-2xl border border-white/10 bg-slate-950/80 p-3.5 sm:p-5 shadow-2xl backdrop-blur-xl">
+                      <div className="flex flex-col gap-1 text-start">
+                        <div className="flex flex-wrap items-center gap-2">
+                          {slide.category ? (
+                            <span className="inline-block rounded-md bg-emerald-500/90 px-2.5 py-0.5 text-[11px] font-bold text-white shadow-sm">
+                              {slide.category}
+                            </span>
+                          ) : null}
+                          <h3 className="text-sm sm:text-lg font-bold tracking-tight text-white line-clamp-1">
+                            {slide.title}
+                          </h3>
+                        </div>
+                        {slide.description ? (
+                          <p className="text-xs leading-relaxed text-slate-300 line-clamp-1 sm:line-clamp-2">
+                            {slide.description}
+                          </p>
+                        ) : null}
+                      </div>
                     </div>
                   </div>
                 </div>

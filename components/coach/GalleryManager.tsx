@@ -317,12 +317,12 @@ export default function GalleryManager({ initialImages }: GalleryManagerProps) {
                 </label>
                 <div className="mt-2 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center transition hover:border-emerald-500 hover:bg-emerald-50/20">
                   {filePreview ? (
-                    <div className="relative aspect-video w-full max-w-sm overflow-hidden rounded-lg border border-slate-200 shadow-xs">
+                    <div className="relative aspect-[4/3] w-full max-w-sm overflow-hidden rounded-lg border border-slate-200 bg-slate-950 shadow-xs">
                       <Image
                         src={filePreview}
                         alt="Preview"
                         fill
-                        className="object-cover"
+                        className="object-contain p-2"
                       />
                       <button
                         type="button"
@@ -528,13 +528,13 @@ export default function GalleryManager({ initialImages }: GalleryManagerProps) {
               }`}
             >
               {/* Image Preview Container */}
-              <div className="relative aspect-video w-full overflow-hidden bg-slate-900">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-950">
                 <Image
                   src={img.image_url}
                   alt={img.title_ar}
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
+                  className="object-contain p-2"
                 />
                 {/* Badge Category */}
                 {img.category ? (
