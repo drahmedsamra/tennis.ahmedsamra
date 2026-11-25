@@ -167,6 +167,32 @@ export async function updateGalleryImageOrderAction(
   }
 }
 
+export async function updateGalleryImageDetailsAction(
+  id: string,
+  data: {
+    title_ar: string;
+    title_en?: string | null;
+    description_ar?: string | null;
+    description_en?: string | null;
+    category?: string | null;
+    display_order?: number;
+  }
+): Promise<GalleryActionResult> {
+  try {
+    await updateGalleryImage(id, data);
+
+    revalidatePath("/");
+    revalidatePath("/en");
+    revalidatePath("/coach/gallery");
+
+    return { success: true, message: "تم تحديث بيانات الصورة بنجاح!" };
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : "فشل تحديث بيانات الصورة.";
+    return { success: false, error: message };
+  }
+}
+
 export async function deleteGalleryImageAction(
   id: string,
   imageUrl?: string

@@ -13,6 +13,7 @@ import {
   RefreshCw,
   Trash2,
   Upload,
+  Pencil,
   X,
 } from "lucide-react";
 
@@ -21,6 +22,7 @@ import {
   deleteGalleryImageAction,
   toggleGalleryImageStatusAction,
   updateGalleryImageOrderAction,
+  updateGalleryImageDetailsAction,
 } from "@/app/actions/gallery";
 import type { GalleryImage } from "@/types/gallery";
 
@@ -47,6 +49,15 @@ export default function GalleryManager({ initialImages }: GalleryManagerProps) {
   const [descEn, setDescEn] = useState("");
   const [category, setCategory] = useState("تدريب");
   const [displayOrder, setDisplayOrder] = useState<number>(images.length + 1);
+
+  // Edit State
+  const [editingImage, setEditingImage] = useState<GalleryImage | null>(null);
+  const [editTitleAr, setEditTitleAr] = useState("");
+  const [editTitleEn, setEditTitleEn] = useState("");
+  const [editDescAr, setEditDescAr] = useState("");
+  const [editDescEn, setEditDescEn] = useState("");
+  const [editCategory, setEditCategory] = useState("تدريب");
+  const [editOrder, setEditOrder] = useState<number>(0);
 
   // Stats
   const totalCount = images.length;
@@ -183,6 +194,60 @@ export default function GalleryManager({ initialImages }: GalleryManagerProps) {
         setActionMessage({
           type: "error",
           text: res.error || "فشل حذف الصورة.",
+        });
+      }
+    });
+  }
+
+  function openEditModal(img: GalleryImage) {
+    setEditingImage(img);
+    setEditTitleAr(img.title_ar || "");
+    setEditTitleEn(img.title_en || "");
+    setEditDescAr(img.description_ar || "");
+    setEditDescEn(img.description_en || "");
+    setEditCategory(img.category || "تدريب");
+    setEditOrder(img.display_order ?? 0);
+  }
+
+  function handleSaveEdit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!editingImage || !editTitleAr.trim()) return;
+
+    startTransition(async () => {
+      const res = await updateGalleryImageDetailsAction(editingImage.id, {
+        title_ar: editTitleAr.trim(),
+        title_en: editTitleEn.trim() || null,
+        description_ar: editDescAr.trim() || null,
+        description_en: editDescEn.trim() || null,
+        category: editCategory.trim() || null,
+        display_order: editOrder,
+      });
+
+      if (res.success) {
+        setImages((prev) =>
+          prev.map((item) =>
+            item.id === editingImage.id
+              ? {
+                  ...item,
+                  title_ar: editTitleAr.trim(),
+                  title_en: editTitleEn.trim() || null,
+                  description_ar: editDescAr.trim() || null,
+                  description_en: editDescEn.trim() || null,
+                  category: editCategory.trim() || null,
+                  display_order: editOrder,
+                }
+              : item
+          )
+        );
+        setEditingImage(null);
+        setActionMessage({
+          type: "success",
+          text: "تم تحديث عنوان ووصف الصورة بنجاح!",
+        });
+      } else {
+        setActionMessage({
+          type: "error",
+          text: res.error || "فشل تحديث بيانات الصورة.",
         });
       }
     });
@@ -613,6 +678,16 @@ export default function GalleryManager({ initialImages }: GalleryManagerProps) {
 
                     <button
                       type="button"
+                      title="تعديل العنوان والوصف"
+                      onClick={() => openEditModal(img)}
+                      disabled={isPending}
+                      className="rounded-lg p-2 text-slate-500 transition hover:bg-emerald-50 hover:text-emerald-700"
+                    >
+                      <Pencil className="size-4" />
+                    </button>
+
+                    <button
+                      type="button"
                       title="حذف الصورة نهائياً"
                       onClick={() => handleDelete(img)}
                       disabled={isPending}
@@ -625,6 +700,169 @@ export default function GalleryManager({ initialImages }: GalleryManagerProps) {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Edit Image Details Modal */}
+      {editingImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl md:p-8">
+            <button
+              type="button"
+              onClick={() => setEditingImage(null)}
+              className="absolute end-4 top-4 rounded-full bg-slate-100 p-2 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900"
+            >
+              <X className="size-4" />
+            </button>
+
+            <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Pencil className="size-5" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-900">
+                  تعديل بيانات الصورة
+                </h3>
+                <p className="text-xs text-slate-500">
+                  تعديل العنوان العربي والإنجليزي، الوصف، والتصنيف
+                </p>
+              </div>
+            </div>
+
+            <form onSubmit={handleSaveEdit} className="mt-6 space-y-4">
+              {/* Preview */}
+              <div className="flex items-center gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-3">
+                <div className="relative size-16 shrink-0 overflow-hidden rounded-xl bg-slate-900 shadow-xs">
+                  <Image
+                    src={editingImage.image_url}
+                    alt={editingImage.title_ar}
+                    fill
+                    className="object-contain p-1"
+                  />
+                </div>
+                <div className="text-xs text-slate-600">
+                  <p className="font-bold text-slate-900">{editingImage.title_ar}</p>
+                  <p className="mt-0.5 text-slate-400">التصنيف: {editingImage.category || "الأكاديمية"}</p>
+                </div>
+              </div>
+
+              {/* Title Ar */}
+              <div>
+                <label className="mb-1 block text-xs font-bold text-slate-700">
+                  عنوان الصورة بالعربية <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={editTitleAr}
+                  onChange={(e) => setEditTitleAr(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-800 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                />
+              </div>
+
+              {/* Title En */}
+              <div>
+                <label className="mb-1 block text-xs font-bold text-slate-700">
+                  عنوان الصورة بالإنجليزية (Title in English)
+                </label>
+                <input
+                  type="text"
+                  dir="ltr"
+                  value={editTitleEn}
+                  onChange={(e) => setEditTitleEn(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-800 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                />
+              </div>
+
+              {/* Desc Ar */}
+              <div>
+                <label className="mb-1 block text-xs font-bold text-slate-700">
+                  وصف الصورة بالعربية
+                </label>
+                <textarea
+                  rows={2}
+                  value={editDescAr}
+                  onChange={(e) => setEditDescAr(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-800 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                />
+              </div>
+
+              {/* Desc En */}
+              <div>
+                <label className="mb-1 block text-xs font-bold text-slate-700">
+                  وصف الصورة بالإنجليزية (Description in English)
+                </label>
+                <textarea
+                  rows={2}
+                  dir="ltr"
+                  value={editDescEn}
+                  onChange={(e) => setEditDescEn(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-800 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                />
+              </div>
+
+              {/* Category & Order */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="mb-1 block text-xs font-bold text-slate-700">
+                    التصنيف
+                  </label>
+                  <select
+                    value={editCategory}
+                    onChange={(e) => setEditCategory(e.target.value)}
+                    className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-800 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  >
+                    <option value="بطولة">بطولة</option>
+                    <option value="تدريب">تدريب</option>
+                    <option value="تكريم">تكريم</option>
+                    <option value="الأكاديمية">الأكاديمية</option>
+                    <option value="مباريات">مباريات</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="mb-1 block text-xs font-bold text-slate-700">
+                    ترتيب الظهور
+                  </label>
+                  <input
+                    type="number"
+                    value={editOrder}
+                    onChange={(e) => setEditOrder(Number(e.target.value))}
+                    className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-800 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  />
+                </div>
+              </div>
+
+              {/* Modal Actions */}
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setEditingImage(null)}
+                  className="rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-600 transition hover:bg-slate-50"
+                >
+                  إلغاء
+                </button>
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-emerald-700 disabled:opacity-50"
+                >
+                  {isPending ? (
+                    <>
+                      <Loader2 className="size-4 animate-spin" />
+                      جاري الحفظ...
+                    </>
+                  ) : (
+                    "حفظ التعديلات"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
