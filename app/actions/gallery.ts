@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import sharp from "sharp";
 import { createClient } from "@/lib/supabase/server";
 import {
   createGalleryImage,
@@ -43,18 +44,40 @@ export async function addGalleryImageAction(
 
     // Handle file upload if provided
     if (file && file.size > 0) {
-      const sanitizedName = file.name
-        .replace(/[^a-zA-Z0-9.-]/g, "_")
-        .toLowerCase();
-      const filePath = `images/${Date.now()}_${sanitizedName}`;
-
       const arrayBuffer = await file.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
+      const inputBuffer = Buffer.from(arrayBuffer);
+
+      // Auto-convert to WebP with optimal compression and auto-rotation
+      let uploadBuffer: Buffer;
+      let contentType = "image/webp";
+      const baseName = file.name
+        .replace(/\.[^/.]+$/, "")
+        .replace(/[^a-zA-Z0-9_-]/g, "_")
+        .toLowerCase();
+      let filePath = `images/${Date.now()}_${baseName}.webp`;
+
+      try {
+        uploadBuffer = await sharp(inputBuffer)
+          .rotate() // Auto-orient based on EXIF
+          .resize({
+            width: 2048,
+            height: 2048,
+            fit: "inside",
+            withoutEnlargement: true,
+          })
+          .webp({ quality: 85, effort: 4 })
+          .toBuffer();
+      } catch (sharpError) {
+        console.warn("Sharp WebP conversion error, uploading original:", sharpError);
+        uploadBuffer = inputBuffer;
+        contentType = file.type || "image/jpeg";
+        filePath = `images/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, "_").toLowerCase()}`;
+      }
 
       const { error: uploadError } = await supabase.storage
         .from("gallery")
-        .upload(filePath, buffer, {
-          contentType: file.type || "image/jpeg",
+        .upload(filePath, uploadBuffer, {
+          contentType,
           upsert: true,
         });
 
