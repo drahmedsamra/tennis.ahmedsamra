@@ -17,7 +17,7 @@ export function LocationsSection({ content, locale }: LocationsSectionProps) {
     <section
       id="locations"
       aria-labelledby="locations-heading"
-      className="relative isolate scroll-mt-14 overflow-hidden border-b-4 border-background bg-gradient-to-b from-[#f8faf7] via-background to-[#f8faf7] py-14 sm:py-20 lg:scroll-mt-16"
+      className="relative isolate scroll-mt-14 overflow-hidden border-y border-emerald-600/20 bg-gradient-to-b from-[#eaf3eb] via-[#f3f8f4] to-[#eaf3eb] dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 py-14 sm:py-20 lg:scroll-mt-16 shadow-[inset_0_4px_12px_rgba(0,0,0,0.03),inset_0_-4px_12px_rgba(0,0,0,0.03)]"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

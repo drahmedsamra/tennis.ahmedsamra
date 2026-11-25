@@ -116,10 +116,9 @@ export function PlayerRegistrationForm({
     <section
       id="register"
       className={cn(
-        "border-b-4 border-background py-8 sm:py-12 transition-colors duration-500",
-        isExpanded
-          ? "bg-gradient-to-b from-emerald-100/60 via-emerald-50/40 to-background"
-          : "bg-gradient-to-b from-[#f3f7f3] to-background"
+        "relative isolate border-y border-emerald-600/20 py-10 sm:py-14 transition-colors duration-500",
+        "bg-[#eff6f0] dark:bg-slate-900/70 shadow-[inset_0_4px_12px_rgba(0,0,0,0.04),inset_0_-4px_12px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_4px_12px_rgba(0,0,0,0.3)]",
+        isExpanded && "bg-[#e5f0e6] dark:bg-slate-900"
       )}
     >
       <div className="marketing-shell">
@@ -128,8 +127,8 @@ export function PlayerRegistrationForm({
           className={cn(
             "relative overflow-hidden rounded-3xl border-2 transition-all duration-500",
             isExpanded
-              ? "border-emerald-500/80 bg-gradient-to-b from-[#edf7ed] via-[#f7fbf7] to-white shadow-2xl ring-4 ring-emerald-500/15"
-              : "border-primary/25 bg-card/90 shadow-sm hover:border-primary/50 hover:shadow-md"
+              ? "border-emerald-500 bg-white dark:bg-slate-900 shadow-2xl ring-4 ring-emerald-500/20"
+              : "border-emerald-600/30 bg-white dark:bg-slate-900 shadow-xl shadow-emerald-950/5 hover:border-emerald-500 hover:shadow-2xl"
           )}
         >
           {/* Subtle decorative top bar */}

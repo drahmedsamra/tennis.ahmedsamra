@@ -45,7 +45,7 @@ export function PlayerAccessSection({
   return (
     <section
       id="player-portal"
-      className="relative isolate overflow-hidden border-b-4 border-background bg-gradient-to-b from-[#f8faf7] via-[#eef6f0] to-[#f8faf7] py-10 sm:py-16"
+      className="relative isolate overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-12 sm:py-16"
     >
       {/* Subtle court grid background accent */}
       <div

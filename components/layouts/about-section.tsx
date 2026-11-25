@@ -13,7 +13,7 @@ export function AboutSection({ content, locale }: AboutSectionProps) {
   const contactLabel = locale === "ar" ? "تواصل مع أحمد" : "Contact Ahmed";
 
   return (
-    <section id="about" aria-labelledby="about-heading" className="border-b-4 border-background bg-[#eaf3ec]">
+    <section id="about" aria-labelledby="about-heading" className="border-y border-emerald-700/20 bg-[#e8f2e9] dark:bg-emerald-950/20 shadow-[inset_0_4px_12px_rgba(0,0,0,0.04),inset_0_-4px_12px_rgba(0,0,0,0.04)]">
       <div className="marketing-shell grid gap-8 py-10 sm:py-20 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:py-28">
         <div>
           <p className="marketing-kicker">{content.eyebrow}</p>
@@ -37,16 +37,22 @@ export function AboutSection({ content, locale }: AboutSectionProps) {
           </Link>
         </div>
 
-        <ol className="grid grid-cols-2 border-t border-border/80 sm:block sm:border-y">
+        <ol className="flex flex-col gap-3">
           {content.roles.map((role, index) => (
             <li
               key={role.title}
-              className="flex min-h-28 flex-col border-b border-border/80 p-4 odd:border-e sm:grid sm:min-h-0 sm:grid-cols-[3rem_minmax(0,0.7fr)_1.3fr_auto] sm:items-center sm:gap-5 sm:border-e-0 sm:p-0 sm:py-5 sm:last:border-b-0"
+              className="flex flex-col rounded-2xl border-2 border-emerald-600/20 bg-white dark:bg-slate-900 p-4 sm:grid sm:grid-cols-[3rem_minmax(0,0.7fr)_1.3fr_auto] sm:items-center sm:gap-5 sm:p-5 shadow-sm hover:border-emerald-500/50 hover:shadow-md transition-all"
             >
-              <span className="text-xs font-semibold text-primary">{String(index + 1).padStart(2, "0")}</span>
-              <h3 className="mt-3 text-sm font-semibold leading-6 text-foreground sm:mt-0 sm:text-base sm:leading-normal">{role.title}</h3>
-              <p className="mt-2 text-xs leading-5 text-muted-foreground sm:mt-0 sm:text-sm sm:leading-7">{role.description}</p>
-              <CircleCheck className="hidden size-5 text-primary sm:block" aria-hidden />
+              <span className="flex size-8 items-center justify-center rounded-xl bg-emerald-500/10 text-xs font-bold text-emerald-700 dark:text-emerald-300">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-2 text-sm font-bold text-slate-900 dark:text-white sm:mt-0 sm:text-base">
+                {role.title}
+              </h3>
+              <p className="mt-1 text-xs text-slate-600 dark:text-slate-300 sm:mt-0 sm:text-sm">
+                {role.description}
+              </p>
+              <CircleCheck className="hidden size-5 text-emerald-600 sm:block" aria-hidden />
             </li>
           ))}
         </ol>

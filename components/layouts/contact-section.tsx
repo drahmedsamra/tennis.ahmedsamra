@@ -29,7 +29,7 @@ export function ContactSection({ content }: ContactSectionProps) {
   }
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="border-b-4 border-background bg-[#f6f8f5]">
+    <section id="contact" aria-labelledby="contact-heading" className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
       <div className="marketing-shell py-10 sm:py-20 lg:py-28">
         <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
           <p className="marketing-kicker">{content.eyebrow}</p>
@@ -40,7 +40,7 @@ export function ContactSection({ content }: ContactSectionProps) {
         </div>
 
         <div className="mt-8 max-w-2xl border-t border-border/80 pt-8 sm:mt-12 sm:pt-10">
-          <form className="border border-border/80 bg-muted/30 p-5 sm:p-8" onSubmit={handleSubmit}>
+          <form className="rounded-3xl border-2 border-slate-200/90 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/80 p-6 sm:p-10 shadow-xl shadow-slate-200/50 dark:shadow-none" onSubmit={handleSubmit}>
             <div className="grid gap-5 sm:grid-cols-2">
               <FormField id="contact-name" label={content.form.name} name="name" autoComplete="name" icon={User} required />
               <FormField id="contact-phone" label={content.form.phone} name="phone" type="tel" autoComplete="tel" icon={Phone} required />

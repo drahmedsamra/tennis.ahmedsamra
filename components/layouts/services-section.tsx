@@ -24,7 +24,7 @@ export function ServicesSection({ content }: ServicesSectionProps) {
   const isOddCount = content.cards.length % 2 !== 0;
 
   return (
-    <section id="services" aria-labelledby="services-heading" className="border-b-4 border-background bg-[#f1f3ef]">
+    <section id="services" aria-labelledby="services-heading" className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
       <div className="marketing-shell py-10 sm:py-20 lg:py-28">
         <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-16">
           <p className="marketing-kicker">{content.eyebrow}</p>
@@ -36,7 +36,7 @@ export function ServicesSection({ content }: ServicesSectionProps) {
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-border/80 bg-border/80 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border-2 border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
           {content.cards.map((service, index) => {
             const Icon = serviceIcons[service.icon] ?? Target;
             const isLast = index === content.cards.length - 1;
@@ -45,7 +45,7 @@ export function ServicesSection({ content }: ServicesSectionProps) {
               <article
                 key={service.title}
                 className={cn(
-                  "relative min-h-44 bg-[#f8faf7] p-5 sm:min-h-56 sm:p-7 transition-colors hover:bg-white",
+                  "relative min-h-44 bg-white dark:bg-slate-900 p-5 sm:min-h-56 sm:p-7 transition-colors hover:bg-emerald-50/50 dark:hover:bg-slate-800/80",
                   isOddCount && isLast && "col-span-2 sm:col-span-1"
                 )}
               >

@@ -159,7 +159,7 @@ export function GallerySlider({
     <section
       id="gallery"
       aria-labelledby="gallery-heading"
-      className="scroll-mt-14 overflow-hidden py-24 sm:py-32 lg:scroll-mt-16"
+      className="scroll-mt-14 overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-14 sm:py-20 lg:scroll-mt-16"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

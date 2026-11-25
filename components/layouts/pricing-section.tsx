@@ -40,7 +40,7 @@ export function PricingSection({ content, locale = "ar" }: PricingSectionProps) 
     <section
       id="pricing"
       aria-labelledby="pricing-heading"
-      className="relative isolate overflow-hidden border-b-4 border-background bg-gradient-to-b from-background via-[#f6faf6] to-background py-16 sm:py-24 lg:py-32"
+      className="relative isolate overflow-hidden border-y border-emerald-600/20 bg-gradient-to-b from-[#ebf5ec] via-[#f3f9f4] to-[#ebf5ec] dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 py-16 sm:py-24 lg:py-28 shadow-[inset_0_4px_12px_rgba(0,0,0,0.03),inset_0_-4px_12px_rgba(0,0,0,0.03)]"
     >
       <div className="marketing-shell relative z-10">
         {/* Section Header */}
