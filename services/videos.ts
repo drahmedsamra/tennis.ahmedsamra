@@ -135,3 +135,51 @@ export async function deleteVideo(id: string): Promise<void> {
     throw error;
   }
 }
+
+export type SyncVideoInput = {
+  title: string;
+  youtube_url: string;
+  description?: string | null;
+  sort_order?: number;
+};
+
+export async function syncReportVideos(
+  reportId: string,
+  videos: SyncVideoInput[]
+): Promise<void> {
+  const supabase = await createClient();
+
+  // Delete current videos for this report
+  const { error: deleteError } = await supabase
+    .from("report_videos")
+    .delete()
+    .eq("report_id", reportId);
+
+  if (deleteError) {
+    console.error(`Error clearing videos for report ${reportId}:`, deleteError);
+  }
+
+  // Filter valid videos with both title and url
+  const validVideos = videos.filter(
+    (v) => v.title && v.title.trim() && v.youtube_url && v.youtube_url.trim()
+  );
+
+  if (validVideos.length === 0) return;
+
+  const records = validVideos.map((v, idx) => ({
+    report_id: reportId,
+    title: v.title.trim(),
+    youtube_url: v.youtube_url.trim(),
+    description: v.description?.trim() || null,
+    sort_order: v.sort_order ?? idx + 1,
+  }));
+
+  const { error: insertError } = await supabase
+    .from("report_videos")
+    .insert(records);
+
+  if (insertError) {
+    console.error(`Error inserting synced videos for report ${reportId}:`, insertError);
+    throw insertError;
+  }
+}
