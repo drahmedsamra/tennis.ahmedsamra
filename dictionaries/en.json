@@ -24,6 +24,7 @@
       "about": "About",
       "services": "Services",
       "pricing": "Pricing",
+      "locations": "Locations",
       "achievements": "Achievements",
       "playerPortal": "Player Portal",
       "contact": "Contact"
@@ -464,5 +465,61 @@
     "errorMessage": "Failed to submit request. Please verify the required fields and try again.",
     "egyptTennisId": "Federation Registration ID (Optional)",
     "egyptTennisIdPlaceholder": "Egypt Tennis Federation ID if registered"
+  },
+  "locations": {
+    "eyebrow": "Training Venues",
+    "heading": "Authorized Courts & Locations",
+    "subtitle": "Professional tennis coaching and player development across elite courts in Greater Cairo and Mansoura.",
+    "ctaText": "Book your training at the nearest venue",
+    "bookVenue": "Book Training at this Venue",
+    "question": "Need help finding the closest court to your location?",
+    "questionCta": "Chat directly with Coach Ahmed Samra on WhatsApp to find the best venue and schedule for you.",
+    "venues": [
+      {
+        "id": "fifth-settlement",
+        "city": "New Cairo",
+        "area": "Fifth Settlement",
+        "venue": "Sky Courts (Behind Petrosport)",
+        "badge": "Top Choice • Fully Equipped",
+        "description": "High-level professional complex featuring clay and hard courts with night floodlights and comprehensive amenities.",
+        "features": ["Clay & Hard Courts", "Advanced Night Lighting", "Changing Rooms & Parking"]
+      },
+      {
+        "id": "nasr-city",
+        "city": "East Cairo",
+        "area": "Nasr City",
+        "venue": "Gardenia City (Suez Road)",
+        "badge": "Strategic Location",
+        "description": "Modern courts located directly on Suez Road, conveniently reachable from Nasr City, Heliopolis, and El Shorouk.",
+        "features": ["Direct on Suez Road", "Modern Surface", "Quiet Training Environment"]
+      },
+      {
+        "id": "october",
+        "city": "Giza",
+        "area": "6th of October City",
+        "venue": "Central Security Courts - Grand Plaza",
+        "badge": "West Cairo & Sheikh Zayed",
+        "description": "Advanced court complex serving October and Sheikh Zayed players, prepared for tactical coaching and junior tournaments.",
+        "features": ["Near Sheikh Zayed", "Premium Clay Surface", "Tournament Preparation"]
+      },
+      {
+        "id": "first-settlement",
+        "city": "New Cairo",
+        "area": "First Settlement",
+        "venue": "First Settlement Courts",
+        "badge": "Near Rehab & Sadat Axis",
+        "description": "Distinguished courts serving First Settlement and Rehab City, ideal for junior foundations and adult sessions.",
+        "features": ["Near Rehab City", "Private & Semi-Private", "Flexible Schedule"]
+      },
+      {
+        "id": "mansoura",
+        "city": "Delta Region",
+        "area": "Mansoura City",
+        "venue": "Mansoura Courts",
+        "badge": "Delta Hub & Camps",
+        "description": "Serving competitive players and tournament champions in the Delta with periodic intensive training camps.",
+        "features": ["Intensive Camps", "Delta Champions Hub", "Comprehensive Technical Reports"]
+      }
+    ]
   }
 }

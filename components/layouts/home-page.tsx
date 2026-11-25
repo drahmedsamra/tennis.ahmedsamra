@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { AboutSection } from "@/components/layouts/about-section";
 import { ContactSection } from "@/components/layouts/contact-section";
 import { GallerySlider } from "@/components/layouts/gallery-slider";
+import { LocationsSection } from "@/components/layouts/locations-section";
 import { HeroSection } from "@/components/layouts/hero/hero-section";
 import { MobileContactActions } from "@/components/layouts/mobile-contact-actions";
 import { PlayerAccessSection } from "@/components/layouts/player-access-section";
@@ -119,7 +120,10 @@ export function HomePage({
           initialImages={galleryImages}
         />
 
-
+        <LocationsSection
+          content={dictionary.locations}
+          locale={locale}
+        />
 
         <ContactSection
           content={dictionary.contact}
