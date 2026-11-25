@@ -59,6 +59,7 @@ export function BrandLogo({
           alt="Ahmed Samra Tennis Logo"
           width={sizeClasses.img}
           height={sizeClasses.img}
+          priority
           className="size-full object-contain"
         />
       </div>

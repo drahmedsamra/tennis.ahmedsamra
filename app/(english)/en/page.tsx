@@ -16,8 +16,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const dictionary = await getDictionary(locale);
-  const galleryImages = await getActiveGalleryImages();
+  const [dictionary, galleryImages] = await Promise.all([
+    getDictionary(locale),
+    getActiveGalleryImages(),
+  ]);
 
   return (
     <>

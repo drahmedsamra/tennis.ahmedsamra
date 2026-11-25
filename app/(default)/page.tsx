@@ -23,9 +23,11 @@ export default async function Page({
 }: {
   searchParams: Promise<{ player?: string }>;
 }) {
-  const dictionary = await getDictionary(locale);
-  const galleryImages = await getActiveGalleryImages();
-  const { player: playerCode } = await searchParams;
+  const [dictionary, galleryImages, { player: playerCode }] = await Promise.all([
+    getDictionary(locale),
+    getActiveGalleryImages(),
+    searchParams,
+  ]);
   let playerDashboard:
     | { player: Player; reports: Report[] }
     | undefined;

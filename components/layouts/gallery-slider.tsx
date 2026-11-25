@@ -192,6 +192,13 @@ export function GallerySlider({
           <div className="relative h-[480px] w-full sm:h-[580px] lg:h-[680px]">
             {slides.map((slide, idx) => {
               const isActive = idx === currentIndex;
+              const isNear =
+                isActive ||
+                idx === (currentIndex + 1) % totalSlides ||
+                idx === (currentIndex - 1 + totalSlides) % totalSlides;
+
+              if (!isNear) return null;
+
               return (
                 <div
                   key={slide.id}
@@ -202,19 +209,21 @@ export function GallerySlider({
                       : "pointer-events-none opacity-0 z-0"
                   }`}
                 >
-                  {/* Layer 1: Ambient Blurred Backdrop (Atmospheric Glow) */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    <Image
-                      src={slide.src}
-                      alt=""
-                      fill
-                      aria-hidden="true"
-                      loading="lazy"
-                      sizes="100vw"
-                      className="object-cover blur-3xl opacity-35 scale-125 saturate-150"
-                    />
-                    <div className="absolute inset-0 bg-slate-950/40" />
-                  </div>
+                  {/* Layer 1: Ambient Blurred Backdrop (Atmospheric Glow) - Only rendered for active slide */}
+                  {isActive && (
+                    <div className="absolute inset-0 overflow-hidden">
+                      <Image
+                        src={slide.src}
+                        alt=""
+                        fill
+                        aria-hidden="true"
+                        loading="lazy"
+                        sizes="100vw"
+                        className="object-cover blur-3xl opacity-35 scale-125 saturate-150"
+                      />
+                      <div className="absolute inset-0 bg-slate-950/40" />
+                    </div>
+                  )}
 
                   {/* Layer 2: Main Subject Image - 100% UNTOUCHED, PROPORTIONAL & UNGARBLED */}
                   <div className="relative h-full w-full p-4 pb-28 sm:p-8 sm:pb-32">
@@ -222,7 +231,8 @@ export function GallerySlider({
                       src={slide.src}
                       alt={slide.title || "Academy Photo"}
                       fill
-                      loading="lazy"
+                      loading={isActive ? "eager" : "lazy"}
+                      decoding="async"
                       sizes="(min-width: 1280px) 1200px, 100vw"
                       className={`object-contain transition-transform duration-700 ease-out drop-shadow-2xl ${
                         isActive ? "scale-100" : "scale-95"

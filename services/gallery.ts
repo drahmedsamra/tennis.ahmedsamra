@@ -1,4 +1,5 @@
-import { createClient } from "@/lib/supabase/server";
+import { unstable_cache } from "next/cache";
+import { createClient, createPublicClient } from "@/lib/supabase/server";
 import type {
   GalleryImage,
   CreateGalleryImageInput,
@@ -7,34 +8,42 @@ import type {
 
 /**
  * Fetches all active gallery images for public display
- * Ordered by display_order ascending, then created_at descending
+ * Ordered by display_order ascending, then created_at descending.
+ * Cached in-memory with Next.js data cache for instant responses, revalidated on mutation.
  */
-export async function getActiveGalleryImages(): Promise<GalleryImage[]> {
-  try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("gallery_images")
-      .select("*")
-      .eq("is_active", true)
-      .order("display_order", { ascending: true })
-      .order("created_at", { ascending: false });
+export const getActiveGalleryImages = unstable_cache(
+  async (): Promise<GalleryImage[]> => {
+    try {
+      const supabase = createPublicClient();
+      const { data, error } = await supabase
+        .from("gallery_images")
+        .select("*")
+        .eq("is_active", true)
+        .order("display_order", { ascending: true })
+        .order("created_at", { ascending: false });
 
-    if (error) {
-      // Graceful fallback if table does not exist yet
-      if (error.code === "PGRST205") {
-        console.warn("gallery_images table does not exist in schema cache yet.");
+      if (error) {
+        // Graceful fallback if table does not exist yet
+        if (error.code === "PGRST205") {
+          console.warn("gallery_images table does not exist in schema cache yet.");
+          return [];
+        }
+        console.error("Error fetching active gallery images:", error);
         return [];
       }
-      console.error("Error fetching active gallery images:", error);
+
+      return (data as GalleryImage[]) || [];
+    } catch (err) {
+      console.error("Unexpected error in getActiveGalleryImages:", err);
       return [];
     }
-
-    return (data as GalleryImage[]) || [];
-  } catch (err) {
-    console.error("Unexpected error in getActiveGalleryImages:", err);
-    return [];
+  },
+  ["active-gallery-images"],
+  {
+    revalidate: 3600,
+    tags: ["gallery-images"],
   }
-}
+);
 
 /**
  * Fetches all gallery images (both active and inactive) for Coach Dashboard
